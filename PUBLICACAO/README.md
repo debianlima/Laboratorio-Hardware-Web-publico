@@ -1,10 +1,10 @@
 # Preparação para publicação pública
 
-Esta pasta registra as verificações realizadas na cópia local do projeto antes de qualquer publicação.
+Esta pasta registra as verificações realizadas na cópia do projeto antes de sua publicação pública.
 
 ## Estado atual
 
-O projeto permanece somente como cópia local para revisão. Nenhum repositório público foi criado e nenhuma alteração desta etapa foi enviada ao GitHub.
+O projeto foi publicado em 16/10/2026 no repositório público https://github.com/debianlima/Laboratorio-Hardware-Web-publico. A pasta `Documentos/Trabalhos 2026 Lab Hard/` foi excluída antes da publicação por corresponder a uma tarefa nova.
 
 ## Relatórios de verificação
 
@@ -18,4 +18,4 @@ A cópia possui histórico Git independente do repositório privado original. Id
 
 ## Limite da automação
 
-As verificações automáticas ajudam a localizar texto e metadados, mas não substituem uma revisão humana final. Em especial, capturas de tela, imagens incorporadas e materiais históricos devem ser inspecionados visualmente antes da publicação.
+As verificações automáticas ajudam a localizar texto e metadados, mas não substituem uma revisão humana final. Em especial, capturas de tela, imagens incorporadas e materiais históricos devem continuar sendo inspecionados visualmente durante a manutenção da publicação.
