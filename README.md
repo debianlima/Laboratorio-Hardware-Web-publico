@@ -1,6 +1,6 @@
-# Laboratório de Hardware — cópia pública em revisão
+# Laboratório de Hardware — repositório público
 
-> **Status:** preparação local para revisão manual. Este diretório ainda não foi publicado como repositório público.
+> **Status:** publicado no GitHub em 16/10/2026. Repositório público: https://github.com/debianlima/Laboratorio-Hardware-Web-publico
 
 Este repositório reúne código, documentação acadêmica e evidências de experimentos realizados durante o desenvolvimento do Sistema de Gestão do Laboratório de Hardware. A cópia foi preparada para divulgação técnica e educacional com remoção de identificadores pessoais e de informações internas que não são necessárias para compreender o trabalho.
 
@@ -50,7 +50,7 @@ Consequentemente, este repositório deve ser utilizado principalmente para **aud
 
 Os documentos preparados para publicação foram revisados para retirar nomes de estudantes, identificadores de contas pessoais e metadados de autoria que não precisam ser públicos. Os PDFs permanecem pesquisáveis e tiveram a renderização verificada após a anonimização. O relatório automático da etapa está em `PUBLICACAO/`.
 
-A anonimização automática reduz riscos, mas não substitui inspeção humana. Por isso esta cópia permanece em revisão local antes da criação do repositório público.
+A anonimização automática reduz riscos, mas não substitui inspeção humana. A publicação foi autorizada após a preparação técnica; revisões visuais adicionais e correções futuras podem ser incorporadas ao histórico público quando necessário.
 
 ## Acessibilidade da documentação
 
@@ -58,9 +58,9 @@ A documentação desta cópia segue uma estrutura simples para facilitar leitura
 
 Imagens, diagramas e capturas adicionados ao repositório devem ter texto alternativo significativo ou uma descrição textual equivalente. Informação importante não deve depender somente de cor, posição ou aparência visual. Consulte `ACESSIBILIDADE.md` para os critérios adotados nesta preparação.
 
-## Revisão manual antes da publicação
+## Revisão e manutenção da publicação
 
-Antes de criar o repositório público, recomenda-se conferir os PDFs visualmente, revisar `fontes_recebidas/` e os snapshots históricos, verificar se os endereços e credenciais presentes são apenas exemplos seguros, confirmar as licenças de dependências de terceiros e revisar os relatórios em `PUBLICACAO/`.
+A revisão visual dos PDFs, de `fontes_recebidas/` e dos snapshots históricos continua recomendada como atividade de manutenção. Caso seja identificado algum dado que não deva permanecer público, ele deve ser corrigido imediatamente e a auditoria registrada em `PUBLICACAO/`.
 
 ## Nota final sobre o backup dos agentes
 
