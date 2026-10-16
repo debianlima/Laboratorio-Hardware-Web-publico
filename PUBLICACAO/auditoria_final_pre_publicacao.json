@@ -1,5 +1,5 @@
 {
-  "status": "PRE_PUBLICACAO_REQUER_REVISAO_HUMANA",
+  "status": "PUBLICADO",
   "pdf_count": 9,
   "counts": {
     "identity_text": 0,
@@ -91,8 +91,11 @@
     "serial_like_pdf": []
   },
   "article_sha256": "F6D15FA0F479164EA6CAF1B85D743558781CCD5EFF600AA21EC6A0C1459B2673",
-  "remote_configured": false,
-  "note": "Auditoria atualizada apos excluir a pasta de tarefa nova. A publicacao foi autorizada pelo responsavel.",
+  "remote_configured": true,
+  "published": true,
+  "repository_url": "https://github.com/debianlima/Laboratorio-Hardware-Web-publico",
+  "publication_date": "2026-10-16",
+  "note": "Auditoria atualizada apos excluir a pasta de tarefa nova. Publicacao autorizada e realizada em 16/10/2026.",
   "classification": {
     "actionable_privacy_findings": 0,
     "rfc1918_alerts": "Falsos positivos: enderecos 192.0.2.0/24 reservados para documentacao e 0.0.0.0 de fallback.",
@@ -102,9 +105,9 @@
     "manual_visual_review_still_required": true
   },
   "inventory_serials": {
-    "status": "OK",
-    "removed_count": 10,
-    "render_ok": true
+    "status": "EXCLUIDO_DA_PUBLICACAO",
+    "historical_removed_count": 10,
+    "render_ok_before_exclusion": true
   },
   "publication_authorized": true,
   "excluded_from_publication": [
