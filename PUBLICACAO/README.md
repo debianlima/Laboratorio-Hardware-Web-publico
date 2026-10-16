@@ -10,6 +10,8 @@ O projeto permanece somente como cópia local para revisão. Nenhum repositório
 
 - `pdf_anonymization_report.json`: registra, sem armazenar os identificadores removidos, quais PDFs foram recriados e quantas ocorrências foram anonimizadas.
 - `pdf_render_validation.json`: registra a abertura e a renderização de páginas de amostra dos PDFs após a recriação.
+- `inventario_serial_anonymization.json`: registra a remoção dos números de série individuais do inventário de HD/SSD, sem preservar os valores removidos.
+- `inventario_render_comparison.json`: compara a renderização do inventário antes e depois da anonimização dos números de série e confirma preservação das dimensões da página.
 - `auditoria_final_pre_publicacao.json`: resume a busca automatizada por identificadores conhecidos, nomes em arquivos, endereços RFC1918 e padrões de tokens, além de conferir a integridade do artigo.
 
 ## Regras desta cópia

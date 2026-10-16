@@ -1,17 +1,109 @@
 {
   "status": "PRE_PUBLICACAO_REQUER_REVISAO_HUMANA",
-  "identity_hit_file_count_excluding_article": 0,
-  "identity_hit_files_excluding_article": [],
-  "identity_in_filename_count_excluding_article": 0,
-  "identity_in_filenames_excluding_article": [],
-  "rfc1918_hit_file_count_excluding_third_party_and_article": 0,
-  "rfc1918_hit_files_excluding_third_party_and_article": [],
-  "real_token_pattern_hit_file_count_excluding_article": 0,
-  "real_token_pattern_hit_files_excluding_article": [],
   "pdf_count": 13,
-  "pdf_issue_file_count": 0,
-  "pdf_issue_files": [],
+  "counts": {
+    "identity_text": 0,
+    "identity_filename": 0,
+    "emails": 3,
+    "private_ips": 5,
+    "tokens": 0,
+    "cpf_like": 1,
+    "phone_like": 20,
+    "pdf_issues": 0,
+    "serial_like_pdf": 0
+  },
+  "issues": {
+    "identity_text": [],
+    "identity_filename": [],
+    "emails": [
+      {
+        "file": ".env.example",
+        "count": 1,
+        "domains": [
+          "aws-0-sa-east-1.pooler.supabase.com"
+        ]
+      },
+      {
+        "file": "Modulo_5_forum/codigos/flarum/composer.json",
+        "count": 1,
+        "domains": [
+          "flarum.org"
+        ]
+      },
+      {
+        "file": "Modulo_5_forum/codigos/flarum/public/assets/admin.js",
+        "count": 2,
+        "domains": [
+          "gmail.com",
+          "rubaxa.org"
+        ]
+      }
+    ],
+    "private_ips": [
+      {
+        "file": "AGENTS.md",
+        "count": 1
+      },
+      {
+        "file": "AUDITORIA_TAREFAS.md",
+        "count": 1
+      },
+      {
+        "file": "docs/PLANO_EXECUTIVO_LIM-13.md",
+        "count": 1
+      },
+      {
+        "file": "src/config/rate_limit.php",
+        "count": 1
+      },
+      {
+        "file": "docs/auditoria/auditoria_LIM-121.md",
+        "count": 1
+      }
+    ],
+    "tokens": [],
+    "cpf_like": [
+      "Modulo_5_forum/codigos/flarum/storage/formatter/Renderer_ee02427545629f6ae885d7e1270a70db533c71f6.php"
+    ],
+    "phone_like": [
+      "AUDITORIA_TAREFAS.md",
+      "LOG_ALTERACOES_IA.md",
+      "docs/auditoria_LIM-105.md",
+      "docs/revisao_artigo_LIM-100.md",
+      "docs/revisao_artigo_LIM-104.md",
+      "docs/revisao_artigo_LIM-109.md",
+      "docs/revisao_artigo_LIM-120.md",
+      "docs/revisao_artigo_LIM-66.md",
+      "docs/revisao_artigo_LIM-74.md",
+      "docs/revisao_artigo_LIM-83.md",
+      "docs/revisao_artigo_LIM-88.md",
+      "docs/revisao_artigo_LIM-93.md",
+      "Modulo_5_forum/codigos/flarum/.nginx.conf",
+      "Modulo_5_forum/codigos/flarum/storage/formatter/Renderer_ee02427545629f6ae885d7e1270a70db533c71f6.php",
+      "Modulo_5_forum/codigos/flarum/public/assets/admin.css",
+      "Modulo_5_forum/codigos/flarum/public/assets/admin.js",
+      "Modulo_5_forum/codigos/flarum/public/assets/forum.css",
+      "Modulo_5_forum/codigos/flarum/public/assets/forum.js",
+      "docs/estudos/LIM-268-estudo.html",
+      "docs/auditoria/LIM-268/original.html"
+    ],
+    "pdf_issues": [],
+    "serial_like_pdf": []
+  },
   "article_sha256": "F6D15FA0F479164EA6CAF1B85D743558781CCD5EFF600AA21EC6A0C1459B2673",
-  "backup_files_including_publication_note": 47,
-  "note": "A auditoria automatica nao substitui revisao visual humana, especialmente de textos incorporados em imagens ou capturas de tela."
+  "remote_configured": false,
+  "note": "A auditoria textual/metadados nao substitui revisao visual de imagens e capturas incorporadas.",
+  "classification": {
+    "actionable_privacy_findings": 0,
+    "rfc1918_alerts": "Falsos positivos: enderecos 192.0.2.0/24 reservados para documentacao e 0.0.0.0 de fallback.",
+    "cpf_like_alert": "Falso positivo em nome/hash de classe gerada pelo Flarum.",
+    "phone_like_alerts": "Falsos positivos compostos por numeros de linha, timestamps e UUIDs.",
+    "email_alerts": "Placeholder de configuracao e metadados de dependencias de terceiros; nenhum email pessoal do projeto identificado.",
+    "manual_visual_review_still_required": true
+  },
+  "inventory_serials": {
+    "status": "OK",
+    "removed_count": 10,
+    "render_ok": true
+  }
 }

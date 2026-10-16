@@ -3,6 +3,7 @@
 Esta cópia está tecnicamente preparada, mas permanece **local e não publicada**. Antes de criar qualquer repositório público, faça uma revisão humana final.
 
 - [ ] abrir visualmente os PDFs de `Documentos/` e `Modulo_5_forum/`, principalmente capas, assinaturas, imagens e capturas;
+- [ ] confirmar visualmente que o inventário de HD/SSD mostra `SERIAL-ANONIMIZADO` e não os números de série originais;
 - [ ] confirmar que os nomes de autores do artigo em `artigo/` devem permanecer por serem atribuição bibliográfica formal;
 - [ ] revisar `fontes_recebidas/` e snapshots históricos para conteúdo que não precise ser público;
 - [ ] revisar `Modulo_5_forum/codigos/flarum/` e confirmar a adequação de licenças e redistribuição das dependências de terceiros;
