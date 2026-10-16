@@ -1,25 +1,25 @@
-﻿# MÃ³dulo 5 â€” FÃ³rum, Enquetes e Auditoria
+# Módulo 5 — Fórum, Enquetes e Auditoria
 
-Este diretÃ³rio preserva artefatos histÃ³ricos do mÃ³dulo de fÃ³rum, enquetes e auditoria desenvolvido no contexto do Sistema de GestÃ£o do LaboratÃ³rio de Hardware.
+Este diretório preserva artefatos históricos do módulo de fórum, enquetes e auditoria desenvolvido no contexto do Sistema de Gestão do Laboratório de Hardware.
 
-## Escopo do mÃ³dulo
+## Escopo do módulo
 
-O mÃ³dulo reÃºne uma instalaÃ§Ã£o e customizaÃ§Ãµes do Flarum usadas como base experimental para comunicaÃ§Ã£o, participaÃ§Ã£o por enquetes e registro de atividades. Os arquivos foram mantidos como evidÃªncia tÃ©cnica e material de estudo do projeto.
+O módulo reúne uma instalação e customizações do Flarum usadas como base experimental para comunicação, participação por enquetes e registro de atividades. Os arquivos foram mantidos como evidência técnica e material de estudo do projeto.
 
-## ConteÃºdo
+## Conteúdo
 
-- `codigos/`: snapshot histÃ³rico do cÃ³digo e das dependÃªncias usadas no experimento.
-- arquivos PDF na raiz: relatÃ³rios acadÃªmicos recriados para a cÃ³pia pÃºblica com identificaÃ§Ã£o pessoal removida.
-- este `README.md`: descriÃ§Ã£o pÃºblica do mÃ³dulo sem nomes, usuÃ¡rios ou links pessoais dos participantes.
+- `codigos/`: snapshot histórico do código e das dependências usadas no experimento.
+- arquivos PDF na raiz: relatórios acadêmicos recriados para a cópia pública com identificação pessoal removida.
+- este `README.md`: descrição pública do módulo sem nomes, usuários ou links pessoais dos participantes.
 
-## Origem histÃ³rica e anonimizaÃ§Ã£o
+## Origem histórica e anonimização
 
-O trabalho foi produzido por grupos de estudantes em atividades acadÃªmicas. Na cÃ³pia destinada Ã  revisÃ£o para publicaÃ§Ã£o pÃºblica, nomes, identificadores de conta e links pessoais dos estudantes foram removidos. A autoria individual pode ser preservada apenas quando fizer parte de uma publicaÃ§Ã£o acadÃªmica formal armazenada separadamente em `../artigo/`.
+O trabalho foi produzido por grupos de estudantes em atividades acadêmicas. Na cópia destinada à revisão para publicação pública, nomes, identificadores de conta e links pessoais dos estudantes foram removidos. A autoria individual pode ser preservada apenas quando fizer parte de uma publicação acadêmica formal armazenada separadamente em `../artigo/`.
 
-## Limites de reproduÃ§Ã£o
+## Limites de reprodução
 
-O conteÃºdo deste diretÃ³rio Ã© um registro histÃ³rico e nÃ£o deve ser interpretado como uma instalaÃ§Ã£o pronta para produÃ§Ã£o. DependÃªncias, configuraÃ§Ãµes e estados de execuÃ§Ã£o podem corresponder ao momento do experimento e exigir atualizaÃ§Ã£o ou reconstruÃ§Ã£o em um ambiente novo.
+O conteúdo deste diretório é um registro histórico e não deve ser interpretado como uma instalação pronta para produção. Dependências, configurações e estados de execução podem corresponder ao momento do experimento e exigir atualização ou reconstrução em um ambiente novo.
 
 ## Acessibilidade
 
-A documentaÃ§Ã£o usa tÃ­tulos hierÃ¡rquicos, listas simples, linguagem direta e caminhos de arquivo em cÃ³digo. Imagens ou diagramas adicionados futuramente devem possuir texto alternativo significativo ou descriÃ§Ã£o textual equivalente.
+A documentação usa títulos hierárquicos, listas simples, linguagem direta e caminhos de arquivo em código. Imagens ou diagramas adicionados futuramente devem possuir texto alternativo significativo ou descrição textual equivalente.
