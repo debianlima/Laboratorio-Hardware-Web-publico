@@ -50,7 +50,7 @@ Consequentemente, este repositório deve ser utilizado principalmente para **aud
 
 Os documentos preparados para publicação foram revisados para retirar nomes de estudantes, identificadores de contas pessoais e metadados de autoria que não precisam ser públicos. Os PDFs permanecem pesquisáveis e tiveram a renderização verificada após a anonimização. O relatório automático da etapa está em `PUBLICACAO/`.
 
-A anonimização automática reduz riscos, mas não substitui inspeção humana. A publicação foi autorizada após a preparação técnica; revisões visuais adicionais e correções futuras podem ser incorporadas ao histórico público quando necessário.
+ A publicação foi autorizada após a preparação técnica; revisões visuais adicionais e correções futuras podem ser incorporadas ao histórico público quando necessário.
 
 ## Acessibilidade da documentação
 
