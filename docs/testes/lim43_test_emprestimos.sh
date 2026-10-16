@@ -50,9 +50,9 @@ CSRF_PAGE=$(curl -s -c "$COOKIE" "$BASE/login.php")
 # O login.php nao usa CSRF token no form, so POST direto
 LOGIN_RESP=$(curl -s -c "$COOKIE" -b "$COOKIE" -L -o /dev/null -w "%{http_code}" \
     -X POST "$BASE/login.php" \
-    -d "username=admin&senha=admin123")
+    -d "username=admin&senha=${TEST_ADMIN_PASSWORD:-change-me}")
 if [ "$LOGIN_RESP" = "200" ]; then
-    check "PASS" "Login admin/admin123 retornou 200"
+    check "PASS" "Login de teste retornou 200"
 else
     check "FAIL" "Login retornou $LOGIN_RESP (esperado 200)"
 fi

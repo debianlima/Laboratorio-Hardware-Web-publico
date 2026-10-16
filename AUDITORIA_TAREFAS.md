@@ -589,7 +589,7 @@ AUDITORIA DE TAREFAS:
 | Docker | docker ps | ✅ ATIVO | lab_hardware_app (Up 2h, :8080), lab_hardware_db (Up 2h, healthy, :3307→3306) |
 | Sistema web | localhost:8080 | ✅ ATIVO | HTTP 200 — Lab Hardware dashboard servindo |
 | Ollama local | localhost:11434 | ✅ ATIVO | 4 modelos: gpt-oss:20b, gpt-oss:20b-sec-16k, deepseek-r1:8b, deepseek-r1:8b-16k |
-| Ollama GPU | 172.16.0.110:11434 | ✅ ATIVO | 2 modelos: qwen2.5-coder:14b-16k, qwen2.5-coder:14b |
+| Ollama GPU | 192.0.2.110:11434 | ✅ ATIVO | 2 modelos: qwen2.5-coder:14b-16k, qwen2.5-coder:14b |
 | Opencode binary | /usr/local/bin/opencode | ✅ CORRETO | Configurado com /home/user paths |
 | Wrapper GPU110 | /usr/local/bin/opencode-ollama-gpu110 | ✅ DISPONÍVEL | OPENCODE_CONFIG → opencode-ollama-gpu110.json |
 | Wrapper Segurança | /usr/local/bin/opencode-seguranca-offline | ✅ DISPONÍVEL | OPENCODE_CONFIG → opencode-seguranca-offline.json |
@@ -605,7 +605,7 @@ AUDITORIA DE TAREFAS:
 6. ✅ Docker: ATIVO
 7. ✅ Sistema (8080): ATIVO
 8. ✅ Ollama local (11434): ATIVO
-9. ✅ Ollama GPU (172.16.0.110): ATIVO
+9. ✅ Ollama GPU (192.0.2.110): ATIVO
 
 ### Tarefas bloqueadas — decisão final:
 | Issue | Motivo original | Correção aplicada | Decisão |
@@ -692,7 +692,7 @@ AUDITORIA DE TAREFAS:
 - Docker: ✅ ativo (app + db)
 - Sistema 8080: ✅ ativo
 - Ollama local 11434: ✅ ativo (4 modelos)
-- Ollama GPU 172.16.0.110: ✅ ativo (2 modelos)
+- Ollama GPU 192.0.2.110: ✅ ativo (2 modelos)
 - Opencode + wrappers: ✅ configurados
 
 ### Disposição final LIM-80: DONE
@@ -821,7 +821,7 @@ AUDITORIA DE TAREFAS:
   - Docker (app + db): UP 3h
   - Sistema 8080: OK
   - Ollama local 11434: OK (4 modelos)
-  - Ollama GPU 172.16.0.110: OK (2 modelos)
+  - Ollama GPU 192.0.2.110: OK (2 modelos)
 
 - Riscos encontrados:
   1. ALTO: Gemini Supervisor em erro permanente (adapter_failed)
@@ -1010,7 +1010,7 @@ AUDITORIA DE TAREFAS:
   - Docker (app + db): UP
   - Sistema 8080: OK
   - Ollama local 11434: OK
-  - Ollama GPU 172.16.0.110: OK
+  - Ollama GPU 192.0.2.110: OK
 
 - Issues reativadas: 0 (nenhuma tarefa segura para reativar além das já concluídas)
 - Novo status: LIM-94 → done, LIM-93 → done
@@ -1175,7 +1175,7 @@ AUDITORIA DE TAREFAS:
   - Docker (app + db): UP 4h
   - Sistema 8080: OK
   - Ollama local 11434: OK (4 modelos)
-  - Ollama GPU 172.16.0.110: OK (2 modelos)
+  - Ollama GPU 192.0.2.110: OK (2 modelos)
 
 - Ação concreta executada:
   1. **auditoria_LIM-121.md criado** — relatório completo com classificação de todas as 25 issues blocked
@@ -1344,7 +1344,7 @@ AUDITORIA DE TAREFAS:
 | Docker | docker ps | ✅ ATIVO | lab_hardware_app (Up 4h, :8080), lab_hardware_db (Up 4h, healthy, :3307→3306) |
 | Sistema web | localhost:8080 | ✅ ATIVO | HTTP 302 (redirect login) |
 | Ollama local | localhost:11434 | ✅ ATIVO | 4 modelos |
-| Ollama GPU | 172.16.0.110:11434 | ✅ ATIVO | 2 modelos |
+| Ollama GPU | 192.0.2.110:11434 | ✅ ATIVO | 2 modelos |
 
 ### Estado do working tree
 - Branch: main
@@ -1590,7 +1590,7 @@ AUDITORIA DE TAREFAS:
 | Docker | app + db | ✅ UP 4h+ |
 | Sistema web | localhost:8080 | ✅ ATIVO |
 | Ollama local | localhost:11434 | ✅ ATIVO (4 modelos) |
-| Ollama GPU | 172.16.0.110:11434 | ✅ ATIVO (2 modelos) |
+| Ollama GPU | 192.0.2.110:11434 | ✅ ATIVO (2 modelos) |
 
 ### Reativacoes seguras (max 3 por rodada)
 Nenhuma reativacao necessaria nesta rodada:
@@ -1728,7 +1728,7 @@ AUDITORIA DE TAREFAS:
 | Docker | app + db | ✅ UP (app :8080, db :3307→3306 healthy) |
 | Sistema web | localhost:8080 | ✅ ATIVO |
 | Ollama local | localhost:11434 | ✅ ATIVO (4 modelos) |
-| Ollama GPU | 172.16.0.110:11434 | ✅ ATIVO (2 modelos) |
+| Ollama GPU | 192.0.2.110:11434 | ✅ ATIVO (2 modelos) |
 
 ### Reativacoes seguras (max 3 por rodada)
 Nenhuma reativacao necessaria:
@@ -1776,7 +1776,7 @@ AUDITORIA DE TAREFAS:
 - Dev Full Stack Local (c0d75cdc): **EFETIVAMENTE OCIOSO**
   - 3 issues atribuidas em todo (LIM-41/42/43) — 0 runs ativos, 0 checkouts
   - Causa raiz: modelo `qwen2.5-coder:14b-16k` nao existe no Ollama local (LIM-132 blocked)
-  - Modelos disponiveis: `deepseek-r1:8b-16k`, `gpt-oss:20b-sec-16k` (local); `qwen2.5-coder:14b`, `qwen2.5-coder:14b-16k` (GPU 172.16.0.110)
+  - Modelos disponiveis: `deepseek-r1:8b-16k`, `gpt-oss:20b-sec-16k` (local); `qwen2.5-coder:14b`, `qwen2.5-coder:14b-16k` (GPU 192.0.2.110)
 
 ### Estado do modulo de emprestimos
 - **IMPLEMENTADO** pelo CEO Tecnico Local no heartbeat anterior (commit 85f5e31):
@@ -1817,7 +1817,7 @@ AUDITORIA DE TAREFAS:
 | Docker | app + db | ✅ UP |
 | Sistema web | localhost:8080 | ✅ ATIVO |
 | Ollama local | localhost:11434 | ✅ ATIVO |
-| Ollama GPU | 172.16.0.110:11434 | ✅ ATIVO |
+| Ollama GPU | 192.0.2.110:11434 | ✅ ATIVO |
 
 ### Riscos encontrados
 1. ALTO: Modelo do Dev indisponivel (LIM-132) — requer acao humana no Paperclip admin
@@ -2191,7 +2191,7 @@ AUDITORIA DE TAREFAS:
 | Docker app | :8080 | ✅ UP 18h |
 | Docker db | :3307→3306 | ✅ UP 18h (healthy) |
 | Ollama local | localhost:11434 | ✅ ATIVO |
-| Ollama GPU | 172.16.0.110:11434 | ✅ ATIVO |
+| Ollama GPU | 192.0.2.110:11434 | ✅ ATIVO |
 
 ### Diagnostico raiz
 1. **CEO sobrecarregado com 51 blocked** — padrao sistematico de rotinas automaticas (auditoria horaria, dev ocioso, tarefas bloqueadas) criando issues duplicadas que falham e ficam presas no CEO

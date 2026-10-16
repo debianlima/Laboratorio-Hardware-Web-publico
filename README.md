@@ -1,136 +1,67 @@
-# Laboratório de Hardware — evolução para Sistema Distribuído Multiagente
+# Laboratório de Hardware — cópia pública em revisão
 
-Sistema acadêmico para gestão do Laboratório de Hardware do IFF, com foco em inventário, localização de equipamentos, empréstimos, agendamentos e consulta inteligente.
+> **Status:** preparação local para revisão manual. Este diretório ainda não foi publicado como repositório público.
 
-## Histórico acadêmico
+Este repositório reúne código, documentação acadêmica e evidências de experimentos realizados durante o desenvolvimento do Sistema de Gestão do Laboratório de Hardware. A cópia foi preparada para divulgação técnica e educacional com remoção de identificadores pessoais e de informações internas que não são necessárias para compreender o trabalho.
 
-Este projeto teve origem em atividades desenvolvidas em **2025** por uma turma do **2º ano do Curso Técnico em Informática**, no contexto de **Análise de Sistemas / Projeto Integrador**. O trabalho inicial concentrou-se no levantamento do problema, modelagem, requisitos, regras de negócio, protótipos, organização do inventário e implementação de uma primeira versão funcional do sistema.
+## Como navegar pelo repositório
 
-A versão presente neste repositório foi preparada para uso acadêmico posterior **sem identificação nominal dos estudantes**. Materiais de origem foram anonimizados antes da publicação, preservando apenas o conteúdo necessário para continuidade pedagógica e técnica. Consulte também `AUDITORIA_PRIVACIDADE.md`.
+- `src/`: código principal da aplicação e configurações de execução.
+- `app/`, `api/`, `components/`, `assets/`, `lib/` e `login/`: componentes da interface, rotas, integração e autenticação usados no sistema.
+- `supabase/`, `docker/` e `docker-compose.yml`: artefatos de banco de dados e ambiente de desenvolvimento. A cópia pública não fornece credenciais de produção.
+- `docs/`: documentação técnica produzida ao longo do desenvolvimento, incluindo estudos, decisões, testes, auditorias e materiais de acompanhamento.
+- `Documentos/`: relatórios acadêmicos e materiais recebidos dos grupos. Os PDFs destinados à cópia pública foram recriados com identificações pessoais removidas.
+- `Modulo_4_relatorios/`: artefatos do módulo de relatórios.
+- `Modulo_5_forum/`: experimento de fórum, enquetes e auditoria, incluindo um snapshot histórico de código e relatórios anonimizados.
+- `fontes_recebidas/`: materiais históricos recebidos durante o projeto. Devem ser tratados como evidências de origem, não como versão atual da aplicação.
+- `Paperclip/`: materiais de preservação do experimento de orquestração, incluindo uma base experimental anonimizada e scripts auxiliares de reconstrução.
+- `bkp_config_agentes/`: backup parcial e reconstruído da configuração documental dos agentes. Consulte a nota específica dentro dessa pasta antes de tentar reproduzir o ambiente.
+- `artigo/`: versão do artigo acadêmico relacionado ao experimento e uma nota explicando sua relação com este repositório.
+- `PUBLICACAO/`: manifestos e relatórios usados para conferir a preparação da cópia pública.
 
-A partir da disciplina **Sistemas Distribuídos**, no Bacharelado em Engenharia de Computação, o sistema passa a ser utilizado como laboratório de evolução arquitetural: a aplicação deixa de ser apenas um sistema web centralizado e passa a incorporar serviços distribuídos, agentes de IA, RAG, visão computacional e comunicação **A2A (Agent2Agent)** entre agentes.
+## Experimentos documentados
 
-## Objetivo da nova etapa
+O repositório preserva diferentes etapas do projeto. A primeira é o desenvolvimento do sistema web de gestão do laboratório, com módulos de cadastro, empréstimos, patrimônio, relatórios, fórum e recursos administrativos. Parte dos materiais surgiu em atividades acadêmicas e foi posteriormente integrada e revisada.
 
-Construir uma versão moderna, funcional e inteligente do sistema em que estudantes e servidores possam:
+A segunda é o experimento de desenvolvimento supervisionado por agentes de IA. Nesse cenário, a plataforma Paperclip foi usada para organizar agentes especializados, tarefas, pré-estudos, revisões, auditorias e registros de execução. O objetivo não era apenas gerar código, mas observar como uma pessoa coordena e supervisiona processos de desenvolvimento parcialmente autônomos.
 
-- cadastrar, editar, consultar e localizar equipamentos;
-- consultar disponibilidade, empréstimos e agendamentos;
-- fotografar uma placa, componente ou etiqueta para auxiliar sua identificação;
-- relacionar a identificação visual ao cadastro patrimonial e à localização física;
-- consultar características técnicas por meio de RAG;
-- conversar com um orquestrador que delega tarefas a agentes especializados;
-- usar comunicação A2A entre agentes independentes;
-- manter rastreabilidade, segurança, tratamento de falhas e controle de concorrência.
+A terceira é a preservação das evidências desse processo. Por isso existem documentos de auditoria, decisões, estudos, issues, histórico de alterações, arquivos de governança e materiais de reconstrução. Esses elementos ajudam a compreender a evolução do experimento, mas não constituem uma imagem completa do ambiente original.
 
-> Regra de projeto: a visão computacional pode sugerir **tipo/modelo** do equipamento, mas a identificação de uma unidade física específica deve ser confirmada por patrimônio, QR Code, número de série ou outro identificador cadastrado.
+## Artigo, evidências e limites de reprodução
 
-## Arquitetura acadêmica de referência
+O artigo armazenado em `artigo/` descreve o estudo de caso de orquestração humano-agente desenvolvido a partir deste projeto. Ele apresenta a arquitetura com agentes especializados, o uso do Paperclip como interface de orquestração, os mecanismos de governança e a evolução da supervisão humana ao longo do experimento.
 
-```text
-Usuário / Web / Celular / Câmera
-              |
-        API / Gateway
-              |
-      Agente Orquestrador
-              |
-        A2A (Agent2Agent)
-   +----------+-----------+-----------+-----------+
-   |          |           |           |           |
-Visão      Inventário    RAG      Empréstimos  Agendamento
-   |          |           |           |           |
-   +----------+-----------+-----------+-----------+
-              |
-        Banco transacional
-              |
-   Inventário / documentos / histórico
-```
+A autoria do artigo foi **preservada intencionalmente**, porque nomes de autores fazem parte da atribuição bibliográfica da publicação acadêmica. Essa é uma exceção deliberada à anonimização aplicada aos trabalhos de estudantes e aos artefatos internos do projeto.
 
-### Agentes previstos
+### Errata e diferenças da cópia pública
 
-- **Orquestrador:** interpreta a solicitação e delega tarefas.
-- **Visão:** analisa fotografias, etiquetas e características visuais.
-- **Inventário:** consulta cadastro, disponibilidade, estado e localização.
-- **RAG:** recupera manuais, documentação, histórico e conhecimento técnico.
-- **Empréstimos:** trata solicitação, retirada, devolução e estado do item.
-- **Agendamento:** verifica conflitos e reserva recursos.
-- **Auditoria:** registra decisões, chamadas e alterações relevantes.
+Esta seção registra diferenças entre o ambiente experimental descrito no artigo e o material que pode ser disponibilizado publicamente. Ela não altera o texto científico do artigo.
 
-## Organização da disciplina
+- identificadores pessoais dos estudantes foram removidos ou substituídos por referências anônimas;
+- endereços e nomes de infraestrutura interna foram substituídos por valores de documentação;
+- credenciais e configurações sensíveis não fazem parte da cópia pública;
+- o estado completo de execução do Paperclip, incluindo toda a base operacional, históricos externos, sessões e estados transitórios, não é reproduzido integralmente neste repositório;
+- os artefatos em `bkp_config_agentes/` são uma reconstrução documental parcial e não um dump integral do ambiente em execução;
+- versões de dependências e serviços podem exigir atualização para que experimentos antigos sejam executados novamente.
 
-Carga prevista: **60 aulas**, com **3 aulas por semana**, totalizando **20 semanas**.
+Consequentemente, este repositório deve ser utilizado principalmente para **auditoria, estudo, ensino e reconstrução controlada**. Uma reprodução atual pode não gerar exatamente os mesmos estados intermediários, runs ou resultados registrados durante o experimento original.
 
-Para manter o equilíbrio entre teoria e prática, cada semana segue o padrão:
+## Privacidade e anonimização
 
-1. **Aula 1 — teoria + exemplo:** apresentação do conceito e demonstração concreta no projeto.
-2. **Aula 2 — laboratório guiado:** metade explicação, metade implementação acompanhada.
-3. **Aula 3 — tarefa aplicada:** atividade obrigatória que produz uma entrega no repositório.
+Os documentos preparados para publicação foram revisados para retirar nomes de estudantes, identificadores de contas pessoais e metadados de autoria que não precisam ser públicos. Os PDFs permanecem pesquisáveis e tiveram a renderização verificada após a anonimização. O relatório automático da etapa está em `PUBLICACAO/`.
 
-Esse formato corresponde, ao longo do semestre, a aproximadamente **30 aulas de conteúdo teórico e 30 aulas de aplicação prática**.
+A anonimização automática reduz riscos, mas não substitui inspeção humana. Por isso esta cópia permanece em revisão local antes da criação do repositório público.
 
-## Plano de 20 semanas
+## Acessibilidade da documentação
 
-| Semana | Conteúdo teórico | Exemplo em sala | Tarefa aplicada / entrega |
-|---|---|---|---|
-| 1 | Conceitos de sistemas distribuídos | Comparar aplicação monolítica e serviços independentes | Mapear o sistema atual e produzir diagrama `AS-IS` |
-| 2 | Características: heterogeneidade, abertura, escalabilidade, transparência e tolerância a falhas | Simular dois serviços com responsabilidades diferentes | Propor arquitetura `TO-BE` do LabHardware distribuído |
-| 3 | Arquitetura cliente-servidor | Cliente consultando API de inventário | Separar frontend e API de inventário |
-| 4 | Arquiteturas distribuídas e P2P | Comparar cliente-servidor com comunicação entre pares | Registrar decisão arquitetural e casos de uso distribuídos |
-| 5 | Comunicação entre processos | Requisição HTTP com mensagem estruturada | Criar contrato de mensagens entre serviços |
-| 6 | Primitivas de comunicação e APIs | Request/response, timeout e códigos de erro | Implementar primeiro serviço remoto consultável |
-| 7 | Middleware | Camada intermediária desacoplando cliente e serviço | Criar gateway/orquestrador inicial |
-| 8 | A2A — descoberta e capacidades de agentes | Dois agentes publicando capacidades diferentes | Criar Agent Cards e comunicação A2A entre dois agentes |
-| 9 | Modelos síncrono e assíncrono | Comparar chamada bloqueante com tarefa assíncrona | Implementar tarefa assíncrona para operação demorada |
-| 10 | Eventos, filas e notificações | Evento de empréstimo gerando atualização de inventário | Criar fluxo orientado a eventos para uma ação do sistema |
-| 11 | Relógios, ordem de eventos e consistência | Dois serviços registrando eventos em momentos diferentes | Criar correlação, timestamp e rastreamento de uma operação distribuída |
-| 12 | Falhas em processos e canais | Derrubar um agente durante uma solicitação | Implementar timeout, retry controlado e resposta degradada |
-| 13 | Segurança em sistemas distribuídos | Usuário comum tentando executar ação administrativa | Aplicar autenticação, autorização e auditoria entre serviços |
-| 14 | Introdução a RAG | Pergunta técnica respondida a partir de um manual recuperado | Criar base documental e primeira consulta RAG com fonte |
-| 15 | RAG aplicado ao laboratório | Consultar compatibilidade ou característica de uma placa | Integrar agente RAG ao orquestrador via A2A |
-| 16 | Sistemas multimodais e visão computacional | Fotografar placa e obter hipótese de modelo | Criar fluxo foto → agente de visão → resultado com nível de confiança |
-| 17 | Visão + inventário + localização | Reconhecer modelo e cruzar com patrimônio/QR | Integrar visão ao inventário e mostrar localização confirmada |
-| 18 | Transações distribuídas e propriedades ACID | Empréstimo atualizando mais de um estado relacionado | Implementar fluxo transacional de empréstimo/devolução |
-| 19 | Concorrência, exclusão mútua e impasses | Dois usuários tentando reservar o mesmo item | Criar teste concorrente e impedir reserva duplicada |
-| 20 | Integração, tolerância a falhas e demonstração final | Execução ponta a ponta com um agente indisponível | Entregar versão integrada, documentação e demonstração final |
+A documentação desta cópia segue uma estrutura simples para facilitar leitura por pessoas e tecnologias assistivas: títulos seguem ordem hierárquica; parágrafos são curtos; caminhos e comandos aparecem como código; listas são usadas no lugar de tabelas largas quando possível; e links devem ter texto descritivo.
 
-## Entregas acumulativas
+Imagens, diagramas e capturas adicionados ao repositório devem ter texto alternativo significativo ou uma descrição textual equivalente. Informação importante não deve depender somente de cor, posição ou aparência visual. Consulte `ACESSIBILIDADE.md` para os critérios adotados nesta preparação.
 
-Ao final do semestre, o repositório deve conter pelo menos:
+## Revisão manual antes da publicação
 
-- arquitetura `AS-IS` e `TO-BE`;
-- contratos de API e mensagens;
-- pelo menos dois agentes interoperando por A2A;
-- orquestrador de agentes;
-- agente de inventário;
-- agente RAG com recuperação de fontes;
-- agente de visão integrado ao inventário;
-- fluxo de localização confirmado por identificador patrimonial;
-- tratamento de timeout, retry e indisponibilidade;
-- autenticação, autorização e trilha de auditoria;
-- fluxo transacional de empréstimo/agendamento;
-- teste de concorrência;
-- documentação da demonstração final.
+Antes de criar o repositório público, recomenda-se conferir os PDFs visualmente, revisar `fontes_recebidas/` e os snapshots históricos, verificar se os endereços e credenciais presentes são apenas exemplos seguros, confirmar as licenças de dependências de terceiros e revisar os relatórios em `PUBLICACAO/`.
 
-## Cenário-alvo de demonstração
+## Nota final sobre o backup dos agentes
 
-1. O usuário entra no sistema pelo celular.
-2. Fotografa uma placa ou componente.
-3. O agente de visão sugere o modelo e informa confiança.
-4. O inventário cruza o resultado com patrimônio, QR Code ou número de série.
-5. O sistema informa cadastro, estado e localização física.
-6. O usuário pergunta uma característica técnica.
-7. O agente RAG consulta a documentação e responde com a fonte utilizada.
-8. O usuário pergunta se o item está disponível.
-9. O agente de inventário responde com o estado atual.
-10. O usuário solicita empréstimo ou agendamento.
-11. O agente responsável executa a operação com controle de concorrência.
-12. A auditoria registra a cadeia de agentes e o resultado.
-13. Se um agente estiver indisponível, o sistema trata a falha sem corromper o estado.
-
-## Tecnologias
-
-A base histórica do projeto utiliza PHP, MySQL, Bootstrap e Docker. A evolução da disciplina poderá introduzir serviços e componentes adicionais conforme as decisões arquiteturais da turma, preservando interoperabilidade por contratos explícitos e A2A.
-
-## Privacidade e uso acadêmico
-
-Este repositório não deve reintroduzir nomes, e-mails pessoais ou qualquer outro identificador dos estudantes que participaram da etapa de 2025. Toda nova documentação acadêmica deve usar identificação de grupos ou papéis, nunca dados pessoais desnecessários.
+`bkp_config_agentes/` é **um backup parcial e reconstruído**. Ele preserva principalmente arquivos Markdown de governança, papéis, histórico, backlog, requisitos e documentação que ajudam a entender a configuração dos agentes. Ele não deve ser apresentado como uma cópia completa da instalação do Paperclip nem como garantia de restauração idêntica do ambiente original.

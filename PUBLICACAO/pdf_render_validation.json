@@ -1,0 +1,303 @@
+[
+  {
+    "file": "Documentos\\documentacao-do-projeto.pdf",
+    "pages": 89,
+    "status": "OK",
+    "render_checks": [
+      {
+        "page": 1,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      },
+      {
+        "page": 45,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      },
+      {
+        "page": 89,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      }
+    ]
+  },
+  {
+    "file": "Documentos\\grupo 5 e 1\\Relatório lab system (1).pdf",
+    "pages": 130,
+    "status": "OK",
+    "render_checks": [
+      {
+        "page": 1,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      },
+      {
+        "page": 66,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      },
+      {
+        "page": 130,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      }
+    ]
+  },
+  {
+    "file": "Documentos\\grupo-03\\Relatorio-modulo3.pdf",
+    "pages": 35,
+    "status": "OK",
+    "render_checks": [
+      {
+        "page": 1,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      },
+      {
+        "page": 18,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      },
+      {
+        "page": 35,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      }
+    ]
+  },
+  {
+    "file": "Documentos\\grupo-04\\relatorio-final-anonimizado.pdf",
+    "pages": 86,
+    "status": "OK",
+    "render_checks": [
+      {
+        "page": 1,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      },
+      {
+        "page": 44,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      },
+      {
+        "page": 86,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      }
+    ]
+  },
+  {
+    "file": "Documentos\\Trabalhos 2026 Lab Hard\\Fontes e Multimetros\\Multimetro_MD-180L_Anonimo.pdf",
+    "pages": 4,
+    "status": "OK",
+    "render_checks": [
+      {
+        "page": 1,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      },
+      {
+        "page": 3,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      },
+      {
+        "page": 4,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      }
+    ]
+  },
+  {
+    "file": "Documentos\\Trabalhos 2026 Lab Hard\\Fontes e Multimetros\\Relatorio_Testes_de_Fontes_Anonimo.pdf",
+    "pages": 13,
+    "status": "OK",
+    "render_checks": [
+      {
+        "page": 1,
+        "w": 417,
+        "h": 590,
+        "samples": 738090
+      },
+      {
+        "page": 7,
+        "w": 417,
+        "h": 590,
+        "samples": 738090
+      },
+      {
+        "page": 13,
+        "w": 417,
+        "h": 590,
+        "samples": 738090
+      }
+    ]
+  },
+  {
+    "file": "Documentos\\Trabalhos 2026 Lab Hard\\Processadores e Placas\\Inventario_HD_SSD_Anonimo.pdf",
+    "pages": 1,
+    "status": "OK",
+    "render_checks": [
+      {
+        "page": 1,
+        "w": 590,
+        "h": 417,
+        "samples": 738090
+      }
+    ]
+  },
+  {
+    "file": "Documentos\\Trabalhos 2026 Lab Hard\\Processadores e Placas\\Planilha_Fonte_Placa_Expansao_Anonima.pdf",
+    "pages": 1,
+    "status": "OK",
+    "render_checks": [
+      {
+        "page": 1,
+        "w": 429,
+        "h": 555,
+        "samples": 714285
+      }
+    ]
+  },
+  {
+    "file": "Modulo_5_forum\\Final_Relatório.pdf",
+    "pages": 94,
+    "status": "OK",
+    "render_checks": [
+      {
+        "page": 1,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      },
+      {
+        "page": 48,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      },
+      {
+        "page": 94,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      }
+    ]
+  },
+  {
+    "file": "Modulo_5_forum\\Relatorio-Final.pdf",
+    "pages": 94,
+    "status": "OK",
+    "render_checks": [
+      {
+        "page": 1,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      },
+      {
+        "page": 48,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      },
+      {
+        "page": 94,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      }
+    ]
+  },
+  {
+    "file": "Modulo_5_forum\\Relatório_final-1.pdf",
+    "pages": 79,
+    "status": "OK",
+    "render_checks": [
+      {
+        "page": 1,
+        "w": 590,
+        "h": 833,
+        "samples": 1474410
+      },
+      {
+        "page": 40,
+        "w": 590,
+        "h": 833,
+        "samples": 1474410
+      },
+      {
+        "page": 79,
+        "w": 590,
+        "h": 833,
+        "samples": 1474410
+      }
+    ]
+  },
+  {
+    "file": "Modulo_5_forum\\Relatório_técnico..pdf",
+    "pages": 20,
+    "status": "OK",
+    "render_checks": [
+      {
+        "page": 1,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      },
+      {
+        "page": 11,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      },
+      {
+        "page": 20,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      }
+    ]
+  },
+  {
+    "file": "Modulo_5_forum\\Relatório_técnico1.pdf",
+    "pages": 20,
+    "status": "OK",
+    "render_checks": [
+      {
+        "page": 1,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      },
+      {
+        "page": 11,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      },
+      {
+        "page": 20,
+        "w": 418,
+        "h": 590,
+        "samples": 739860
+      }
+    ]
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "status": "PRE_PUBLICACAO_REQUER_REVISAO_HUMANA",
+  "identity_hit_file_count_excluding_article": 0,
+  "identity_hit_files_excluding_article": [],
+  "identity_in_filename_count_excluding_article": 0,
+  "identity_in_filenames_excluding_article": [],
+  "rfc1918_hit_file_count_excluding_third_party_and_article": 0,
+  "rfc1918_hit_files_excluding_third_party_and_article": [],
+  "real_token_pattern_hit_file_count_excluding_article": 0,
+  "real_token_pattern_hit_files_excluding_article": [],
+  "pdf_count": 13,
+  "pdf_issue_file_count": 0,
+  "pdf_issue_files": [],
+  "article_sha256": "F6D15FA0F479164EA6CAF1B85D743558781CCD5EFF600AA21EC6A0C1459B2673",
+  "backup_files_including_publication_note": 47,
+  "note": "A auditoria automatica nao substitui revisao visual humana, especialmente de textos incorporados em imagens ou capturas de tela."
+}

@@ -101,7 +101,7 @@
 | Docker (app + db) | UP 4h |
 | Sistema localhost:8080 | OK |
 | Ollama local 11434 | OK (4 modelos) |
-| Ollama GPU 172.16.0.110 | OK (2 modelos) |
+| Ollama GPU 192.0.2.110 | OK (2 modelos) |
 
 ## Acoes Concretas Tomadas nesta Auditoria
 

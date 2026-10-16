@@ -164,8 +164,8 @@ O Paperclip não deve ser testado diretamente por IP público da máquina local.
 
 Estado atual:
 - Paperclip roda internamente na máquina local.
-- Acesso interno provável: http://172.16.0.116:3100
-- Documentação Apache/Docker provável: http://172.16.0.116:8080 ou porta Docker publicada.
+- Acesso interno provável: http://192.0.2.116:3100
+- Documentação Apache/Docker provável: http://192.0.2.116:8080 ou porta Docker publicada.
 - Acesso externo deve sem adim é passar pela  VPN wg0, sendo publicado no ip 141.148.79.230..
 
 Os agentes devem:

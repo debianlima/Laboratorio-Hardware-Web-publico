@@ -76,10 +76,8 @@ CREATE TABLE IF NOT EXISTS agendamentos (
     FOREIGN KEY (laboratorio_id) REFERENCES laboratorios(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Usuário administrador padrão (senha: admin123)
-INSERT INTO usuarios (username, senha, tipo)
-VALUES ('admin', '$2y$10$lZd34ataGlDxHMpFKBXL8OLpEtMHqzwvTTrFqBnkYffBbChiASf/u', 'administrador')
-ON DUPLICATE KEY UPDATE username = username;
+-- A cópia pública não inclui credencial administrativa padrão.
+-- Crie o primeiro administrador pelo fluxo de configuração da aplicação.
 
 -- Tabela de tipos de itens
 CREATE TABLE IF NOT EXISTS tipos_itens (

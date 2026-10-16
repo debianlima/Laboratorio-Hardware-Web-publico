@@ -1,11 +1,21 @@
-# Publicação pública
+# Preparação para publicação pública
 
-Esta pasta documenta a preparação da versão pública do projeto Laboratório de Hardware.
+Esta pasta registra as verificações realizadas na cópia local do projeto antes de qualquer publicação.
 
-- Origem privada: `debianlima/Laboratario-de-Hardware-2025-web`.
-- Data da preparação: 16/10/2026.
-- A cópia pública possui histórico Git novo e independente.
-- Não foram copiados o histórico `.git` privado, backups `AGENTS.md.backup-*`/`AGENTS.md.bkp-*`, `tmp_probe.txt` e o pacote legado `lab_system.rar`.
-- O `.env.example` contém somente placeholders e não deve receber credenciais reais.
-- Documentos acadêmicos devem permanecer anonimizados, usando identificadores de grupos/papéis em vez de nomes, matrículas ou e-mails pessoais.
-- Antes de qualquer publicação futura, revisar alterações para evitar credenciais, tokens, chaves, dados pessoais ou endpoints internos.
+## Estado atual
+
+O projeto permanece somente como cópia local para revisão. Nenhum repositório público foi criado e nenhuma alteração desta etapa foi enviada ao GitHub.
+
+## Relatórios de verificação
+
+- `pdf_anonymization_report.json`: registra, sem armazenar os identificadores removidos, quais PDFs foram recriados e quantas ocorrências foram anonimizadas.
+- `pdf_render_validation.json`: registra a abertura e a renderização de páginas de amostra dos PDFs após a recriação.
+- `auditoria_final_pre_publicacao.json`: resume a busca automatizada por identificadores conhecidos, nomes em arquivos, endereços RFC1918 e padrões de tokens, além de conferir a integridade do artigo.
+
+## Regras desta cópia
+
+A cópia possui histórico Git independente do repositório privado original. Identificadores pessoais de estudantes, endpoints internos e credenciais não necessários à compreensão técnica devem permanecer fora da versão pública. O artigo acadêmico em `../artigo/` preserva sua autoria bibliográfica intencionalmente.
+
+## Limite da automação
+
+As verificações automáticas ajudam a localizar texto e metadados, mas não substituem uma revisão humana final. Em especial, capturas de tela, imagens incorporadas e materiais históricos devem ser inspecionados visualmente antes da publicação.

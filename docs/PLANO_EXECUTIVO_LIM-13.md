@@ -18,7 +18,7 @@ Sistema **mobile-first** para controle do Laboratório de Hardware do IFF, permi
 | Banco | MySQL 8.0 |
 | Frontend | Bootstrap 5 |
 | Infra | Docker (docker-compose) |
-| AI/ML | Ollama local (11434) + GPU remota (172.16.0.110) |
+| AI/ML | Ollama local (11434) + GPU remota (192.0.2.110) |
 
 ### Módulos Implementados
 | Módulo | Status | Arquivos |
