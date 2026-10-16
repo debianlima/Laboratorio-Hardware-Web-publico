@@ -17,6 +17,11 @@ Esta cópia está tecnicamente preparada, mas permanece **local e não publicada
 
 - histórico Git local novo e independente;
 - nenhum remoto Git configurado;
-- publicação externa ainda não realizada;
+- publicação externa autorizada pelo responsável;
 - PDFs anonimizados mantêm texto pesquisável e passaram em validação automática de renderização;
 - identificadores pessoais conhecidos e endereços internos usados na preparação foram removidos da cópia pública, exceto a autoria bibliográfica preservada do artigo.
+
+## Decisão de publicação
+
+- `Documentos/Trabalhos 2026 Lab Hard/` foi removida porque pertence a uma tarefa nova e não integra esta publicação.
+- A publicação pûlica foi autorizada pelo responsável em 16/10/2026.

@@ -1,6 +1,6 @@
 {
   "status": "PRE_PUBLICACAO_REQUER_REVISAO_HUMANA",
-  "pdf_count": 13,
+  "pdf_count": 9,
   "counts": {
     "identity_text": 0,
     "identity_filename": 0,
@@ -92,7 +92,7 @@
   },
   "article_sha256": "F6D15FA0F479164EA6CAF1B85D743558781CCD5EFF600AA21EC6A0C1459B2673",
   "remote_configured": false,
-  "note": "A auditoria textual/metadados nao substitui revisao visual de imagens e capturas incorporadas.",
+  "note": "Auditoria atualizada apos excluir a pasta de tarefa nova. A publicacao foi autorizada pelo responsavel.",
   "classification": {
     "actionable_privacy_findings": 0,
     "rfc1918_alerts": "Falsos positivos: enderecos 192.0.2.0/24 reservados para documentacao e 0.0.0.0 de fallback.",
@@ -105,5 +105,9 @@
     "status": "OK",
     "removed_count": 10,
     "render_ok": true
-  }
+  },
+  "publication_authorized": true,
+  "excluded_from_publication": [
+    "Documentos/Trabalhos 2026 Lab Hard/"
+  ]
 }
