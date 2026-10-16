@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIM-303 — Estudo: Divergência role vs tipo em src/doc/artigo.html</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+  <header>
+    <h1>LIM-303 — Estudo: Divergência role vs tipo</h1>
+    <p>Diagnóstico da divergência documental entre src/doc/artigo.html e a implementação real do sistema</p>
+  </header>
+
+  <nav>
+    <a href="../index.html">Início</a>
+    <a href="../artigo.html">Artigo</a>
+    <a href="../auditoria/index.html">Auditoria</a>
+    <a href="../telas/">Telas</a>
+    <a href="../banco/">Banco de Dados</a>
+    <a href="index.html">Estudos</a>
+  </nav>
+
+  <main>
+    <div class="breadcrumb">
+      <a href="../index.html">Início</a> <span>›</span>
+      <a href="index.html">Estudos</a> <span>›</span>
+      <span>LIM-303</span>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;">
+        <span class="badge badge-info">Estudo</span>
+        <span class="badge badge-warning">Em andamento</span>
+        <span class="badge badge-blue">Documentador Acadêmico Free</span>
+        <span class="badge badge-gray">2026-05-21</span>
+      </div>
+      <h2>Diagnóstico da Divergência</h2>
+
+      <h3>Problema Identificado</h3>
+      <p>O arquivo <code>src/doc/artigo.html</code> (versão 2.0) descreve o controle de acesso do sistema utilizando a nomenclatura antiga baseada na coluna <code>role</code> com valores "admin" ou "librarian". No entanto, o banco de dados foi migrado (migration <code>2024-05-21-rename_role_to_tipo.sql</code>) para utilizar a coluna <code>tipo</code> com valores ENUM('administrador', 'padrao').</p>
+
+      <h3>Locais da Divergência</h3>
+      <table>
+        <thead>
+          <tr><th>#</th><th>Seção</th><th>Local (src/doc/artigo.html)</th><th>Texto Incorreto</th><th>Texto Correto</th><th>Gravidade</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>RN-02 (Tabela 5.1)</td>
+            <td>Linha 523</td>
+            <td>"papel", coluna <code>role</code>, valores "admin" ou "librarian"</td>
+            <td>"perfil", coluna <code>tipo</code>, valor "administrador"</td>
+            <td><span class="badge badge-danger">ALTA</span></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Dicionário de Dados — usuarios</td>
+            <td>Linha 1095</td>
+            <td>Coluna <code>role VARCHAR(20)</code> listada como campo existente</td>
+            <td>Coluna <code>role</code> não existe mais — foi renomeada para <code>tipo</code></td>
+            <td><span class="badge badge-danger">ALTA</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Evidências do Código Fonte</h3>
+      <ul>
+        <li><strong>Migration:</strong> <code>migrations/2024-05-21-rename_role_to_tipo.sql</code> — renomeia a coluna <code>role</code> para <code>tipo</code> (<code>CHANGE COLUMN role tipo VARCHAR(20) NOT NULL</code>)</li>
+        <li><strong>Schema atual:</strong> <code>docker/mysql/init.sql</code> linha 13 — <code>tipo ENUM('administrador', 'padrao') NOT NULL DEFAULT 'padrao'</code></li>
+        <li><strong>Auth:</strong> <code>src/config/auth.php</code> linha 12 — <code>function verificarPermissao($tipos = ['administrador'])</code></li>
+        <li><strong>Login:</strong> <code>src/login.php</code> linha 49 — <code>$_SESSION['tipo'] = $user['tipo'];</code></li>
+      </ul>
+
+      <h3>Análise de Impacto</h3>
+      <p>As divergências encontradas afetam a precisão técnica do artigo acadêmico. A descrição incorreta do mecanismo de controle de acesso (mencionando <code>role</code> e valores que não existem no sistema) compromete a confiabilidade da documentação e pode induzir a erros de interpretação por leitores técnicos.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>Laboratório de Hardware 2025 — Instituto Federal Fluminense</p>
+  </footer>
+</body>
+</html>

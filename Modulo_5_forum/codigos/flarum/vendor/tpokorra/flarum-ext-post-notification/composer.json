@@ -1,0 +1,36 @@
+{
+    "name": "tpokorra/flarum-ext-post-notification",
+    "description": "Send email notification for each post written or modified",
+    "keywords": [
+        "extension",
+        "flarum",
+        "notifications"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Timotheus Pokorra",
+            "email": "timotheus.pokorra@solidcharity.com",
+            "homepage": "http://www.pokorra.de"
+        }
+    ],
+    "require": {
+        "flarum/core": "^1.0"
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Post Notification",
+            "icon": {
+                "name": "fas fa-reply-all",
+                "backgroundColor": "#f4f4f4",
+                "color": "#5f4bb6"
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "tpokorra\\PostNotification\\": "src/"
+        }
+    }
+}

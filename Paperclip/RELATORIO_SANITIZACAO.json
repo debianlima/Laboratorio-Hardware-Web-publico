@@ -1,0 +1,14 @@
+{
+  "source_sha256": "e1fc62e2d4fec3e293f13c40d14efee24393b528f812d12d47bc391e4a189699",
+  "output_sha256": "0deba286f48257bd3a98b93d75db9efcc75baf12f7c703959a4cd6d1d9f5a309",
+  "known_names_replaced": 16,
+  "known_names_remaining": 0,
+  "emails_mapped": 44,
+  "sensitive_rows_removed": {
+    "company_secret_bindings": 12,
+    "company_secret_versions": 4,
+    "company_secrets": 4,
+    "secret_access_events": 1650
+  },
+  "output_bytes": 5810429
+}

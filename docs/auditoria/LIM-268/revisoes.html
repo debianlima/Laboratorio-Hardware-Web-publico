@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revisões LIM-268 — Lab Hardware 2025</title>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <style>
+    .change-added { border-left: 4px solid #059669; padding-left: 1rem; margin: 0.5rem 0; background: #f0fdf4; padding: 0.75rem; border-radius: 4px; }
+    .change-modified { border-left: 4px solid #d97706; padding-left: 1rem; margin: 0.5rem 0; background: #fffbeb; padding: 0.75rem; border-radius: 4px; }
+    .change-removed { border-left: 4px solid #dc2626; padding-left: 1rem; margin: 0.5rem 0; background: #fef2f2; padding: 0.75rem; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Revisões — LIM-268</h1>
+    <p>Detalhamento das alterações realizadas no artigo acadêmico</p>
+  </header>
+  <nav>
+    <a href="../../index.html">Início</a>
+    <a href="../../artigo.html">Artigo</a>
+    <a href="../index.html">Auditoria</a>
+    <a href="index.html">LIM-268</a>
+  </nav>
+  <main>
+    <div class="breadcrumb">
+      <a href="../../index.html">Início</a> <span>›</span>
+      <a href="../index.html">Auditoria</a> <span>›</span>
+      <a href="index.html">LIM-268</a> <span>›</span>
+      <span>Revisões</span>
+    </div>
+
+    <div class="card">
+      <h2>Alterações Realizadas</h2>
+
+      <h3>1. Correção da RN-02 — role → tipo</h3>
+      <div class="change-modified">
+        <strong>Modificado:</strong> RN-02 alterada de "Controle de acesso por papel" para "Controle de acesso por perfil". Removidas referências a <code>role</code>, 'admin' e 'librarian'. Unificado para usar apenas a coluna <code>tipo</code> (administrador/padrao), que é a única existente no schema.
+      </div>
+      <table>
+        <tr><th>Motivo</th><td>Schema oficial não possui coluna <code>role</code>. A coluna real é <code>tipo ENUM('administrador','padrao')</code>. O artigo não pode documentar uma coluna fictícia (achado ALTO da LIM-266).</td></tr>
+        <tr><th>Impacto</th><td>Documentação alinhada com a realidade do banco de dados. Leitores acadêmicos não serão induzidos ao erro sobre a estrutura de autorização.</td></tr>
+      </table>
+
+      <h3>2. Remoção da coluna role do dicionário de dados</h3>
+      <div class="change-removed">
+        <strong>Removido:</strong> Linha da coluna <code>role</code> (VARCHAR(20), admin/librarian) da tabela <code>usuarios</code> no dicionário de dados.
+      </div>
+      <div class="change-modified">
+        <strong>Modificado:</strong> Descrição da coluna <code>tipo</code> atualizada para "Perfil de acesso: administrador tem permissões totais; padrao tem permissões limitadas. Usado no login e na autorização."
+      </div>
+      <table>
+        <tr><th>Motivo</th><td>A coluna <code>role</code> não existe no schema versionado (<code>init.sql</code>). Sua inclusão no dicionário era enganosa (achado ALTO da LIM-266).</td></tr>
+        <tr><th>Impacto</th><td>Dicionário de dados agora reflete fielmente o schema oficial.</td></tr>
+      </table>
+
+      <h3>3. Correção da nota de documentos legados (seção 17)</h3>
+      <div class="change-modified">
+        <strong>Modificado:</strong> Bloco "Documento Legado — Cópia em src/doc/artigo.html" renomeado para "Documentos Legados — Cópias em src/doc/". Removida afirmação de que <code>src/doc/artigo.html</code> está "congelado como versão 2.0". Adicionada menção a <code>src/doc/artigo1.html</code>.
+      </div>
+      <table>
+        <tr><th>Motivo</th><td>O arquivo <code>src/doc/artigo.html</code> exibe "Versão 2.1" (não 2.0), tornando a afirmação de "congelado v2.0" incorreta. Além disso, <code>src/doc/artigo1.html</code> não era rastreado (achado MÉDIO da LIM-266 + achado MÉDIO da LIM-249).</td></tr>
+        <tr><th>Impacto</th><td>Nota de divergência mais precisa. Auditores e revisores têm visibilidade completa de todos os arquivos legados.</td></tr>
+      </table>
+
+      <h3>4. Atualização de versão</h3>
+      <div class="change-modified">
+        <strong>Modificado:</strong> Versão do artigo: 2.1 → 2.2
+      </div>
+      <table>
+        <tr><th>Motivo</th><td>Refletir que uma nova revisão documental foi aplicada ao artigo oficial.</td></tr>
+        <tr><th>Impacto</th><td>Rastreabilidade de versões mantida para fins de auditoria.</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Links</h2>
+      <ul>
+        <li><a href="index.html">Voltar à página principal LIM-268</a></li>
+        <li><a href="original.html">Versão original</a></li>
+        <li><a href="corrigido.html">Versão corrigida</a></li>
+        <li><a href="../../artigo.html">Artigo oficial (após correções)</a></li>
+        <li><a href="../../estudos/LIM-268-estudo.html">Estudo técnico LIM-268</a></li>
+      </ul>
+    </div>
+  </main>
+  <footer>
+    <p>Laboratório de Hardware 2025 — Documentador Acadêmico Free</p>
+  </footer>
+</body>
+</html>

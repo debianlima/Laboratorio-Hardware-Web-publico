@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIM-287 — Versão Corrigida</title>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+</head>
+<body>
+  <header>
+    <h1>LIM-287 — Versão Corrigida</h1>
+    <p>Seções 5 e 9.1 depois das correções</p>
+  </header>
+
+  <nav>
+    <a href="../../index.html">Início</a>
+    <a href="../../artigo.html">Artigo</a>
+    <a href="../index.html">Auditoria</a>
+    <a href="index.html">LIM-287</a>
+  </nav>
+
+  <main>
+    <div class="breadcrumb">
+      <a href="../../index.html">Início</a> <span>›</span>
+      <a href="../index.html">Auditoria</a> <span>›</span>
+      <a href="index.html">LIM-287</a> <span>›</span>
+      <span>Corrigido</span>
+    </div>
+
+    <div class="card">
+      <h2>Achado 1 — Seção 5 corrigida: coluna "Status" adicionada</h2>
+      <p>A tabela de regras de negócio agora possui uma coluna "Status" que classifica cada regra como:</p>
+      <ul>
+        <li><span class="badge badge-green">Implementado</span> — regra implementada e operacional no código atual</li>
+        <li><span class="badge badge-gray">Prevista</span> — regra documentada, implementação futura (ex.: RN-06, RN-07)</li>
+        <li><span class="badge badge-yellow">Prevista / Pendente</span> — regra documentada, vinculada a backlog pendente (ex.: RN-10 → BL-11)</li>
+      </ul>
+      <p>A RN-10 é a única regra marcada como <span class="badge badge-yellow">Prevista / Pendente</span>, associada explicitamente ao BL-11 (Módulo de auditoria e logs) no backlog da seção 15.</p>
+      <pre style="background:#f8f9fa;padding:1rem;border-radius:0.5rem;overflow-x:auto;font-size:0.85rem;line-height:1.5;">Tabela 5.1 — REGRAS DE NEGÓCIO (CORRIGIDA)
+┌───────┬──────────────────┬──────────────────────────────┬────────────────┬──────────────────────────┐
+│ ID    │ Regra            │ Descrição                    │ Módulo         │ Status                   │
+├───────┼──────────────────┼──────────────────────────────┼────────────────┼──────────────────────────┤
+│ RN-01 │ Autenticação...  │ Todas as páginas...           │ Autenticação   │ ✅ Implementado          │
+│ RN-02 │ Controle de...   │ Apenas usuários...           │ Autenticação   │ ✅ Implementado          │
+│ RN-03 │ Unicidade...     │ Código de patrimônio único   │ Itens          │ ✅ Implementado          │
+│ RN-04 │ Disponibilidade  │ Itens disponíveis apenas...  │ Empréstimos    │ ✅ Implementado          │
+│ RN-05 │ Devolução...     │ Item deve ser devolvido...   │ Empréstimos    │ ✅ Implementado          │
+│ RN-06 │ Conflito de...   │ Sem sobreposição de horário  │ Agendamentos   │ 🔲 Prevista              │
+│ RN-07 │ Aprovação de...  │ Requer aprovação do admin    │ Agendamentos   │ 🔲 Prevista              │
+│ RN-08 │ Limite de...     │ Máximo 3 empréstimos ativos  │ Empréstimos    │ ✅ Implementado          │
+│ RN-09 │ Atualização...   │ Devolução → status disponível│ Empréstimos    │ ✅ Implementado          │
+│ RN-10 │ Log de auditoria │ Registro de operações...     │ Auditoria      │ ⏳ Prevista / Pendente   │
+│ RN-11 │ Exclusão...      │ Itens com empréstimos ativos │ Itens          │ ✅ Implementado          │
+│ RN-12 │ Senha segura     │ Mínimo 4 caracteres + bcrypt │ Autenticação   │ ✅ Implementado          │
+└───────┴──────────────────┴──────────────────────────────┴────────────────┴──────────────────────────┘</pre>
+    </div>
+
+    <div class="card">
+      <h2>Achado 2 — Seção 9.1 corrigida: coluna "Tipo" adicionada</h2>
+      <p>A tabela de navegação agora possui uma coluna "Tipo" classificando cada tela como:</p>
+      <ul>
+        <li><span class="badge badge-green">Produção</span> — arquivo em <code>src/</code>, parte do runtime web atual</li>
+        <li><span class="badge badge-yellow">Protótipo</span> — arquivo de referência em <code>fontes_recebidas/prototipos/</code> ou <code>login/</code></li>
+      </ul>
+      <pre style="background:#f8f9fa;padding:1rem;border-radius:0.5rem;overflow-x:auto;font-size:0.85rem;line-height:1.5;">Tabela 9.1 — MAPA DE NAVEGAÇÃO (CORRIGIDA)
+┌──────┬──────────────────┬──────────────────────────────────────────────┬──────────────┬────────────┬──────────┐
+│ #    │ Tela             │ Arquivo                                      │ Tipo        │ Acesso     │ Destinos │
+├──────┼──────────────────┼──────────────────────────────────────────────┼──────────────┼────────────┼──────────┤
+│ T-01 │ Login            │ login/index.html                              │ 🟡 Protótipo │ Público    │ → T-02   │
+│ T-02 │ Painel Principal │ src/index.php                                 │ 🟢 Produção  │ Autenticado│ →...     │
+│ T-03 │ Listar Itens     │ src/itens/listar.php                          │ 🟢 Produção  │ Autenticado│ →...     │
+│ T-04 │ Cadastrar Item   │ src/itens/cadastrar.php                       │ 🟢 Produção  │ Admin      │ → T-03   │
+│ T-05 │ Editar Item      │ src/itens/editar.php                          │ 🟢 Produção  │ Admin      │ → T-03   │
+│ T-06 │ Listar Usuários  │ fontes_recebidas/prototipos/users_list.php    │ 🟡 Protótipo │ Admin      │ →...     │
+│ T-07 │ Cadastrar Usuário│ fontes_recebidas/prototipos/users_create.php  │ 🟡 Protótipo │ Admin      │ → T-06   │
+│ T-08 │ Editar Usuário   │ fontes_recebidas/prototipos/users_edit.php    │ 🟡 Protótipo │ Admin      │ → T-06   │
+│ T-09 │ Relatórios       │ fontes_recebidas/prototipos/relatorios_list.php│ 🟡 Protótipo │ Admin     │ → T-10   │
+│ T-10 │ Dashboard        │ fontes_recebidas/prototipos/dashboard.php     │ 🟡 Protótipo │ Autenticado│ → T-02   │
+└──────┴──────────────────┴──────────────────────────────────────────────┴──────────────┴────────────┴──────────┘</pre>
+    </div>
+  </main>
+
+  <footer>
+    <p>Laboratório de Hardware 2025 — Instituto Federal Fluminense</p>
+  </footer>
+</body>
+</html>

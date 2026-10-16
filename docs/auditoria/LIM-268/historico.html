@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Histórico LIM-268 — Lab Hardware 2025</title>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+</head>
+<body>
+  <header>
+    <h1>Série Histórica — LIM-268</h1>
+    <p>Evolução cronológica das correções de pareceres técnicos</p>
+  </header>
+  <nav>
+    <a href="../../index.html">Início</a>
+    <a href="../../artigo.html">Artigo</a>
+    <a href="../index.html">Auditoria</a>
+    <a href="index.html">LIM-268</a>
+  </nav>
+  <main>
+    <div class="breadcrumb">
+      <a href="../../index.html">Início</a> <span>›</span>
+      <a href="../index.html">Auditoria</a> <span>›</span>
+      <a href="index.html">LIM-268</a> <span>›</span>
+      <span>Histórico</span>
+    </div>
+
+    <div class="card">
+      <h2>Histórico de Versões do Artigo</h2>
+      <table>
+        <thead>
+          <tr><th>Data</th><th>Versão</th><th>Arquivo</th><th>Descrição</th><th>Agente</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026-05-20</td>
+            <td>2.2</td>
+            <td><code>docs/artigo.html</code></td>
+            <td>Resolução dos pareceres LIM-266 e LIM-249. RN-02 corrigida para usar <code>tipo</code>. Coluna <code>role</code> removida do dicionário. Nota de legados corrigida e ampliada.</td>
+            <td>Documentador Acadêmico Free</td>
+          </tr>
+          <tr>
+            <td>2026-05-20</td>
+            <td>2.1</td>
+            <td><code>docs/artigo.html</code></td>
+            <td>Estado anterior. Continha RN-02 com <code>role</code>, dicionário com coluna fictícia <code>role</code>, nota de divergência com versão congelada incorreta.</td>
+            <td>Múltiplos agentes</td>
+          </tr>
+          <tr>
+            <td>2026-05-20</td>
+            <td>2.0</td>
+            <td><code>src/doc/artigo.html</code></td>
+            <td>Versão legada inicial. Cópia mantida para referência histórica.</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Commits Relacionados</h2>
+      <p>Commit a ser criado ao final da tarefa LIM-268 com as correções documentais.</p>
+    </div>
+
+    <div class="card">
+      <h2>Pendências Pós-Correção</h2>
+      <table>
+        <thead><tr><th>Item</th><th>Descrição</th><th>Responsável</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>src/config/auth.php</code></td>
+            <td>Consulta <code>SELECT role</code> em coluna inexistente. Quebra em ambientes novos.</td>
+            <td>Dev executor</td>
+          </tr>
+          <tr>
+            <td><code>src/doc/artigo.html</code></td>
+            <td>Ainda se autodenomina "VERSÃO OFICIAL". Deveria ser "VERSÃO LEGADA".</td>
+            <td>Dev executor</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Links</h2>
+      <ul>
+        <li><a href="index.html">Voltar à página principal LIM-268</a></li>
+        <li><a href="original.html">Versão original</a></li>
+        <li><a href="corrigido.html">Versão corrigida</a></li>
+        <li><a href="revisoes.html">Revisões realizadas</a></li>
+        <li><a href="../../artigo.html">Artigo oficial</a></li>
+        <li><a href="../../estudos/LIM-268-estudo.html">Estudo técnico LIM-268</a></li>
+      </ul>
+    </div>
+  </main>
+  <footer>
+    <p>Laboratório de Hardware 2025 — Documentador Acadêmico Free</p>
+  </footer>
+</body>
+</html>

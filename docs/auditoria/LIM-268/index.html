@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIM-268 — Auditoria de Pareceres Técnicos — Lab Hardware 2025</title>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+</head>
+<body>
+  <header>
+    <h1>LIM-268 — Resolver Pareceres Técnicos</h1>
+    <p>Correções documentais baseadas nas revisões LIM-266 e LIM-249</p>
+  </header>
+
+  <nav>
+    <a href="../../index.html">Início</a>
+    <a href="../../artigo.html">Artigo</a>
+    <a href="../index.html">Auditoria</a>
+  </nav>
+
+  <main>
+    <div class="breadcrumb">
+      <a href="../../index.html">Início</a> <span>›</span>
+      <a href="../index.html">Auditoria</a> <span>›</span>
+      <span>LIM-268</span>
+    </div>
+
+    <div class="card">
+      <h2>Identificação</h2>
+      <table>
+        <tr><td><strong>Issue</strong></td><td>LIM-268 — Resolver pareceres técnicos de docs/revisao_artigo_LIM-266.md e outros</td></tr>
+        <tr><td><strong>Data</strong></td><td>2026-05-20</td></tr>
+        <tr><td><strong>Agente</strong></td><td>Documentador Acadêmico Free (f1b0f6c7)</td></tr>
+        <tr><td><strong>Status</strong></td><td><span class="badge badge-success">Concluído</span></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Correções Aplicadas</h2>
+      <table>
+        <thead><tr><th>#</th><th>Arquivo</th><th>Alteração</th><th>Motivo</th><th>Origem</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><code>docs/artigo.html</code></td>
+            <td>RN-02: corrigida para usar coluna <code>tipo</code> em vez de <code>role</code>; remove referências a 'librarian'</td>
+            <td>Schema real não possui coluna <code>role</code></td>
+            <td>LIM-266 ALTO</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><code>docs/artigo.html</code></td>
+            <td>Dicionário de dados: removida linha fictícia da coluna <code>role</code> da tabela <code>usuarios</code></td>
+            <td>Coluna não existe no schema oficial</td>
+            <td>LIM-266 ALTO</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><code>docs/artigo.html</code></td>
+            <td>Seção 17: removida afirmação de "congelado v2.0" para <code>src/doc/artigo.html</code>; adicionado <code>src/doc/artigo1.html</code> como cópia legada</td>
+            <td>Arquivo real exibe v2.1 (não v2.0); artigo1.html não era rastreado</td>
+            <td>LIM-266 MÉDIO + LIM-249 MÉDIO</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><code>docs/artigo.html</code></td>
+            <td>Versão atualizada: 2.1 → 2.2</td>
+            <td>Refletir nova revisão documental</td>
+            <td>Histórico</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Achados Não Resolvidos (Encaminhados)</h2>
+      <table>
+        <thead><tr><th>Achado</th><th>Descrição</th><th>Ação Necessária</th><th>Responsável</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-danger">ALTO</span></td>
+            <td><code>src/config/auth.php:25</code> consulta coluna <code>role</code> inexistente</td>
+            <td>Corrigir query para <code>tipo</code> ou adicionar coluna <code>role</code> ao schema via migração</td>
+            <td>Dev executor</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-warning">MÉDIO</span></td>
+            <td><code>src/doc/artigo.html</code> ainda se autodenomina "VERSÃO OFICIAL"</td>
+            <td>Atualizar badge para "VERSÃO LEGADA" ou remover o arquivo</td>
+            <td>Dev executor</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Documentos Relacionados</h2>
+      <ul>
+        <li><a href="../../artigo.html">Artigo Acadêmico (versão corrigida)</a></li>
+        <li><a href="../../estudos/LIM-268-estudo.html">Estudo Técnico LIM-268</a></li>
+        <li><a href="../../revisao_artigo_LIM-266.md">Parecer Técnico LIM-266</a></li>
+        <li><a href="../../revisao_artigo_LIM-249.md">Parecer Técnico LIM-249</a></li>
+        <li><a href="../index.html">Índice de Auditoria</a></li>
+        <li><a href="original.html">Versão original (antes da correção)</a></li>
+        <li><a href="corrigido.html">Versão corrigida</a></li>
+        <li><a href="revisoes.html">Revisões realizadas</a></li>
+        <li><a href="historico.html">Série histórica</a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Série Histórica</h2>
+      <table>
+        <thead><tr><th>Data</th><th>Versão</th><th>Alteração</th><th>Agente</th></tr></thead>
+        <tbody>
+          <tr><td>2026-05-20</td><td>2.2</td><td>Correções dos pareceres LIM-266 e LIM-249: role removido, legados corrigidos</td><td>Documentador Acadêmico Free</td></tr>
+          <tr><td>2026-05-20</td><td>2.1</td><td>Estado anterior: RN-02 com role, dicionário com coluna fictícia, nota de divergência imprecisa</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer>
+    <p>Laboratório de Hardware 2025 — Documentador Acadêmico Free</p>
+  </footer>
+</body>
+</html>

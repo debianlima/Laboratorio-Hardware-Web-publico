@@ -1,0 +1,61 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>LIM‑359 Estudo de Análise de Negócios</title>
+    <link rel="stylesheet" href="/docs/assets/css/style.css">
+</head>
+<body>
+ <header>
+   <h1>LIM‑359: Estudo de Análise de Negócios – QA Interface e Testes Offline</h1>
+   <p><strong>Data:</strong> 2026‑05‑23</p>
+   <p><strong>Agente responsável:</strong> Documentador Acadêmico Free</p>
+   <p><strong>Tipo de documento:</strong> Estudo de Análise de Negócios</p>
+   <p><strong>Status:</strong> Original</p>
+ </header>
+ <section>
+   <h2>Objetivo</h2>
+   <p>Documentar as regras de negócio, fluxo de uso e requisitos de teste da interface de QA offline que realiza execução silenciosa de testes no sistema.</p>
+ </section>
+ <section>
+   <h2>Fluxo de uso</h2>
+   <ol>
+     <li>Usuário acessa a interface de QA offline.</li>
+     <li>Seleciona o conjunto de testes desejado.</li>
+     <li>Inicia a execução silenciosa (sem saída visível).</li>
+     <li>O sistema processa os testes em background.</li>
+     <li>Resultados são disponibilizados em relatório posterior.</li>
+   </ol>
+ </section>
+ <section>
+   <h2>Telas</h2>
+   <ul>
+     <li>Login</li>
+     <li>Página de seleção de testes</li>
+     <li>Indicador de execução silenciosa (spinner não visível)</li>
+     <li>Relatório de resultados</li>
+   </ul>
+ </section>
+ <section>
+   <h2>Dados</h2>
+   <p>Armazenamento de histórico de execuções em banco de dados, uso de tabelas: <code>qr_test_runs</code>, <code>qr_test_results</code>.
+ </section>
+ <section>
+   <h2>Critérios de Aceite</h2>
+   <ul>
+     <li>Interface inicia execução em background sem log visível.</li>
+     <li>Resultados são armazenados no banco e acessíveis em relatório.</li>
+   </ul>
+ </section>
+ <section>
+   <h2>Riscos</h2>
+   <ul>
+     <li>Falta de monitoramento de falhas na execução silenciosa.</li>
+     <li>Uso excessivo de recursos de CPU.</li>
+   </ul>
+ </section>
+ <section>
+   <h2>Plano de Teste</h2>
+   <p>Testar execução silenciosa com diferentes volumes de dados, verificar ausência de logs na UI, e validar persistência de resultados.</p>
+ </section>
+</body>
+</html>

@@ -1,0 +1,139 @@
+- Data: 2026-05-19
+- Tipo: Governanca/Blocked
+- Objetivo: registrar wake adicional sem issue atribuida e manter bloqueio formal.
+- Arquivos alterados:
+  - `AUDITORIA_TAREFAS.md`
+  - `HISTORICO_DESENVOLVIMENTO.md`
+  - `LOG_ALTERACOES_IA.md`
+- Evidencia: atualizacao da auditoria em formato obrigatorio.
+- Pendencias: identificacao da issue Paperclip atribuida.
+- Proxima acao: execucao imediata apos desbloqueio.
+- Data: 2026-05-19
+- Tipo: Governanca/Risco operacional
+- Objetivo: registrar risco por divergencia de branch/worktree em rodada bloqueada.
+- Arquivos alterados:
+  - `PENDENCIAS.md`
+  - `AUDITORIA_TAREFAS.md`
+  - `HISTORICO_DESENVOLVIMENTO.md`
+  - `LOG_ALTERACOES_IA.md`
+- Evidencia: `git status --short --branch` com branch `feature/lim-19-crud-itens` e multiplos untracked.
+- Pendencias: confirmacao humana da branch alvo e issue atribuida.
+- Proxima acao: manter bloqueio ate validacao.
+- Data: 2026-05-19
+- Tipo: Auditoria/Paperclip offline
+- Objetivo: auditar estado com Paperclip API offline; verificar progresso da revisao academica (LIM-66).
+- Arquivos alterados:
+  - `AUDITORIA_TAREFAS.md`
+  - `HISTORICO_DESENVOLVIMENTO.md`
+  - `LOG_ALTERACOES_IA.md`
+- Evidencia: `docs/revisao_artigo_LIM-66.md` com 5 achados; `REVISAO_DOCUMENTAL.md` confirma canonical.
+- Pendencias: servidor Paperclip offline impede atualizacao do board.
+- Proxima acao: restaurar servidor Paperclip para desbloquear fila.
+- Data: 2026-05-19
+- Tipo: Auditoria/Paperclip offline + LIM-74
+- Objetivo: verificar se Paperclip voltou; auditar nova revisao LIM-74.
+- Arquivos alterados:
+  - `AUDITORIA_TAREFAS.md`
+  - `HISTORICO_DESENVOLVIMENTO.md`
+  - `LOG_ALTERACOES_IA.md`
+- Evidencia: `docs/revisao_artigo_LIM-74.md` com 6 achados (3 medio, 2 baixo, 1 operacional). Paperclip ainda offline. Divergencia de path em AGENTS.md confirmada.
+- Pendencias: Paperclip offline; path incorreto em AGENTS.md; validacao humana dos achados 1, 2, 6 da LIM-74.
+- Proxima acao: restaurar Paperclip e atualizar board (LIM-66→done, LIM-74→in_review, LIM-55→done).
+- Data: 2026-05-19
+- Tipo: Auditoria/correcões artigo aplicadas
+- Objetivo: verificar se Paperclip voltou; auditar correcoes aplicadas no artigo por outro agente.
+- Arquivos alterados:
+  - `AUDITORIA_TAREFAS.md`
+  - `HISTORICO_DESENVOLVIMENTO.md`
+  - `LOG_ALTERACOES_IA.md`
+- Evidencia: `git diff docs/artigo.html` mostra 4 correcoes (Abstract instituicao, BPMN→DER, relatorios clarificado, nome arquivo). Keyword residual linha 387 ainda pendente. Paperclip offline.
+- Pendencias: Paperclip offline; keyword residual "Federal Institute" no Abstract (linha 387); path AGENTS.md; arquivos ausentes.
+- Proxima acao: restaurar Paperclip; corrigir keyword residual; atualizar board.
+- Data: 2026-05-19
+- Tipo: Auditoria/LIM-56 + Analista de Negocios
+- Objetivo: verificar se Paperclip voltou; auditar LIM-56 e nova secao do AGENTS.md.
+- Arquivos alterados:
+  - `AUDITORIA_TAREFAS.md`
+  - `HISTORICO_DESENVOLVIMENTO.md`
+  - `LOG_ALTERACOES_IA.md`
+- Evidencia: `docs/auditoria_LIM-56.md` criada pelo CEO Tecnico Local (recomenda done). `AGENTS.md` com nova secao Analista de Negocios Free. Backup nao rastreado `AGENTS.md.bkp-remover-deepseek-20260519-120854`. Paperclip offline.
+- Pendencias: Paperclip offline; 4 issues com trabalho concluido sem atualizacao no board (LIM-55, LIM-56, LIM-66, LIM-74); keyword residual; path AGENTS.md.
+- Proxima acao: restaurar Paperclip; atualizar board; limpar backup.
+- Data: 2026-05-19
+- Tipo: LIM-73 — Verificar Dev ocioso
+- Objetivo: identificar devs ociosos e propor proxima tarefa (CEO Tecnico).
+- Agentes: Dev Full Stack Local/Ollama OCIOSO, OpenCode Free OCIOSO, Codex/Claude OCIOSO.
+- Proposta: (1) Corrigir root path AGENTS.md, (2) Implementar modulo Emprestimos.
+- Disposicao: DONE — verificacao completa, proposta documentada.
+- Arquivos alterados: HISTORICO_DEZENVOLVIMENTO.md, LOG_ALTERACOES_IA.md
+- Barreira: Paperclip API offline (129.80.26.136:3100)
+
+- Data: 2026-05-19
+- Tipo: Auditoria Final LIM-71
+- Objetivo: concluir auditoria LIM-71 com disposicao done; documentar estado final das 55 issues.
+- Arquivos alterados:
+  - `AUDITORIA_TAREFAS.md`
+  - `HISTORICO_DESENVOLVIMENTO.md`
+  - `LOG_ALTERACOES_IA.md`
+- Evidencia: AUDITORIA_TAREFAS.md com entrada final 16:00:00Z; docs/revisao_artigo_LIM-66.md com 5 achados.
+- Achados principais: 55 issues analisadas; 37 done, 5 blocked, 6 todo, 3 backlog; LIM-38/51/55 recomendadas done; adapter_failed sistematico; Paperclip offline; root path divergente.
+- Pendencias: restaurar Paperclip, corrigir adapter CEO, limpar duplicatas (LIM-47/48/49), corrigir root path em AGENTS.md.
+- Proxima acao: aguardar restauracao do servidor Paperclip para continuidade.
+
+- Data: 2026-05-19
+- Tipo: LIM-80 — Auditoria de runs falhados pós-migração
+- Objetivo: auditar failed runs após migração, reativar tarefas válidas, corrigir root path
+- Ações concretas:
+  - Root path AGENTS.md corrigido (/home/opc/ → /home/user/) — última ocorrência na linha 269
+  - Auditoria completa documentada em AUDITORIA_TAREFAS.md (55 issues analisadas)
+  - 3 tarefas reativadas/avançadas: AGENTS.md config fix (done), LIM-79 QR Code (done), LIM-41/42/43 (prontas para Dev)
+  - 5 issues mantidas bloqueadas: LIM-53, LIM-49, LIM-48, LIM-47, LIM-7
+- Anexos: AUDITORIA_TAREFAS.md entrada 22:00:00Z
+- Disposicao LIM-80: DONE
+- Barreira: Paperclip API offline
+
+- Data: 2026-05-19
+- Tipo: LIM-80 — Correção de configuração AGENTS.md
+- Ação: Substituída última ocorrência de `/home/opc/workspaces/laboratorio\_hardware\_2025` por `/home/user/workspaces/laboratorio\_hardware\_2025` na linha 269
+- Verificação: `grep -n "home/opc" AGENTS.md` → "Nenhuma ocorrência de /home/opc/ restante"
+- Risco: BAIXO — alteração de string em arquivo de configuração markdown, sem impacto funcional
+- Data: 2026-05-19
+- Tipo: CEO_Tecnico/LIM-82-DONE
+- Objetivo: verificar Dev ocioso e propor proxima tarefa — LIM-82 concluida
+- Arquivos criados:
+  - `docs/handoff_LIM-82-dev-ocioso.md` (3076 bytes, 66 linhas)
+- Arquivos alterados:
+  - `HISTORICO_DESENVOLVIMENTO.md` (+93 linhas, bloco 21 LIM-82)
+  - `AUDITORIA_TAREFAS.md` (+524 linhas, secao LIM-82)
+- Evidencia: `docs/handoff_LIM-82-dev-ocioso.md` com specs completas do modulo Emprestimos, ordem de execucao (Model→Controller→Views), criterios de aceite, referencias tecnicas
+- Resultado: Dev Full Stack Local identificado como OCIOSO; proxima tarefa definida como LIM-41/42/43 (modulo Emprestimos); handoff documentado
+- Disposicao: DONE
+- Pendencias: Paperclip API offline impede atualizacao do board; atribuicao formal do Dev depende de restauracao
+- Proxima acao: Dev Full Stack Local iniciar modulo Emprestimos quando atribuido
+
+- Data: 2026-05-19
+- Tipo: CEO_Tecnico/LIM-92-DONE
+- Objetivo: verificar Dev ocioso e criar CHECKLIST_AUDITORIA.md — LIM-92 concluida
+- Arquivos criados:
+  - `CHECKLIST_AUDITORIA.md` (checklist completo de seguranca e auditoria, 8 secoes)
+- Arquivos alterados:
+  - `AUDITORIA_TAREFAS.md` (+secao LIM-92)
+  - `LOG_ALTERACOES_IA.md` (este registro)
+- Evidencia: CHECKLIST_AUDITORIA.md com 8 secoes (PHP security, DB, Docker, config, funcionalidades, testes, documentacao, deploy)
+- Resultado: Dev Full Stack Local identificado como OCIOSO; CHECKLIST_AUDITORIA.md criado como tarefa concreta
+- Disposicao: DONE
+- Pendencias: Paperclip API remota offline; atribuicao formal de LIM-41/42/43 ao Dev
+- Proxima acao: Dev Full Stack iniciar LIM-41 ou executar itens do checklist
+
+- Data: 2026-05-19
+- Tipo: CEO_Tecnico/LIM-99-DONE
+- Objetivo: finalizar LIM-99 (5ª verificacao de Dev ocioso) — ciclo encerrado
+- Arquivos alterados:
+  - `AUDITORIA_TAREFAS.md` (+secao LIM-99 FINAL)
+  - `HISTORICO_DESENVOLVIMENTO.md` (+Bloco 23 LIM-99)
+  - `LOG_ALTERACOES_IA.md` (este registro)
+- Evidencia: `src/emprestimos/`, `src/models/`, `src/controllers/` inexistentes — Dev Full Stack continua OCIOSO
+- Resultado: 5ª verificacao identica (LIM-73→82→87→92→99) — gargalo mudou de planejamento para execucao. Specs prontas, BD pronto, handoff documentado.
+- Disposicao: DONE
+- Pendencias: Paperclip remoto offline; atribuicao formal de LIM-41/42/43 ao Dev requer acao humana
+- Proxima acao: Humano atribuir LIM-41/42/43 ao Dev Full Stack Local e solicitar execucao imediata

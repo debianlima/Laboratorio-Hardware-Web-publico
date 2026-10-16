@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIM-303 — Versão Corrigida (src/doc/artigo.html)</title>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+</head>
+<body>
+  <header>
+    <h1>LIM-303 — Versão Corrigida</h1>
+    <p>Conteúdo corrigido de src/doc/artigo.html após aplicação dos ajustes</p>
+  </header>
+
+  <nav>
+    <a href="../../index.html">Início</a>
+    <a href="../../artigo.html">Artigo</a>
+    <a href="../index.html">Auditoria</a>
+    <a href="index.html">LIM-303</a>
+  </nav>
+
+  <main>
+    <div class="card">
+      <h2>Correção 1 — RN-02: Controle de acesso por perfil (tipo)</h2>
+      <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:1rem;margin:1rem 0;">
+        <h3 style="color:#059669;">Texto Corrigido</h3>
+        <pre style="background:#fff;padding:0.75rem;border-radius:4px;margin-top:0.5rem;">&lt;tr&gt;&lt;td&gt;RN-02&lt;/td&gt;&lt;td&gt;Controle de acesso por &lt;strong&gt;perfil&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Apenas usuários com perfil "administrador" (coluna &lt;code&gt;tipo&lt;/code&gt;) podem gerenciar usuários e acessar relatórios. O campo &lt;code&gt;tipo&lt;/code&gt; é armazenado na sessão durante o login e utilizado para controle de acesso.&lt;/td&gt;&lt;td&gt;Autenticação&lt;/td&gt;&lt;/tr&gt;</pre>
+      </div>
+      <p><strong>Alterações aplicadas:</strong> "papel" → "perfil", "admin" ou "librarian" → "administrador", referência a <code>role</code> → <code>tipo</code>. Removida a menção duplicada ao campo <code>tipo</code> na sessão por já estar implícita na descrição.</p>
+    </div>
+
+    <div class="card">
+      <h2>Correção 2 — Dicionário de Dados: remoção da coluna "role" fantasma</h2>
+      <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:1rem;margin:1rem 0;">
+        <h3 style="color:#059669;">Texto Corrigido</h3>
+        <p>A linha correspondente à coluna <code>role VARCHAR(20)</code> foi removida da tabela <code>usuarios</code>. O schema atual contém apenas:</p>
+        <ul>
+          <li><code>id</code> — INT AUTO_INCREMENT</li>
+          <li><code>username</code> — VARCHAR(50)</li>
+          <li><code>senha</code> — VARCHAR(255)</li>
+          <li><code>tipo</code> — ENUM('administrador','padrao')</li>
+          <li><code>criado_em</code> — TIMESTAMP</li>
+          <li><code>atualizado_em</code> — TIMESTAMP</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Validação pós-correção</h2>
+      <p>As correções foram validadas contra:</p>
+      <ul>
+        <li><code>docker/mysql/init.sql</code> — schema atual do banco</li>
+        <li><code>migrations/2024-05-21-rename_role_to_tipo.sql</code> — migration de rename</li>
+        <li><code>src/config/auth.php</code> — lógica de verificação de permissão</li>
+        <li><code>src/login.php</code> — armazenamento de sessão</li>
+        <li><code>docs/artigo.html</code> — versão oficial de referência (versão 2.5)</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <p>Laboratório de Hardware 2025 — Instituto Federal Fluminense</p>
+  </footer>
+</body>
+</html>

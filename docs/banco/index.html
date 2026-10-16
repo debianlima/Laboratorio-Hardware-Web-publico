@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banco de Dados — Lab Hardware 2025</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+  <header>
+    <h1>Banco de Dados</h1>
+    <p>Schema, tabelas e dicionário de dados do Laboratório de Hardware 2025</p>
+  </header>
+
+  <nav>
+    <a href="../index.html">Início</a>
+    <a href="../artigo.html">Artigo</a>
+    <a href="../auditoria/">Auditoria</a>
+    <a href="../telas/">Telas</a>
+    <a href="index.html" class="active">Banco de Dados</a>
+    <a href="../estudos/">Estudos</a>
+  </nav>
+
+  <main>
+    <div class="breadcrumb">
+      <a href="../index.html">Início</a> <span>›</span> <span>Banco de Dados</span>
+    </div>
+
+    <div class="card">
+      <h2>Visão Geral</h2>
+      <p><strong>SGBD:</strong> MySQL 8.0<br>
+      <strong>Database:</strong> <code>lab_hardware</code><br>
+      <strong>Engine:</strong> InnoDB<br>
+      <strong>Charset:</strong> utf8mb4<br>
+      <strong>Schema:</strong> <code>docker/mysql/init.sql</code></p>
+    </div>
+
+    <div class="card">
+      <h2>Tabelas</h2>
+      <table>
+        <thead><tr><th>Tabela</th><th>Descrição</th><th>Módulo</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><code>usuarios</code></td><td>Usuários do sistema (alunos, professores, administradores)</td><td>Autenticação</td><td><span class="badge badge-success">Ativa</span></td></tr>
+          <tr><td><code>tipos_itens</code></td><td>Catálogo de tipos de equipamentos (Arduino, multímetro, etc.)</td><td>Itens</td><td><span class="badge badge-success">Ativa</span></td></tr>
+          <tr><td><code>itens</code></td><td>Itens físicos com código de patrimônio, status e localização</td><td>Itens</td><td><span class="badge badge-success">Ativa</span></td></tr>
+          <tr><td><code>equipamentos</code></td><td>Equipamentos simples (nome, descrição, quantidade, disponibilidade)</td><td>Empréstimos</td><td><span class="badge badge-success">Ativa</span></td></tr>
+          <tr><td><code>emprestimos</code></td><td>Registro de empréstimos e devoluções (vinculado a equipamentos)</td><td>Empréstimos</td><td><span class="badge badge-success">Ativa</span></td></tr>
+          <tr><td><code>login_attempts</code></td><td>Log de tentativas de login para rate limiting</td><td>Segurança</td><td><span class="badge badge-success">Ativa</span></td></tr>
+          <tr><td><code>laboratorios</code></td><td>Laboratórios disponíveis para agendamento</td><td>Agendamentos</td><td><span class="badge badge-warning">Schema pronto</span></td></tr>
+          <tr><td><code>agendamentos</code></td><td>Agendamento de uso do laboratório por período</td><td>Agendamentos</td><td><span class="badge badge-warning">Schema pronto</span></td></tr>
+          <tr><td><code>forum</code></td><td>Fórum de discussão do projeto (Módulo 5 — externo)</td><td>Fórum</td><td><span class="badge badge-gray">Planejada</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Dicionário de Dados — usuarios</h2>
+      <p>Fonte: <code>docker/mysql/init.sql</code></p>
+      <table>
+        <thead><tr><th>Coluna</th><th>Tipo</th><th>Nullable</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT AUTO_INCREMENT</td><td>NOT NULL</td><td>Chave primária</td></tr>
+          <tr><td><code>username</code></td><td>VARCHAR(50)</td><td>NOT NULL</td><td>Nome de usuário (UNIQUE)</td></tr>
+          <tr><td><code>senha</code></td><td>VARCHAR(255)</td><td>NOT NULL</td><td>Hash bcrypt da senha</td></tr>
+          <tr><td><code>tipo</code></td><td>ENUM('administrador','padrao')</td><td>NOT NULL</td><td>Perfil de acesso</td></tr>
+          <tr><td><code>criado_em</code></td><td>TIMESTAMP</td><td>NOT NULL</td><td>Data de criação</td></tr>
+          <tr><td><code>atualizado_em</code></td><td>TIMESTAMP</td><td>NOT NULL</td><td>Última atualização (ON UPDATE)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Dicionário de Dados — tipos_itens</h2>
+      <p>Fonte: <code>docker/mysql/init.sql</code></p>
+      <table>
+        <thead><tr><th>Coluna</th><th>Tipo</th><th>Nullable</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT AUTO_INCREMENT</td><td>NOT NULL</td><td>Chave primária</td></tr>
+          <tr><td><code>nome</code></td><td>VARCHAR(100)</td><td>NOT NULL</td><td>Nome do tipo (UNIQUE)</td></tr>
+          <tr><td><code>descricao</code></td><td>TEXT</td><td>NULL</td><td>Descrição do tipo</td></tr>
+          <tr><td><code>criado_em</code></td><td>TIMESTAMP</td><td>NOT NULL</td><td>Data de criação</td></tr>
+          <tr><td><code>atualizado_em</code></td><td>TIMESTAMP</td><td>NOT NULL</td><td>Última atualização</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Dicionário de Dados — itens</h2>
+      <p>Fonte: <code>docker/mysql/init.sql</code></p>
+      <table>
+        <thead><tr><th>Coluna</th><th>Tipo</th><th>Nullable</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT AUTO_INCREMENT</td><td>NOT NULL</td><td>Chave primária</td></tr>
+          <tr><td><code>codigo_patrimonio</code></td><td>VARCHAR(50)</td><td>NOT NULL</td><td>Código de patrimônio único (UNIQUE)</td></tr>
+          <tr><td><code>nome</code></td><td>VARCHAR(100)</td><td>NOT NULL</td><td>Nome do item</td></tr>
+          <tr><td><code>tipo_id</code></td><td>INT</td><td>NULL</td><td>FK → tipos_itens.id (ON DELETE SET NULL)</td></tr>
+          <tr><td><code>status</code></td><td>ENUM('disponivel','emprestado','manutencao')</td><td>NOT NULL</td><td>Status atual do item</td></tr>
+          <tr><td><code>descricao</code></td><td>TEXT</td><td>NULL</td><td>Descrição detalhada</td></tr>
+          <tr><td><code>localizacao</code></td><td>VARCHAR(100)</td><td>NULL</td><td>Localização física no laboratório</td></tr>
+          <tr><td><code>criado_em</code></td><td>TIMESTAMP</td><td>NOT NULL</td><td>Data de cadastro</td></tr>
+          <tr><td><code>atualizado_em</code></td><td>TIMESTAMP</td><td>NOT NULL</td><td>Última atualização</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Dicionário de Dados — equipamentos</h2>
+      <p>Fonte: <code>docker/mysql/init.sql</code>. Tabela simplificada usada pelo módulo de empréstimos.</p>
+      <table>
+        <thead><tr><th>Coluna</th><th>Tipo</th><th>Nullable</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT AUTO_INCREMENT</td><td>NOT NULL</td><td>Chave primária</td></tr>
+          <tr><td><code>nome</code></td><td>VARCHAR(100)</td><td>NOT NULL</td><td>Nome do equipamento</td></tr>
+          <tr><td><code>descricao</code></td><td>TEXT</td><td>NULL</td><td>Descrição detalhada</td></tr>
+          <tr><td><code>quantidade</code></td><td>INT</td><td>NOT NULL</td><td>Quantidade total em estoque</td></tr>
+          <tr><td><code>disponivel</code></td><td>INT</td><td>NOT NULL</td><td>Quantidade disponível para empréstimo</td></tr>
+          <tr><td><code>criado_em</code></td><td>TIMESTAMP</td><td>NOT NULL</td><td>Data de criação</td></tr>
+          <tr><td><code>atualizado_em</code></td><td>TIMESTAMP</td><td>NOT NULL</td><td>Última atualização</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Dicionário de Dados — emprestimos</h2>
+      <p>Fonte: <code>docker/mysql/init.sql</code>. Vinculado à tabela <code>equipamentos</code> (simplificada).</p>
+      <table>
+        <thead><tr><th>Coluna</th><th>Tipo</th><th>Nullable</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT AUTO_INCREMENT</td><td>NOT NULL</td><td>Chave primária</td></tr>
+          <tr><td><code>usuario_id</code></td><td>INT</td><td>NOT NULL</td><td>FK → usuarios.id (ON DELETE CASCADE)</td></tr>
+          <tr><td><code>equipamento_id</code></td><td>INT</td><td>NOT NULL</td><td>FK → equipamentos.id (ON DELETE CASCADE)</td></tr>
+          <tr><td><code>data_emprestimo</code></td><td>TIMESTAMP</td><td>NOT NULL</td><td>Data/hora do empréstimo</td></tr>
+          <tr><td><code>data_devolucao</code></td><td>TIMESTAMP</td><td>NULL</td><td>Data/hora da devolução (NULL = pendente)</td></tr>
+          <tr><td><code>status</code></td><td>ENUM('pendente','devolvido','atrasado')</td><td>NOT NULL</td><td>Status do empréstimo</td></tr>
+          <tr><td><code>observacao</code></td><td>TEXT</td><td>NULL</td><td>Observações sobre o empréstimo</td></tr>
+          <tr><td><code>criado_em</code></td><td>TIMESTAMP</td><td>NOT NULL</td><td>Data de criação do registro</td></tr>
+          <tr><td><code>atualizado_em</code></td><td>TIMESTAMP</td><td>NOT NULL</td><td>Última atualização</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Dicionário de Dados — login_attempts</h2>
+      <p>Fonte: <code>docker/mysql/migrations/01_add_login_attempts.sql</code>. Criada automaticamente pelo rate limiter.</p>
+      <table>
+        <thead><tr><th>Coluna</th><th>Tipo</th><th>Nullable</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT AUTO_INCREMENT</td><td>NOT NULL</td><td>Chave primária</td></tr>
+          <tr><td><code>ip_address</code></td><td>VARCHAR(45)</td><td>NOT NULL</td><td>Endereço IP da tentativa</td></tr>
+          <tr><td><code>username</code></td><td>VARCHAR(50)</td><td>NOT NULL</td><td>Nome de usuário tentado</td></tr>
+          <tr><td><code>attempted_at</code></td><td>TIMESTAMP</td><td>NOT NULL</td><td>Data/hora da tentativa (DEFAULT CURRENT)</td></tr>
+          <tr><td><code>success</code></td><td>TINYINT(1)</td><td>NOT NULL</td><td>1 = sucesso, 0 = falha</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Índices:</strong> <code>idx_ip_time</code> (ip_address, attempted_at), <code>idx_username</code>, <code>idx_success</code></p>
+    </div>
+
+    <div class="card">
+      <h2>Dicionário de Dados — laboratorios</h2>
+      <p>Fonte: <code>docker/mysql/init.sql</code>. Schema pronto, aguardando módulo de agendamentos.</p>
+      <table>
+        <thead><tr><th>Coluna</th><th>Tipo</th><th>Nullable</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT AUTO_INCREMENT</td><td>NOT NULL</td><td>Chave primária</td></tr>
+          <tr><td><code>codigo</code></td><td>VARCHAR(20)</td><td>NOT NULL</td><td>Código do laboratório (UNIQUE)</td></tr>
+          <tr><td><code>lugar</code></td><td>VARCHAR(100)</td><td>NOT NULL</td><td>Localização do laboratório</td></tr>
+          <tr><td><code>nome</code></td><td>VARCHAR(100)</td><td>NOT NULL</td><td>Nome do laboratório</td></tr>
+          <tr><td><code>tipo</code></td><td>ENUM('redes','hardware','robotica','informatica_normal')</td><td>NOT NULL</td><td>Tipo/Temática do laboratório</td></tr>
+          <tr><td><code>tecnico_responsavel</code></td><td>VARCHAR(100)</td><td>NULL</td><td>Nome do técnico responsável</td></tr>
+          <tr><td><code>informacao_adicional</code></td><td>TEXT</td><td>NULL</td><td>Informações complementares</td></tr>
+          <tr><td><code>criado_em</code></td><td>TIMESTAMP</td><td>NOT NULL</td><td>Data de criação</td></tr>
+          <tr><td><code>atualizado_em</code></td><td>TIMESTAMP</td><td>NOT NULL</td><td>Última atualização</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Dicionário de Dados — agendamentos</h2>
+      <p>Fonte: <code>docker/mysql/init.sql</code>. Schema pronto, aguardando implementação do módulo.</p>
+      <table>
+        <thead><tr><th>Coluna</th><th>Tipo</th><th>Nullable</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT AUTO_INCREMENT</td><td>NOT NULL</td><td>Chave primária</td></tr>
+          <tr><td><code>usuario_id</code></td><td>INT</td><td>NOT NULL</td><td>FK → usuarios.id (ON DELETE CASCADE)</td></tr>
+          <tr><td><code>laboratorio_id</code></td><td>INT</td><td>NOT NULL</td><td>FK → laboratorios.id (ON DELETE CASCADE)</td></tr>
+          <tr><td><code>data_inicio</code></td><td>DATETIME</td><td>NOT NULL</td><td>Data/hora de início do agendamento</td></tr>
+          <tr><td><code>data_fim</code></td><td>DATETIME</td><td>NOT NULL</td><td>Data/hora de fim do agendamento</td></tr>
+          <tr><td><code>finalidade</code></td><td>VARCHAR(255)</td><td>NULL</td><td>Finalidade do uso do laboratório</td></tr>
+          <tr><td><code>status</code></td><td>ENUM('pendente','aprovado','cancelado','concluido')</td><td>NOT NULL</td><td>Status da solicitação</td></tr>
+          <tr><td><code>criado_em</code></td><td>TIMESTAMP</td><td>NOT NULL</td><td>Data de criação</td></tr>
+          <tr><td><code>atualizado_em</code></td><td>TIMESTAMP</td><td>NOT NULL</td><td>Última atualização</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Relacionamentos (DER)</h2>
+      <h3>Módulo Itens</h3>
+      <ul>
+        <li><code>tipos_itens</code> 1 → N <code>itens</code></li>
+      </ul>
+      <h3>Módulo Empréstimos</h3>
+      <ul>
+        <li><code>usuarios</code> 1 → N <code>emprestimos</code></li>
+        <li><code>equipamentos</code> 1 → N <code>emprestimos</code></li>
+      </ul>
+      <h3>Módulo Agendamentos (schema)</h3>
+      <ul>
+        <li><code>usuarios</code> 1 → N <code>agendamentos</code></li>
+        <li><code>laboratorios</code> 1 → N <code>agendamentos</code></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Notas</h2>
+      <div class="rule-box">
+        <strong>Duas tabelas de inventário:</strong> O sistema possui <code>itens</code> (com código de patrimônio, usado pelo módulo Itens) e <code>equipamentos</code> (simplificada, usada pelo módulo Empréstimos). São estruturas paralelas que podem ser unificadas em versão futura.
+      </div>
+      <div class="rule-box">
+        <strong>Migration: role → tipo (2026-05-21):</strong> A coluna <code>role</code> na tabela <code>usuarios</code> foi renomeada para <code>tipo</code> via migration <code>migrations/2024-05-21-rename_role_to_tipo.sql</code>. O código PHP correspondente foi atualizado (<code>verificarPermissao(['administrador'])</code>). Este é o formato canônico do sistema.
+      </div>
+      <div class="rule-box">
+        <strong>login_attempts:</strong> Tabela auxiliar criada automaticamente pelo rate limiter (LIM-274). Permite rastrear tentativas de login por IP com bloqueio de 5 tentativas a cada 15 minutos. Gerenciada em <code>src/config/rate_limit.php</code> e auditável via <code>src/admin/login_log.php</code>.
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Laboratório de Hardware 2025 — Instituto Federal Fluminense</p>
+    <p>Última atualização: 2026-05-22 (rev. LIM-347) — Documentador Acadêmico Free</p>
+  </footer>
+</body>
+</html>

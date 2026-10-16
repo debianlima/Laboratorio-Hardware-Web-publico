@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Original — LIM-268 — Lab Hardware 2025</title>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+</head>
+<body>
+  <header>
+    <h1>Versão Original — LIM-268</h1>
+    <p>Conteúdo do artigo antes das correções dos pareceres técnicos</p>
+  </header>
+  <nav>
+    <a href="../../index.html">Início</a>
+    <a href="../../artigo.html">Artigo</a>
+    <a href="../index.html">Auditoria</a>
+    <a href="index.html">LIM-268</a>
+  </nav>
+  <main>
+    <div class="breadcrumb">
+      <a href="../../index.html">Início</a> <span>›</span>
+      <a href="../index.html">Auditoria</a> <span>›</span>
+      <a href="index.html">LIM-268</a> <span>›</span>
+      <span>Original</span>
+    </div>
+
+    <div class="card">
+      <h2>Seções Alteradas — Antes da Correção</h2>
+      <p>O artigo <code>docs/artigo.html</code> (versão 2.1) continha as seguintes divergências identificadas nas revisões LIM-266 e LIM-249:</p>
+
+      <h3>RN-02 — Controle de acesso por papel (linha 523)</h3>
+      <pre>RN-02 | Controle de acesso por papel | Apenas usuários com papel "admin" ou "librarian" (coluna role) podem gerenciar usuários e acessar relatórios. O campo tipo (administrador/padrao) é utilizado na sessão de login. | Autenticação</pre>
+      <p><strong>Problema:</strong> Coluna <code>role</code> não existe no schema oficial (<code>docker/mysql/init.sql</code>). A coluna real é <code>tipo ENUM('administrador','padrao')</code>.</p>
+
+      <h3>Dicionário de Dados — usuarios (linha 1095)</h3>
+      <pre>&lt;tr&gt;&lt;td&gt;role&lt;/td&gt;&lt;td&gt;VARCHAR(20)&lt;/td&gt;&lt;td&gt;YES&lt;/td&gt;&lt;td&gt;NULL&lt;/td&gt;&lt;td&gt;Papel de autorização (admin/librarian) — usado em &lt;code&gt;auth.php&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;</pre>
+      <p><strong>Problema:</strong> Linha descreve coluna <code>role</code> que não existe no schema real. O código <code>auth.php</code> consulta esta coluna, mas ela nunca foi criada no banco.</p>
+
+      <h3>Seção 17 — Nota de Documento Legado (linhas 1522-1528)</h3>
+      <pre>&lt;div class="contingency-box"&gt;
+  &lt;strong&gt;⚠ Documento Legado — Cópia em src/doc/artigo.html:&lt;/strong&gt;
+  O arquivo &lt;code&gt;src/doc/artigo.html&lt;/code&gt; é uma cópia legada do artigo...
+  está congelado como &lt;strong&gt;versão 2.0&lt;/strong&gt; e não reflete o estado atual do sistema.
+&lt;/div&gt;</pre>
+      <p><strong>Problema 1:</strong> Afirma que <code>src/doc/artigo.html</code> está congelado como v2.0, mas o arquivo real exibe "VERSÃO OFICIAL" e "Versão 2.1".</p>
+      <p><strong>Problema 2:</strong> <code>src/doc/artigo1.html</code> (também presente no repositório) não é mencionado como cópia legada.</p>
+    </div>
+
+    <div class="card">
+      <h2>Links</h2>
+      <ul>
+        <li><a href="index.html">Voltar à página principal LIM-268</a></li>
+        <li><a href="corrigido.html">Versão corrigida</a></li>
+        <li><a href="revisoes.html">Revisões realizadas</a></li>
+        <li><a href="../../artigo.html">Artigo oficial (após correções)</a></li>
+        <li><a href="../../estudos/LIM-268-estudo.html">Estudo técnico LIM-268</a></li>
+      </ul>
+    </div>
+  </main>
+  <footer>
+    <p>Laboratório de Hardware 2025 — Documentador Acadêmico Free</p>
+  </footer>
+</body>
+</html>

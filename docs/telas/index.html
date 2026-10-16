@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telas do Sistema — Lab Hardware 2025</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+  <header>
+    <h1>Telas do Sistema</h1>
+    <p>Catálogo de interfaces do Laboratório de Hardware 2025</p>
+  </header>
+
+  <nav>
+    <a href="../index.html">Início</a>
+    <a href="../artigo.html">Artigo</a>
+    <a href="../auditoria/">Auditoria</a>
+    <a href="index.html" class="active">Telas</a>
+    <a href="../banco/">Banco de Dados</a>
+    <a href="../estudos/">Estudos</a>
+  </nav>
+
+  <main>
+    <div class="breadcrumb">
+      <a href="../index.html">Início</a> <span>›</span> <span>Telas</span>
+    </div>
+
+    <div class="card">
+      <h2>Painel Principal (Dashboard)</h2>
+      <table>
+        <thead><tr><th>Tela</th><th>Arquivo</th><th>Descrição</th><th>Acesso</th></tr></thead>
+        <tbody>
+          <tr><td>Painel</td><td><code>src/index.php</code></td><td>Dashboard com cards de navegação para Itens e Empréstimos, saudação ao usuário logado</td><td>Autenticado</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Módulo de Autenticação</h2>
+      <table>
+        <thead><tr><th>Tela</th><th>Arquivo</th><th>Descrição</th><th>Acesso</th></tr></thead>
+        <tbody>
+          <tr><td>Login</td><td><code>src/login.php</code></td><td>Autenticação com validação de credenciais, rate limiting (5 tentativas) e proteção CSRF</td><td>Público</td></tr>
+          <tr><td>Logout</td><td><code>src/logout.php</code></td><td>Encerramento de sessão com token CSRF</td><td>Autenticado</td></tr>
+          <tr><td>Log de Login</td><td><code>src/admin/login_log.php</code></td><td>Registro de tentativas de login (admin apenas)</td><td>Administrador</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Módulo de Itens (CRUD)</h2>
+      <table>
+        <thead><tr><th>Tela</th><th>Arquivo</th><th>Descrição</th><th>Acesso</th></tr></thead>
+        <tbody>
+          <tr><td>Listar Itens</td><td><code>src/itens/listar.php</code></td><td>Tabela com todos os itens, filtros, coluna QR Code e ações</td><td>Autenticado</td></tr>
+          <tr><td>Cadastrar Item</td><td><code>src/itens/cadastrar.php</code></td><td>Formulário com campos: código patrimônio, nome, tipo, descrição, localização; link para gerar QR Code</td><td>Administrador</td></tr>
+          <tr><td>Editar Item</td><td><code>src/itens/editar.php</code></td><td>Formulário de edição com verificação de unicidade do código de patrimônio</td><td>Administrador</td></tr>
+          <tr><td>Excluir Item</td><td><code>src/itens/excluir.php</code></td><td>Exclusão com verificação de integridade (itens com empréstimos ativos não podem ser excluídos)</td><td>Administrador</td></tr>
+          <tr><td>Detalhes do Item</td><td><code>src/itens/ver.php</code></td><td>Visualização detalhada sem necessidade de login (acessível via QR Code)</td><td>Público</td></tr>
+          <tr><td>Gerar QR Code</td><td><code>src/itens/qrcode.php</code></td><td>Geração de QR Code com pré-visualização e impressão de etiqueta</td><td>Administrador</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Módulo de Empréstimos</h2>
+      <table>
+        <thead><tr><th>Tela</th><th>Arquivo</th><th>Descrição</th><th>Acesso</th></tr></thead>
+        <tbody>
+          <tr><td>Listar Empréstimos</td><td><code>src/emprestimos/listar.php</code></td><td>Tabela com empréstimos ativos e histórico, status, observações</td><td>Autenticado</td></tr>
+          <tr><td>Cadastrar Empréstimo</td><td><code>src/emprestimos/cadastrar.php</code></td><td>Seleção de usuário e equipamento com validação de disponibilidade</td><td>Administrador</td></tr>
+          <tr><td>Editar Empréstimo</td><td><code>src/emprestimos/editar.php</code></td><td>Atualização de registro, devolução e observações</td><td>Administrador</td></tr>
+          <tr><td>Empréstimos Atrasados</td><td><code>src/emprestimos/atrasados.php</code></td><td>Filtro de empréstimos com devolução pendente além do prazo</td><td>Administrador</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Módulo de Agendamentos</h2>
+      <p>Não implementado. Schema do banco de dados pronto (<code>laboratorios</code>, <code>agendamentos</code> em <code>docker/mysql/init.sql</code>).</p>
+    </div>
+
+    <div class="card">
+      <h2>Fluxo de QR Code</h2>
+      <ol>
+        <li>Administrador cadastra item em <code>itens/cadastrar.php</code></li>
+        <li>Sistema gera QR Code via <code>itens/qrcode.php</code> apontando para <code>itens/ver.php?id=X</code></li>
+        <li>Etiqueta com QR Code é impressa e fixada no componente físico</li>
+        <li>Usuário escaneia QR Code com celular → abre <code>itens/ver.php?id=X</code> no navegador</li>
+        <li>Visualização de detalhes do item sem necessidade de login</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>Características de Interface</h2>
+      <ul>
+        <li><strong>Navegação:</strong> menu superior com links para Itens, Empréstimos, saudação ao usuário e logout</li>
+        <li><strong>Responsividade:</strong> Bootstrap 5.3 com layout adaptável para mobile</li>
+        <li><strong>Segurança:</strong> CSRF tokens em formulários, prepared statements, rate limiting no login</li>
+        <li><strong>QR Code:</strong> biblioteca qrcodejs via CDN, geração e impressão de etiquetas</li>
+        <li><strong>Acessibilidade:</strong> labels semânticos, contraste adequado, navegação por teclado</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <p>Laboratório de Hardware 2025 — Instituto Federal Fluminense</p>
+    <p>Última atualização: 2026-05-22 (rev. LIM-347) — Documentador Acadêmico Free</p>
+  </footer>
+</body>
+</html>

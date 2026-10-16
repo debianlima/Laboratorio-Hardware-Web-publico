@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIM-303 — Versão Original (src/doc/artigo.html)</title>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+</head>
+<body>
+  <header>
+    <h1>LIM-303 — Versão Original</h1>
+    <p>Conteúdo original de src/doc/artigo.html antes das correções (divergências destacadas)</p>
+  </header>
+
+  <nav>
+    <a href="../../index.html">Início</a>
+    <a href="../../artigo.html">Artigo</a>
+    <a href="../index.html">Auditoria</a>
+    <a href="index.html">LIM-303</a>
+  </nav>
+
+  <main>
+    <div class="card">
+      <h2>Divergência 1 — RN-02: Controle de acesso por papel (role)</h2>
+      <p><strong>Local:</strong> Tabela 5.1 — Regras de Negócio, linha 523 de src/doc/artigo.html</p>
+      <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:1rem;margin:1rem 0;">
+        <h3 style="color:#dc2626;">Texto Original (incorreto)</h3>
+        <pre style="background:#fff;padding:0.75rem;border-radius:4px;margin-top:0.5rem;">&lt;tr&gt;&lt;td&gt;RN-02&lt;/td&gt;&lt;td&gt;Controle de acesso por &lt;strong&gt;papel&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Apenas usuários com &lt;strong&gt;papel&lt;/strong&gt; "admin" ou "librarian" (coluna &lt;code&gt;role&lt;/code&gt;) podem gerenciar usuários e acessar relatórios. O campo &lt;code&gt;tipo&lt;/code&gt; (administrador/padrao) é utilizado na sessão de login.&lt;/td&gt;&lt;td&gt;Autenticação&lt;/td&gt;&lt;/tr&gt;</pre>
+      </div>
+      <p><strong>Problema:</strong> O banco de dados foi migrado (migration <code>2024-05-21-rename_role_to_tipo.sql</code>) e a coluna <code>role</code> não existe mais. O sistema utiliza exclusivamente <code>tipo</code> ENUM('administrador', 'padrao').</p>
+    </div>
+
+    <div class="card">
+      <h2>Divergência 2 — Dicionário de Dados: coluna "role" fantasma</h2>
+      <p><strong>Local:</strong> Seção 11.3 — Tabela usuarios, linha 1095 de src/doc/artigo.html</p>
+      <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:1rem;margin:1rem 0;">
+        <h3 style="color:#dc2626;">Texto Original (incorreto)</h3>
+        <pre style="background:#fff;padding:0.75rem;border-radius:4px;margin-top:0.5rem;">&lt;tr&gt;&lt;td&gt;role&lt;/td&gt;&lt;td&gt;VARCHAR(20)&lt;/td&gt;&lt;td&gt;YES&lt;/td&gt;&lt;td&gt;NULL&lt;/td&gt;&lt;td&gt;Papel de autorização (admin/librarian) — usado em &lt;code&gt;auth.php&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;</pre>
+      </div>
+      <p><strong>Problema:</strong> A coluna <code>role</code> não existe no schema atual do banco de dados. Foi renomeada para <code>tipo</code> na migration. O <code>auth.php</code> atual consulta a coluna <code>tipo</code>, não <code>role</code>.</p>
+    </div>
+
+    <div class="card">
+      <h2>Referência Cruzada: docs/artigo.html (versão oficial 2.5)</h2>
+      <p>A versão oficial em <code>docs/artigo.html</code> já contém as descrições corretas, servindo como referência para a correção:</p>
+      <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:1rem;margin:1rem 0;">
+        <p><strong>RN-02 corrigida (docs/artigo.html linha 524):</strong></p>
+        <pre style="background:#fff;padding:0.75rem;border-radius:4px;margin-top:0.5rem;">RN-02 | Controle de acesso por perfil | Apenas usuários com perfil "administrador" (coluna &lt;code&gt;tipo&lt;/code&gt;) podem gerenciar usuários e acessar relatórios. O campo &lt;code&gt;tipo&lt;/code&gt; é armazenado na sessão durante o login e utilizado para controle de acesso. | Autenticação | Implementado</pre>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Laboratório de Hardware 2025 — Instituto Federal Fluminense</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIM-303 — Revisões Realizadas</title>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+</head>
+<body>
+  <header>
+    <h1>LIM-303 — Revisões Realizadas</h1>
+    <p>Detalhamento das alterações aplicadas em src/doc/artigo.html</p>
+  </header>
+
+  <nav>
+    <a href="../../index.html">Início</a>
+    <a href="../../artigo.html">Artigo</a>
+    <a href="../index.html">Auditoria</a>
+    <a href="index.html">LIM-303</a>
+  </nav>
+
+  <main>
+    <div class="card">
+      <h2>Revisão 1 — RN-02: Nomenclatura de controle de acesso</h2>
+      <table>
+        <thead>
+          <tr><th>Item</th><th>Original</th><th>Corrigido</th><th>Motivo</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Título da regra</td>
+            <td>"Controle de acesso por <strong>papel</strong>"</td>
+            <td>"Controle de acesso por <strong>perfil</strong>"</td>
+            <td>O termo "papel" era tradução literal de "role" (nomenclatura anterior). O sistema atual utiliza "perfil" como conceito de negócio.</td>
+          </tr>
+          <tr>
+            <td>Valores de perfil</td>
+            <td>"admin" ou "librarian"</td>
+            <td>"administrador"</td>
+            <td>Os valores "admin" e "librarian" eram da coluna <code>role</code> antiga. O sistema atual usa ENUM('administrador', 'padrao').</td>
+          </tr>
+          <tr>
+            <td>Coluna referenciada</td>
+            <td><code>role</code></td>
+            <td><code>tipo</code></td>
+            <td>A migration <code>2024-05-21-rename_role_to_tipo.sql</code> renomeou a coluna. O schema atual não contém <code>role</code>.</td>
+          </tr>
+          <tr>
+            <td>Descrição adicional</td>
+            <td>"O campo <code>tipo</code> (administrador/padrao) é utilizado na sessão de login."</td>
+            <td>"O campo <code>tipo</code> é armazenado na sessão durante o login e utilizado para controle de acesso."</td>
+            <td>Harmonização com a redação da versão oficial (docs/artigo.html), evitando duplicidade de informação sobre valores.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>Impacto:</strong> Elimina informação desatualizada que poderia confundir leitores sobre o mecanismo real de controle de acesso.</p>
+    </div>
+
+    <div class="card">
+      <h2>Revisão 2 — Dicionário de Dados: remoção de coluna inexistente</h2>
+      <table>
+        <thead>
+          <tr><th>Item</th><th>Original</th><th>Corrigido</th><th>Motivo</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Coluna <code>role</code></td>
+            <td>Presente na tabela usuarios como VARCHAR(20), nullable, descrito como "Papel de autorização (admin/librarian)"</td>
+            <td>Removida</td>
+            <td>A coluna <code>role</code> não existe no schema atual. Foi renomeada para <code>tipo</code> na migration de 2024. Sua presença no dicionário de dados documentava um schema que não corresponde à realidade.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>Impacto:</strong> O dicionário de dados agora reflete com precisão o schema real do banco de dados, essencial para consistência documental e auditoria técnica.</p>
+    </div>
+
+    <div class="card">
+      <h2>Resumo de Impacto no Projeto</h2>
+      <p>As correções são de <strong>gravidade ALTA</strong> por afetarem a precisão técnica da documentação acadêmica, mas de <strong>baixo esforço</strong> por se limitarem a ajustes pontuais de texto. Não há alteração de código, banco de dados ou comportamento do sistema.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>Laboratório de Hardware 2025 — Instituto Federal Fluminense</p>
+  </footer>
+</body>
+</html>

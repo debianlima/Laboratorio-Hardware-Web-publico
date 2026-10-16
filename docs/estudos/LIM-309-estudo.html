@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estudo LIM-309 — Segundo Artigo</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <style>
+    .diff-add { background: #d1e7dd; padding: 0.1rem 0.3rem; border-radius: 3px; }
+    .diff-rem { background: #f8d7da; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Estudo: Segundo Artigo Acadêmico</h1>
+    <p>LIM-309 — Planejamento e escopo para atualização do artigo acadêmico</p>
+  </header>
+  <nav>
+    <a href="../index.html">Início</a>
+    <a href="../artigo.html">Artigo</a>
+    <a href="index.html">Estudos</a>
+  </nav>
+  <main>
+    <div class="breadcrumb">
+      <a href="../index.html">Início</a> <span>›</span>
+      <a href="index.html">Estudos</a> <span>›</span>
+      <span>LIM-309-estudo</span>
+    </div>
+
+    <div class="card">
+      <h2>Identificação</h2>
+      <div class="meta">
+        <span class="meta-item">Issue: <span class="badge badge-info">LIM-309</span></span>
+        <span class="meta-item">Data: 2026-05-21</span>
+        <span class="meta-item">Agente: Documentador Acadêmico Free</span>
+        <span class="meta-item">Tipo: <span class="badge badge-success">Estudo</span></span>
+        <span class="meta-item">Status: <span class="badge badge-warning">Original</span></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>1. Objetivo</h2>
+      <p>Produzir o segundo artigo acadêmico do projeto Laboratório de Hardware 2025, atualizando o documento <code>docs/artigo.html</code> para a versão 3.0 com novos conteúdos sobre implementações realizadas desde a versão 2.5.</p>
+    </div>
+
+    <div class="card">
+      <h2>2. Contexto</h2>
+      <p>O artigo atual (<code>docs/artigo.html</code> v2.5) foi escrito cobrindo o projeto até meados de maio de 2026. Desde então, diversos módulos foram implementados e o projeto evoluiu significativamente. O segundo artigo deve refletir o estado atual do sistema.</p>
+    </div>
+
+    <div class="card">
+      <h2>3. Mudanças desde a v2.5</h2>
+      <table>
+        <thead><tr><th>Área</th><th>v2.5</th><th>v3.0 (nova)</th><th>Issue</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Módulo Empréstimos</td><td>Em desenvolvimento (BL-07)</td>
+            <td><span class="diff-add">CRUD completo implementado e operacional</span></td>
+            <td>LIM-129, LIM-41/42/43</td>
+          </tr>
+          <tr>
+            <td>QR Code</td><td>Não abordado</td>
+            <td><span class="diff-add">Seção dedicada com fluxo completo (7 etapas)</span></td>
+            <td>LIM-79</td>
+          </tr>
+          <tr>
+            <td>Segurança</td><td>Seção 12.7 (XSS, bcrypt)</td>
+            <td><span class="diff-add">Rate limiting, CSP headers, log de tentativas, CSRF tokens</span></td>
+            <td>LIM-201, LIM-248, LIM-274</td>
+          </tr>
+          <tr>
+            <td>Documentação</td><td>Artigo único + revisões</td>
+            <td><span class="diff-add">Portal HTML auditável completo (docs/)</span></td>
+            <td>LIM-56, LIM-134, LIM-280, LIM-287</td>
+          </tr>
+          <tr>
+            <td>Análise Backlog</td><td>Não presente</td>
+            <td><span class="diff-add">Seção 16 (Matriz Impacto vs Esforço)</span></td>
+            <td>LIM-134</td>
+          </tr>
+          <tr>
+            <td>Role vs Tipo</td><td>Campo <code>role</code> mencionado</td>
+            <td><span class="diff-add">Corrigido para <code>tipo</code>, divergência resolvida</span></td>
+            <td>LIM-268, LIM-303</td>
+          </tr>
+          <tr>
+            <td>Rate Limiting</td><td>Não presente</td>
+            <td><span class="diff-add">5 tentativas, bloqueio 15min, log de tentativas</span></td>
+            <td>LIM-274</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>4. Estrutura Proposta para v3.0</h2>
+      <p>Manter a estrutura existente (20 seções) adicionando:</p>
+      <ul>
+        <li><strong>Seção 12.8:</strong> QR Code — geração, impressão e leitura</li>
+        <li><strong>Seção 12.9:</strong> Portal de documentação auditável</li>
+        <li><strong>Expandir 12.7:</strong> Rate limiting, CSP, CSRF, log de login</li>
+        <li><strong>Atualizar 5 (RN):</strong> Adicionar RN-13 a RN-15 (QR Code, rate limit)</li>
+        <li><strong>Atualizar 15 (Backlog):</strong> BL-07 marcado como concluído</li>
+        <li><strong>Expandir 19 (Conclusão):</strong> Resultados do módulo empréstimos e segurança</li>
+        <li><strong>Atualizar 20 (Referências):</strong> Novas referências técnicas</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>5. Novos Conteúdos Detalhados</h2>
+
+      <h3>5.1 Módulo QR Code</h3>
+      <p>Implementado via LIM-79. Fluxo: cadastro → geração → impressão → fixação → leitura → redirecionamento → visualização. Usa biblioteca qrcodejs via CDN. Página <code>ver.php</code> pública (sem autenticação).</p>
+
+      <h3>5.2 Rate Limiting</h3>
+      <p>Implementado via LIM-274. 5 tentativas de login antes de bloqueio de 15 minutos. Log armazenado em <code>src/admin/login_log.php</code>. Acesso restrito a administradores.</p>
+
+      <h3>5.3 CSP Headers</h3>
+      <p>Implementado via LIM-248 em <code>src/config/security_headers.php</code>. Restringe fontes de script, estilo e conexão.</p>
+
+      <h3>5.4 Portal de Documentação</h3>
+      <p>Estrutura completa em <code>docs/</code>: artigo, auditoria com série histórica, catálogo de telas, banco de dados, estudos, fluxo QR Code. CSS unificado em <code>docs/assets/css/main.css</code>.</p>
+    </div>
+
+    <div class="card">
+      <h2>6. Riscos</h2>
+      <ul>
+        <li><strong>Tamanho do arquivo:</strong> artigo.html pode exceder 2000 linhas — necessário manter performance de carregamento</li>
+        <li><strong>SVGs inline:</strong> Diagramas ocupam ~40% do arquivo — considerar externalização futura</li>
+        <li><strong>Consistência:</strong> Manter sincronia com banco/index.html e telas/index.html</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>7. Referências</h2>
+      <ul>
+        <li><a href="../artigo.html">Artigo atual (v2.5)</a></li>
+        <li><a href="../fluxo-qrcode.html">Fluxo QR Code</a></li>
+        <li><a href="../banco/">Banco de Dados</a></li>
+        <li><a href="../telas/">Catálogo de Telas</a></li>
+        <li><a href="LIM-268-estudo.html">Estudo LIM-268</a></li>
+      </ul>
+    </div>
+  </main>
+  <footer>
+    <p>Laboratório de Hardware 2025 — Documentador Acadêmico Free</p>
+  </footer>
+</body>
+</html>

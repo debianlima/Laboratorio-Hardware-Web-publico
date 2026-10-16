@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fluxo QR Code — Lab Hardware 2025</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+  <header>
+    <h1>Fluxo de QR Code</h1>
+    <p>Geração e leitura de QR Code para identificação de componentes</p>
+  </header>
+
+  <nav>
+    <a href="../index.html">Início</a>
+    <a href="../artigo.html">Artigo</a>
+    <a href="../auditoria/">Auditoria</a>
+    <a href="../telas/">Telas</a>
+    <a href="../banco/">Banco de Dados</a>
+    <a href="../estudos/">Estudos</a>
+  </nav>
+
+  <main>
+    <div class="breadcrumb">
+      <a href="../index.html">Início</a> <span>›</span> <span>Fluxo QR Code</span>
+    </div>
+
+    <div class="card">
+      <h2>Identificação</h2>
+      <div class="meta">
+        <span class="meta-item">Issue: <span class="badge badge-info">LIM-79</span></span>
+        <span class="meta-item">Data: 2026-05-19</span>
+        <span class="meta-item">Agente: CEO Técnico Local</span>
+        <span class="meta-item">Status: <span class="badge badge-success">Implementado</span></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Visão Geral</h2>
+      <p>O sistema de QR Code permite identificar fisicamente cada componente do laboratório através de etiquetas com código QR. Ao escanear a etiqueta com a câmera do celular, o usuário é direcionado para a página de detalhes do item.</p>
+    </div>
+
+    <div class="card">
+      <h2>Fluxo Completo</h2>
+      <table>
+        <thead><tr><th>Etapa</th><th>Ação</th><th>Arquivo</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Cadastro</td><td><code>src/itens/cadastrar.php</code></td><td>Usuário cadastra novo item no sistema</td></tr>
+          <tr><td>2</td><td>Geração QR</td><td><code>src/itens/qrcode.php</code></td><td>Sistema gera QR Code com URL <code>/itens/ver.php?id=X</code></td></tr>
+          <tr><td>3</td><td>Impressão</td><td><code>src/itens/qrcode.php</code></td><td>Etiqueta é pré-visualizada e impressa com CSS @media print</td></tr>
+          <tr><td>4</td><td>Fixação</td><td>—</td><td>Etiqueta é fixada fisicamente no componente</td></tr>
+          <tr><td>5</td><td>Leitura</td><td>Câmera do celular</td><td>Usuário escaneia QR Code com app de câmera</td></tr>
+          <tr><td>6</td><td>Redirecionamento</td><td><code>src/itens/ver.php</code></td><td>Navegador abre página de detalhes do item</td></tr>
+          <tr><td>7</td><td>Visualização</td><td><code>src/itens/ver.php</code></td><td>Usuário consulta nome, patrimônio, tipo, status e localização</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Arquivos Envolvidos</h2>
+      <table>
+        <thead><tr><th>Arquivo</th><th>Tipo</th><th>Função</th></tr></thead>
+        <tbody>
+          <tr><td><code>src/itens/ver.php</code></td><td>Novo</td><td>Página de detalhes do item (mobile-first, acessível via QR)</td></tr>
+          <tr><td><code>src/itens/qrcode.php</code></td><td>Novo</td><td>Geração de QR Code, pré-visualização e impressão de etiqueta</td></tr>
+          <tr><td><code>src/itens/listar.php</code></td><td>Modificado</td><td>Coluna QR adicionada na tabela + nome do item linkado para ver.php</td></tr>
+          <tr><td><code>src/itens/cadastrar.php</code></td><td>Modificado</td><td>Mensagem de sucesso inclui link "Gerar QR Code"</td></tr>
+          <tr><td><code>src/itens/editar.php</code></td><td>Modificado</td><td>Botão "QR Code" adicionado ao lado de Salvar</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Tecnologia</h2>
+      <ul>
+        <li><strong>Biblioteca:</strong> qrcodejs via CDN (sem dependência Composer)</li>
+        <li><strong>URL do QR:</strong> <code>http://{$_SERVER['HTTP_HOST']}/itens/ver.php?id={item_id}</code></li>
+        <li><strong>Impressão:</strong> CSS @media print otimizado para etiquetas</li>
+        <li><strong>Compatibilidade:</strong> Qualquer smartphone com câmera e navegador</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Regras de Negócio</h2>
+      <ol>
+        <li>Cada item possui um QR Code único baseado no seu ID</li>
+        <li>O QR Code aponta para URL absoluta do servidor (funciona em rede local)</li>
+        <li>A página ver.php não requer autenticação para leitura rápida</li>
+        <li>A etiqueta contém: nome do item, código de patrimônio e tipo</li>
+        <li>A impressão é otimizada para tamanho de etiqueta física</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>Revisões Realizadas</h2>
+      <table>
+        <thead><tr><th>Data</th><th>Alteração</th><th>Motivo</th><th>Impacto</th></tr></thead>
+        <tbody>
+          <tr><td>2026-05-19</td><td>Implementação inicial do módulo QR Code</td><td>Issue LIM-79</td><td>5 arquivos criados/modificados</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Links Relacionados</h2>
+      <ul>
+        <li><a href="../index.html">Documentação principal</a></li>
+        <li><a href="../artigo.html">Artigo acadêmico</a></li>
+        <li><a href="../telas/">Catálogo de telas</a></li>
+        <li><a href="../banco/">Banco de dados</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <p>Laboratório de Hardware 2025 — Instituto Federal Fluminense</p>
+  </footer>
+</body>
+</html>

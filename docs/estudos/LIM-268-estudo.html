@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estudo LIM-268 — Resolver Pareceres Técnicos — Lab Hardware 2025</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+  <header>
+    <h1>LIM-268 — Resolver Pareceres Técnicos</h1>
+    <p>Estudo preparatório para correção documental dos achados de revisão</p>
+  </header>
+  <nav>
+    <a href="../index.html">Início</a>
+    <a href="../artigo.html">Artigo</a>
+    <a href="../auditoria/">Auditoria</a>
+    <a href="index.html">Estudos</a>
+  </nav>
+  <main>
+    <div class="breadcrumb">
+      <a href="../index.html">Início</a> <span>›</span>
+      <a href="index.html">Estudos</a> <span>›</span>
+      <span>LIM-268</span>
+    </div>
+
+    <div class="card">
+      <h2>1. Identificação</h2>
+      <table>
+        <tr><td><strong>Issue</strong></td><td>LIM-268 — Resolver pareceres técnicos de docs/revisao_artigo_LIM-266.md e outros</td></tr>
+        <tr><td><strong>Data</strong></td><td>2026-05-20</td></tr>
+        <tr><td><strong>Agente</strong></td><td>Documentador Acadêmico Free (f1b0f6c7)</td></tr>
+        <tr><td><strong>Tipo</strong></td><td>Estudo técnico preparatório</td></tr>
+        <tr><td><strong>Status</strong></td><td><span class="badge badge-success">Concluído</span></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>2. Escopo</h2>
+      <p>Resolver os pareceres técnicos emitidos nas revisões de artigo:</p>
+      <ul>
+        <li><code>docs/revisao_artigo_LIM-266.md</code> — Revisão principal (2 achados)</li>
+        <li><code>docs/revisao_artigo_LIM-249.md</code> — Revisão secundária (2 achados)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>3. Achados da Revisão LIM-266</h2>
+
+      <h3 style="color:#dc2626;">Achado ALTO — Inconsistência role vs schema</h3>
+      <p><strong>Problema:</strong> O artigo e o código (<code>src/config/auth.php</code>) afirmam autorização por <code>role</code>, mas o schema oficial (<code>docker/mysql/init.sql</code>) não possui coluna <code>role</code> na tabela <code>usuarios</code>.</p>
+      <table>
+        <thead><tr><th>Arquivo</th><th>Evidência</th></tr></thead>
+        <tbody>
+          <tr><td><code>docs/artigo.html:523</code></td><td>RN-02 menciona coluna <code>role</code> (admin/librarian)</td></tr>
+          <tr><td><code>docs/artigo.html:1095</code></td><td>Dicionário lista coluna <code>role</code> inexistente no schema</td></tr>
+          <tr><td><code>src/config/auth.php:25</code></td><td>Consulta <code>SELECT role FROM usuarios</code> — coluna ausente</td></tr>
+          <tr><td><code>docker/mysql/init.sql:9-16</code></td><td>Define apenas coluna <code>tipo ENUM('administrador','padrao')</code></td></tr>
+          <tr><td><code>src/login.php:29</code></td><td>Consulta corretamente <code>tipo</code> (não <code>role</code>)</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Correção documental:</strong> Alinhar <code>docs/artigo.html</code> com o schema real — usar <code>tipo</code> em vez de <code>role</code> em RN-02 e remover linha fictícia <code>role</code> do dicionário.</p>
+      <p><strong>Nota sobre código:</strong> <code>src/config/auth.php</code> permanece com query <code>SELECT role</code> — é uma inconsistência técnica que requer correção pelo Dev executor. A documentação deve refletir a realidade do schema, não do código incorreto.</p>
+
+      <h3 style="color:#d97706;">Achado MÉDIO — Contradição "congelado v2.0"</h3>
+      <p><strong>Problema:</strong> O artigo (seção 17, linha 1522-1528) afirma que <code>src/doc/artigo.html</code> está congelado como versão 2.0, mas o arquivo real exibe "VERSÃO OFICIAL" e "Versão 2.1".</p>
+      <p><strong>Correção documental:</strong> Remover a afirmação de versão congelada. Manter apenas a nota de que <code>src/doc/artigo.html</code> e <code>src/doc/artigo1.html</code> são cópias legadas não-oficiais, sem versão declarada.</p>
+    </div>
+
+    <div class="card">
+      <h2>4. Achados da Revisão LIM-249</h2>
+
+      <h3 style="color:#d97706;">Achado MÉDIO — src/doc/artigo1.html não rastreado</h3>
+      <p><strong>Problema:</strong> A seção 17 do artigo documenta apenas <code>src/doc/artigo.html</code> como cópia legada, mas <code>src/doc/artigo1.html</code> também existe no repositório.</p>
+      <p><strong>Correção documental:</strong> Adicionar <code>src/doc/artigo1.html</code> à nota de divergência na seção 17.</p>
+
+      <h3 style="color:#6b7280;">Achado BAIXO — Terminologia híbrida (tipo e role)</h3>
+      <p><strong>Problema:</strong> Modelo de autorização híbrido (<code>tipo</code> no login, <code>role</code> em auth.php) complexifica a leitura acadêmica.</p>
+      <p><strong>Correção documental:</strong> Com a remoção da coluna <code>role</code> fictícia, a terminologia fica unificada em <code>tipo</code>. Incluir nota explicativa no artigo sobre a divergência em <code>auth.php</code>.</p>
+    </div>
+
+    <div class="card">
+      <h2>5. Plano de Correção</h2>
+      <table>
+        <thead><tr><th>#</th><th>Arquivo</th><th>Alteração</th><th>Achado</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><code>docs/artigo.html:523</code></td><td>RN-02: trocar <code>role</code> por <code>tipo</code>, remover referência a 'librarian'</td><td>LIM-266 ALTO</td></tr>
+          <tr><td>2</td><td><code>docs/artigo.html:1095</code></td><td>Remover linha da coluna <code>role</code> do dicionário de dados</td><td>LIM-266 ALTO</td></tr>
+          <tr><td>3</td><td><code>docs/artigo.html:1521-1529</code></td><td>Corrigir nota de divergência: remover "congelado v2.0", adicionar <code>src/doc/artigo1.html</code></td><td>LIM-266 MÉDIO + LIM-249 MÉDIO</td></tr>
+          <tr><td>4</td><td><code>docs/artigo.html:317</code></td><td>Atualizar versão: 2.1 → 2.2</td><td>Histórico</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>6. Riscos</h2>
+      <ul>
+        <li><strong>Código quebrado:</strong> <code>src/config/auth.php</code> consulta coluna <code>role</code> inexistente. Ambientes novos com <code>init.sql</code> puro terão falha de autorização. Este risco não é resolvido apenas com documentação.</li>
+        <li><strong>Cópia legada:</strong> <code>src/doc/artigo.html</code> ainda se autodenomina "VERSÃO OFICIAL" — pode confundir revisores. Recomendar remoção futura.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>7. Referências</h2>
+      <ul>
+        <li><a href="../revisao_artigo_LIM-266.md">Revisão Técnica LIM-266</a></li>
+        <li><a href="../revisao_artigo_LIM-249.md">Revisão Técnica LIM-249</a></li>
+        <li><a href="../artigo.html">Artigo Acadêmico Oficial</a></li>
+        <li><a href="../auditoria/LIM-268/index.html">Auditoria LIM-268</a></li>
+      </ul>
+    </div>
+  </main>
+  <footer>
+    <p>Laboratório de Hardware 2025 — Documentador Acadêmico Free</p>
+  </footer>
+</body>
+</html>

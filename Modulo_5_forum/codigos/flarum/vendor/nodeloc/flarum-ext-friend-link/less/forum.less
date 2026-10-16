@@ -1,0 +1,327 @@
+.FriendLink {
+    margin-top: 15px;
+    display: grid;
+    grid-auto-rows: 100px;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, minmax(25%, 1fr));
+    .card {
+      grid-row: span 1;
+      border-radius: 5px;
+      padding: 5px;
+      position: relative;
+      border-color: #bdbdbd;
+      border-width: thin;
+      border-style: solid;
+    }
+    .short {
+      grid-row: span 1;
+    }
+    .tall {
+      grid-row: span 2;
+    }
+    .taller {
+      grid-row: span 3;
+    }
+    .content{
+      overflow: hidden;
+      max-height: 85%;
+      // border-width: thin;
+      // border-color: #bdbdbd;
+      // border-style: dotted;
+      // border-radius: 5px;
+    }
+    .footer{
+      bottom: 0;
+      position: absolute;
+      margin: 5px;
+      width: 90%;
+    }
+    .viewer{
+      background-color: transparent;
+      padding: 0;
+      margin-right: 10px;
+    }
+    .like{
+      background-color: transparent;
+      padding: 0;
+    }
+    .bulk{
+      background-color: transparent;
+      padding: 0;
+      margin-left: 10px;
+    }
+    .avatar{
+      width: 25px;
+      height: 25px;
+      font-size: 16px;
+    }
+    .action{
+      float: right;
+    }
+    .username{
+      margin-left: 5px;
+      font-size: 13px;
+      color: var(--muted-color)
+    }
+}
+.action-buttons{
+  text-align: center;
+}
+@media @phone {
+    .FriendLink {
+        grid-auto-rows: 130px;
+        grid-template-columns: repeat(2, minmax(25%, 1fr));
+        .avatar{
+          width: 20px;
+          height: 20px;
+          font-size: 16px;
+        }
+        .tall {
+          grid-row: span 1;
+        }
+        .taller {
+          grid-row: span 2;
+        }
+        .content{
+          overflow: hidden;
+          max-height: 75%;
+        }
+        .viewer{
+          display: none;
+        }
+    }
+}
+
+.FriendLink-SiteList {
+  list-style: none;
+  margin: 0;
+  padding: 1.5em 0 0 0;
+  .Sitelogo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: content-box;
+    color: #fff;
+    vertical-align: top;
+    font-weight: normal;
+    --size: 48px;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+  }
+  .UserOnline {
+    margin-right: 5px;
+
+    .icon {
+      font-size: 12px;
+    }
+
+    .fa-circle {
+      color: @online-user-circle-color;
+    }
+  }
+}
+
+.FriendLink-SiteList-item {
+  display: inline-block;
+  vertical-align: top;
+  padding: 5px 2px;
+  width: 20%;
+
+  a {
+    color: @text-color;
+    font-weight: bold;
+  }
+
+  .badges {
+    position: absolute;
+    top: -3px;
+    left: 0;
+    right: 0;
+    text-align: right;
+    white-space: nowrap;
+    margin: 0; // Cancel rules in .DiscussionHero
+
+    .Badge {
+      margin-left: -10px;
+    }
+  }
+}
+@media @phone {
+  .FriendLink-SiteList-item {
+    width: 33.3%;
+  }
+}
+.FriendLink-SiteList-logo {
+  width: 100px;
+  margin: 0 auto;
+  position: relative;
+}
+.FriendLink-SiteList-site {
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 10px;
+  font-size: 1.1em;
+}
+
+.FriendLink-SiteList-user {
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.FriendLink-SiteList-user a{
+  font-size: 0.9em;
+  font-weight: lighter;
+}
+.FriendLink-content {
+  text-align: center;
+}
+
+.FriendLink-title {
+  font-size: 2em;
+}
+
+.FriendLink-description {
+  margin-bottom: 20px;
+}
+
+.Sitelogo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: content-box;
+  color: #fff;
+  vertical-align: top;
+  font-weight: normal;
+  --size: 100px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 100%;
+}
+
+.Sitelogo img {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  vertical-align: top
+}
+
+.AvatarEditor {
+  position: relative
+}
+
+.AvatarEditor .Dropdown-toggle {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 100%;
+  background: rgba(0,0,0,0.6);
+  text-align: center;
+  text-decoration: none;
+  border: 0
+}
+
+.AvatarEditor .AvatarEditor--noAvatar {
+  opacity: 0.7
+}
+
+.AvatarEditor:hover .Dropdown-toggle,.AvatarEditor.open .Dropdown-toggle,.AvatarEditor.loading .Dropdown-toggle,.AvatarEditor.dragover .Dropdown-toggle {
+  opacity: 1
+}
+
+.AvatarEditor .LoadingIndicator-container {
+  color: #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0
+}
+@import './libs/cropper';
+
+.FofProfileImageCropModal {
+  .cropper-view-box,
+  .cropper-face {
+    border-radius: 50%;
+  }
+
+  .Modal-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .Image-container {
+    position: relative;
+    min-height: 100px;
+
+    .LoadingIndicator-container {
+      position: absolute;
+      width: 100%;
+    }
+
+    img {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    > img:not([data-ready]) {
+      opacity: 0;
+    }
+  }
+
+  .helpText {
+    margin-bottom: 20px;
+  }
+}
+
+.FilterMenuItem-button--follow {
+  & when (@config-dark-mode = false) {
+    .Button--color(#de8e00, #fff2ae);
+  }
+  & when (@config-dark-mode = true) {
+    .Button--color(#784d00, #fbb94c);
+  }
+}
+.FilterMenuItem .Dropdown-menu {
+  min-width: 260px;
+}
+.FilterMenuItem-label {
+  padding-left: 25px;
+  display: block;
+  white-space: normal;
+
+  & strong {
+    display: block;
+  }
+}
+.FilterMenuItem-description {
+  display: block;
+  color: @muted-color;
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.friendLink-upload-botton{
+  float: right;
+}
+
+.friendLink-fresh{
+  float: right;
+  padding: 8px 12px;
+  text-align: center;
+  margin-left: 5px;
+  width: 38px
+}
+
+.friendLink-more{
+  margin-top: 15px;
+  text-align: center;
+}

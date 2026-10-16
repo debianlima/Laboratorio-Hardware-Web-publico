@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Ínicio - HardLab</title>
+    <link rel="icon" type="images/png" href="assets/icones/inicio.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/padrao.css">
+</head>
+
+<body>
+    <header>
+        <nav class="glass" style="border: none;">
+            <button>
+                <img src="assets/burger.png">
+            </button>
+            
+            <div class="logo">
+                <img src="assets/iff-lab.png">
+            </div>
+            
+            <div class="paginas"> <!-- Opcoes da navbar para desktop -->
+                <a href="index.html" class="destaque">Início</a>
+                <a href="agenda.html">Agenda</a>
+                <a href="inventario.html">Inventário</a>
+                <a href="relatorios.html">Relatórios</a>
+                <a href="suporte.html">Suporte</a>
+                <a href="conta.html">Conta</a>
+            </div>
+            
+            <figure class="conta"> 
+                <img src="assets/conta.png">
+            </figure>
+        </nav>
+        <div class="hamburguer"> <!-- Menu Hamburguer para Mobile -->
+            <a href="index.html">Início</a>
+            <a href="agenda.html">Agenda</a>
+            <a href="inventario.html">Inventário</a>
+            <a href="relatorios.html">Relatórios</a>
+            <a href="suporte.html">Suporte</a>
+            <a href="conta.html">Conta</a>
+        </div>
+    </header>
+    
+
+
+    <main>
+        <div class="fundo glass">
+            <div class="fundo__titulo">
+                Título Bom e Bonito
+            </div>
+            <div class="linha">
+                <div class="flex centro-t cinza-e">
+                    <p>
+                    Isso é uma base padronizada, crie suas próprias classes, quando precisar, 
+                    mas tente respeitar a estrutura e usar boas práticas
+                    <br><br>
+                    consulte o documento que explica para mais explicações
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="fundo glass">
+            <div class="fundo__titulo">
+                Estilos
+            </div>
+            <div class="linha">
+                <div class="flex centro-t glass">
+                    .glass
+                </div>
+                <div class="flex centro-t glass-s">
+                    .glass-s
+                </div>
+                <div class="flex centro-t verde">
+                    .verde
+                </div>
+                <div class="flex centro-t vermelho">
+                    .vermelho
+                </div>
+                <div class="flex centro-t destaque">
+                    .destaque
+                </div>
+                <div class="flex centro-t cinza-c">
+                    .cinza-c
+                </div>
+                <div class="flex centro-t cinza-e">
+                    .cinza-e
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="fundo glass">
+            <div class="fundo__titulo">
+                Classes
+            </div>
+            <div class="linha destaque">
+                <p>.linha</p>
+            </div>
+
+            <div class="linha">
+                <div class="flex destaque">
+                    .flex
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="flex destaque">
+                    .flex
+                </div>
+                <div class="flex destaque">
+                    .flex
+                </div>
+                <div class="flex destaque">
+                    .flex
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="flex centro-t destaque">
+                    .centro-t (text-align: center)
+                </div>
+            </div>
+            
+            <div class="linha centro-jc">
+                <div class="destaque">.centro-jc</div>
+                <div class="destaque">(justify-content: center)</div>
+            </div>
+
+        </div>
+        
+
+
+
+
+        <div class="fundo glass">
+            <div class="fundo__titulo">
+                Inputs
+            </div>
+
+            <div class="linha">
+                <button class="flex verde">
+                    botão
+                </button>
+                <button class="flex vermelho">
+                    botão
+                </button>
+                <button class="flex cinza-c">
+                    botão
+                </button>
+                <button class="flex cinza-e">
+                    botão
+                </button>
+            </div>
+
+            <!-- preguiça de colocar .campo e label no resto, só esses de exemplo mesmo -->
+            <div class="linha">
+                <div class="campo flex">
+                    <label for="texto">Label Text</label>
+                    <input class="glass" id="texto" type="text" placeholder="text">
+                </div>
+                <div class="campo flex">
+                    <label for="calendario">Label Date</label>
+                    <input class="glass" id="calendario" type="date" placeholder="text">
+                </div>
+            </div>
+
+            <div class="linha"> 
+                <input class="glass" type="email" placeholder="email">
+                <input class="glass" type="password" placeholder="password">
+            </div>
+
+            <div class="linha">
+                <select class="glass">
+                    <option value="1" selected>Opção 1</option>
+                    <option value="2">Opção 2</option>
+                    <option value="3">Opção 3</option>
+                </select>
+            </div>
+
+            <div class="linha">
+                <input class="glass" type="search" placeholder="search">
+            </div>
+
+            <!-- 
+            Nem tudo tá estilizado, tem coisas que pra estilizar só usando js.
+
+            <div class="linha">
+                <input class="glass" type="checkbox">
+                <input class="glass" type="range">
+                <input class="glass" type="radio">
+            </div> 
+            -->
+
+            <div class="linha">
+                <input class="glass" type="tel" placeholder="tel">
+                <input class="glass" type="number" placeholder="number">
+                <input class="glass" type="url" placeholder="url">
+            </div>
+
+            <div class="linha">
+                <input class="glass" type="text" disabled placeholder="disabled">
+            </div>
+        </div>
+
+
+
+
+        <div class="fundomaior glass">
+            <div class="fundo__titulo">
+                Exemplo de Uso
+            </div>
+
+            <div class="linha">
+                <div class="flex centro-t">
+                    vá na página "agenda" que tá explicado
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        footer (nada pra por ainda)
+    </footer>
+    
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

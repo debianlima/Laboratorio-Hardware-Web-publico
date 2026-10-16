@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIM-287 — Versão Original</title>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+</head>
+<body>
+  <header>
+    <h1>LIM-287 — Versão Original</h1>
+    <p>Estado das seções 5 e 9.1 antes das correções</p>
+  </header>
+
+  <nav>
+    <a href="../../index.html">Início</a>
+    <a href="../../artigo.html">Artigo</a>
+    <a href="../index.html">Auditoria</a>
+    <a href="index.html">LIM-287</a>
+  </nav>
+
+  <main>
+    <div class="breadcrumb">
+      <a href="../../index.html">Início</a> <span>›</span>
+      <a href="../index.html">Auditoria</a> <span>›</span>
+      <a href="index.html">LIM-287</a> <span>›</span>
+      <span>Original</span>
+    </div>
+
+    <div class="card">
+      <h2>Achado 1 — Seção 5 (Regras de Negócio) antes da correção</h2>
+      <p>A tabela de regras de negócio não possuía coluna de status de implementação. A RN-10 (Log de auditoria) era listada como regra vigente, sem indicar que sua implementação está pendente (vinculada a BL-11 no backlog).</p>
+      <pre style="background:#f8f9fa;padding:1rem;border-radius:0.5rem;overflow-x:auto;font-size:0.85rem;line-height:1.5;">Tabela 5.1 — REGRAS DE NEGÓCIO (ORIGINAL)
+┌───────┬──────────────────────────┬──────────────────────────────────────────────┬────────────────┐
+│ ID    │ Regra                    │ Descrição                                    │ Módulo         │
+├───────┼──────────────────────────┼──────────────────────────────────────────────┼────────────────┤
+│ RN-01 │ Autenticação obrigatória │ Todas as páginas, exceto login...             │ Autenticação   │
+│ RN-02 │ Controle de acesso...    │ Apenas usuários com perfil "administrador"... │ Autenticação   │
+│ ...   │ ...                      │ ...                                          │ ...            │
+│ RN-10 │ Log de auditoria         │ Toda operação de criação, edição...           │ Auditoria      │
+│ ...   │ ...                      │ ...                                          │ ...            │
+└───────┴──────────────────────────┴──────────────────────────────────────────────┴────────────────┘
+→ Sem coluna de status. RN-10 não indica que implementação é pendente.</pre>
+    </div>
+
+    <div class="card">
+      <h2>Achado 2 — Seção 9.1 (Mapa de Navegação) antes da correção</h2>
+      <p>A tabela de telas não possuía coluna "Tipo" para diferenciar arquivos de produção de protótipos. Telas como T-06, T-07, T-08, T-09 e T-10 (em <code>fontes_recebidas/prototipos/</code>) eram listadas ao lado de telas de produção (<code>src/*</code>) sem distinção de ambiente.</p>
+      <pre style="background:#f8f9fa;padding:1rem;border-radius:0.5rem;overflow-x:auto;font-size:0.85rem;line-height:1.5;">Tabela 9.1 — MAPA DE NAVEGAÇÃO (ORIGINAL)
+┌──────┬──────────────────┬──────────────────────────────────────────────┬────────────┬──────────┐
+│ #    │ Tela             │ Arquivo                                      │ Acesso     │ Destinos │
+├──────┼──────────────────┼──────────────────────────────────────────────┼────────────┼──────────┤
+│ T-01 │ Login            │ login/index.html                              │ Público    │ → T-02   │
+│ T-02 │ Painel Principal │ src/index.php                                 │ Autenticado│ →...     │
+│ T-03 │ Listar Itens     │ src/itens/listar.php                          │ Autenticado│ →...     │
+│ T-04 │ Cadastrar Item   │ src/itens/cadastrar.php                       │ Admin      │ → T-03   │
+│ T-05 │ Editar Item      │ src/itens/editar.php                          │ Admin      │ → T-03   │
+│ T-06 │ Listar Usuários  │ fontes_recebidas/prototipos/users_list.php    │ Admin      │ →...     │
+│ T-07 │ Cadastrar Usuário│ fontes_recebidas/prototipos/users_create.php  │ Admin      │ → T-06   │
+│ T-08 │ Editar Usuário   │ fontes_recebidas/prototipos/users_edit.php    │ Admin      │ → T-06   │
+│ T-09 │ Relatórios       │ fontes_recebidas/prototipos/relatorios_list.php│ Admin     │ → T-10   │
+│ T-10 │ Dashboard        │ fontes_recebidas/prototipos/dashboard.php     │ Autenticado│ → T-02   │
+└──────┴──────────────────┴──────────────────────────────────────────────┴────────────┴──────────┘
+→ Sem coluna "Tipo". Telas de Produção e Protótipo misturadas.</pre>
+    </div>
+  </main>
+
+  <footer>
+    <p>Laboratório de Hardware 2025 — Instituto Federal Fluminense</p>
+  </footer>
+</body>
+</html>

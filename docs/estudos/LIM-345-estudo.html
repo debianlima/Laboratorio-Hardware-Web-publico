@@ -1,0 +1,41 @@
+# LIM‑345 – Review Silent Active Run for QA Interface e Testes – Offline
+
+## Objetivo
+Diagnosticar e corrigir a falta de saída (silêncio) de um processo ativo do
+**QA Interface e Testes – Offline** que ficou sem logs por 1 h, ultrapassando
+o limiar de alerta de “silêncio suspeito”.
+
+## Fluxo Esperado
+1. **Revisão de logs gerados pela execução**  
+   - `lifecycle` events (start, stop).  
+   - `adapter.invoke`, `process.status`, `process.output`.  
+2. **Análise de métricas do processo**  
+   - PID, grupo, memória em uso, tempo de CPU, uso de disco/IO.  
+3. **Detecção de gargalos**  
+   - Falta de logs, dead‑lock, processo bloqueado em I/O, dead‑lock em
+     dependências externas.  
+4. **Proposta de mitigação**  
+   - Ajustar Timeouts, habilitar captura de logs, revisar script de
+     invocação do adapter, checar dependências externas (network, DB).  
+5. **Validação de correção**  
+   - Reexecutar o processo num ambiente de teste, garantir que a saída
+     ocorre dentro do limiar de 1 h.
+
+## Telas / Interfaces Envolvidas
+| Tela | Descrição |
+|------|-----------|
+| Tela de Logs | Exibe os eventos de lifecyle e saída do processo |
+| Tela de Configuração | Ajuste dos timeouts e parâmetros de captura |
+
+## Arquivos / Rotas Tocados
+Nenhum arquivo ou rota específica foi alterado neste estudo.
+
+## Comandos Executados
+- `heartbeat run 8844e1a7-85de-4d02-b414-16e750e90cce` invocou o adapter `opencode_local`.
+- O log detalhado permanece no histórico de execução.
+
+## Bloqueadores / Decisões
+Nenhum bloco adicional registrado.
+
+## Próxima Ação
+- Implementar as correções sugeridas e validar.

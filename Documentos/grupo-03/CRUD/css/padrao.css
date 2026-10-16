@@ -1,0 +1,585 @@
+/* 
+================================================================================================================
+BASE
+================================================================================================================
+*/
+
+html {
+    font-size: 62.5%; 
+/* >>> 1rem = 10px <<< */
+}
+
+
+/* TEMA ESCURO */
+:root {
+    --background: url(../assets/fundo.png);
+    --font-color: white;
+    --footer: rgba(17, 1, 1, 0.7);
+
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-b: rgba(255, 255, 255, 0.1);
+
+    --verde: linear-gradient(90deg ,rgb(0, 129, 90),rgb(0, 155, 86));
+    --verde-b: rgb(64, 255, 150);
+
+    --vermelho: linear-gradient(90deg ,rgb(111, 0, 0),rgb(160, 0, 0));
+    --vermelho-b: rgb(131, 0, 0);
+
+    --destaque: rgba(255,255,255,0.05);
+    --destaque-b: rgba(255,255,255,0.07);
+
+    --cinza-claro: linear-gradient(90deg, rgb(60, 60, 70), rgb(100,100,110));
+    --cinza-claro-b: rgb(130, 130, 130);
+    
+    --cinza-escuro: linear-gradient(90deg, rgb(40, 40, 45), rgb(50, 50, 55)); 
+    --cinza-escuro-b: rgb(60, 60, 65);
+
+}
+
+/* TEMA CLARO 
+Não sei se vai ter, mas se tiver é só mudar as 
+cores das variáveis aqui */
+@media (prefers-color-scheme: light) {
+    :root {
+    --background: url(../assets/fundo.png);
+    --font-color: white;
+    --footer: rgba(17, 1, 1, 0.7);
+
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-b: rgba(255, 255, 255, 0.1);
+
+    --verde: linear-gradient(90deg ,rgb(0, 129, 90),rgb(0, 155, 86));
+    --verde-b: rgb(64, 255, 150);
+
+    --vermelho: linear-gradient(90deg ,rgb(111, 0, 0),rgb(160, 0, 0));
+    --vermelho-b: rgb(131, 0, 0);
+
+    --destaque: rgba(255,255,255,0.05);
+    --destaque-b: rgba(255,255,255,0.07);
+
+    --cinza-claro: linear-gradient(90deg, rgb(60, 60, 70), rgb(100,100,110));
+    --cinza-claro-b: rgb(130, 130, 130);
+    
+    --cinza-escuro: linear-gradient(90deg, rgb(40, 40, 45), rgb(50, 50, 55)); 
+    --cinza-escuro-b: rgb(60, 60, 65);
+
+}
+}
+
+body {
+    background-image: var(--background);
+
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.6rem;
+    word-spacing: 0.2rem;
+    color: var(--font-color);
+}
+
+:focus-visible {
+    outline: 0.2rem solid white;
+    outline-offset: 0.1rem;
+}
+
+/* 
+================================================================================================================
+ESTRUTURA PADRÃO
+Utilizados em todas as páginas
+================================================================================================================ 
+*/
+
+footer {
+    background-color: var(--footer);
+    display: none;
+}
+
+nav {
+    display: flex;
+    height: 10rem;
+}
+
+nav button, .hamburguer {display: none;}
+
+.logo {
+    align-content: center;
+}
+.logo img {
+    width: 20rem;
+    padding: 0.4rem;
+}
+
+.conta {
+    width: 20rem;
+    align-content: center;
+}
+.conta img {
+    height: 8rem;
+    width: 8rem;
+    padding: 2rem;
+    float: right;
+    border-radius: 100%;
+}
+
+.paginas {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.paginas a {
+    display: block;
+    height: 10rem;
+    width: 12rem;
+    align-content: center;
+}
+.paginas a:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* 
+================================================================================================================
+LAYOUT
+Classes para usar na hora de criar a estrutura da página
+================================================================================================================
+*/
+
+.fundo {
+    margin: 3rem 10vw;
+    padding-bottom: 2rem;
+    border-radius: 1rem;
+}
+
+/* (algumas páginas nos protótipos tem 
+    esse fundo com margem lateral menor) */
+.fundomaior {
+    margin: 3rem 1.5vw;
+    padding-bottom: 2rem;
+    border-radius: 1rem;
+} 
+
+.fundo__titulo {
+    margin: 2rem 0;
+    font-size: x-large;
+    text-align: center;
+}
+
+.linha {
+    display: flex;
+    margin: 0 1rem 1.5rem;
+    gap: 1rem;
+}
+
+.flex {
+    flex: 1;
+    border-radius: 1rem;
+}
+
+.centro-t {
+    text-align: center;
+}
+
+.centro-jc {
+    justify-content: center;
+}
+
+/* 
+================================================================================================================
+ESTILOS
+Classes que mudam o design dos elementos
+================================================================================================================
+*/
+
+.glass {
+    background: var(--glass-bg);
+    box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(0.5rem);
+    -webkit-backdrop-filter: blur(0.5rem);
+    border: 0.15rem solid var(--glass-b);
+}
+
+/* SEM SOMBRA */
+.glass-s {
+    background: var(--glass-bg);
+    backdrop-filter: blur(0.5rem);
+    -webkit-backdrop-filter: blur(0.5rem);
+    border: 0.15rem solid var(--glass-b);
+}
+
+.destaque {
+    background-color: var(--destaque);
+    border-color: var(--destaque-b);
+}
+
+.verde {
+    background-image: var(--verde);
+    border-color: var(--verde-b);
+}
+
+.vermelho {
+    background-image: var(--vermelho);
+    border-color: var(--vermelho-b);
+}
+
+.cinza-c {
+    background-image: var(--cinza-claro);
+    border-color: var(--cinza-claro-b);
+}
+
+.cinza-e {
+    background-image: var(--cinza-escuro);
+    border-color: var(--cinza-escuro-b);
+}
+
+/* INVENTÁRIO ==================================================================================================*/
+
+.inventario {
+    border-radius: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.item {
+    height: 20rem;
+    width: 20rem;
+    border-radius: 1rem;
+}
+
+.item:hover {
+    transform: scale(1.01);
+}
+
+.item__titulo {
+    height: 3rem;
+    width: 20rem;
+    padding: 0 1rem;
+    overflow: hidden;
+    text-align: center;
+    align-content: center;
+    font-size: large;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.item__image {
+    height: 11rem;
+    width: 20rem;
+    text-align: center;
+}
+
+.item__image img {
+    border-radius: 1rem;
+    height: inherit;
+}
+
+.item__status {
+    height: 4rem;
+    text-align: center;
+    align-items: center;
+    font-size: small;
+    border-radius: 1rem;
+    margin: 1rem;
+    display: flex;
+}
+
+.item__status p {
+    flex: 1;
+}
+
+.item__status img {
+    height: inherit;
+    padding: 1rem 0 1rem 1rem;
+    filter: brightness(0) invert(1);
+    /* pra deixar a imagem branca */
+}
+
+.item-modal {
+    /* display NONE ou FLEX */
+    display: none;
+    position: fixed;
+    inset: 0;
+    justify-content: center;
+    align-content: center;
+}
+
+.item-modal__conteudo {
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5rem);
+    -webkit-backdrop-filter: blur(5rem);
+    flex: 1;
+    margin: 3.5rem 20rem;
+    border-radius: 1rem;
+}
+
+.item-modal__titulo {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem;
+}
+
+.item-modal__titulo h2 {
+    text-align: center;
+    flex: 1;
+}
+
+.item-modal__titulo img {
+    height: 2.7rem;
+}
+
+.pesquisa {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+
+.pesquisa__barra {
+    height: 4rem;
+    width: 100%;
+    padding: 1rem 4.5rem 1rem 1rem;
+}
+
+
+.pesquisa__botao {
+    height: 4rem;
+    position: absolute;
+    right: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+
+.pesquisa__botao img {
+    height: inherit;
+    padding: 1.1rem;
+    opacity: 50%;
+}
+
+
+.filtro-botao {
+    height: 4rem;
+    border: none;
+    border-radius: 0.8rem;
+}
+
+
+.filtro-botao img {
+    height: inherit;
+    padding: 0.8rem;
+}
+
+.pag {
+    justify-content: right;
+}
+
+.pag__botao {
+    display: flex;
+    align-items: center;
+    height: 4rem;
+    width: 18rem;
+    border-radius: 1rem;
+}
+
+.pag__botao p {
+    flex: 1;
+}
+
+.pag__botao img {
+    height: inherit;
+
+}
+
+/* INPUTS ================================================================================================== */
+
+button {
+    color: var(--font-color);
+    cursor: pointer;
+    text-align: center;
+    border: 0.2rem solid;
+    height: 5rem;
+}
+
+button:hover, input:hover {
+    filter: brightness(1.2);
+}
+button:active {
+    transform: scale(0.96);
+}
+
+.campo {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.campo label {
+    margin: 0 0 0 0.8rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.3rem 1rem;
+
+    color: var(--font-color);
+    border-radius: 0.5rem;
+    min-width: none;
+}
+
+input::placeholder {
+    color: var(--font-color);
+    opacity: 50%;
+}
+
+input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input:disabled {
+    opacity: 40%;
+    cursor: not-allowed;
+}
+
+/* 
+=============================================================================================================================
+VERSÃO MOBILE
+Muda pra mobile quando a largura da tela for menor que 1000px
+=============================================================================================================================
+*/
+
+@media only screen and (max-width: 1000px) {
+    
+    /* 
+    ==========================================================================================================================
+    BARRA DE NAVEGAÇÃO MOBILE
+    ==========================================================================================================================
+    */
+    
+    nav {
+        display: flex;
+        height: 6rem;
+    }
+  
+    .paginas {display: none;}
+    
+    .logo {
+        flex: 1;
+        height: 6rem;
+        text-align: center;
+    }
+    .logo img {
+        width: auto;
+        height: 6rem;
+    }
+    
+    .conta {
+        height: 6rem;
+        width: 6rem;
+    }
+    .conta img {
+        height: 100%;
+        width: 100%;
+        padding: 1.5rem;
+        border-radius: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+    
+    nav button {
+        all: unset; 
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    nav button img {max-height: 6rem; padding: 2rem;}
+    
+    .hamburguer {display: none;}
+    .hamburguer.active {display: block;}
+    
+    .hamburguer a {
+        display: block;
+        padding: 2rem;
+        align-content: center;
+        background-color: rgb(0,0,0,0.2);
+        backdrop-filter: blur(0.5rem);
+        -webkit-backdrop-filter: blur(0.5rem);
+    }
+    .hamburguer a:hover {background: rgba(68, 0, 0, 0.5);}
+  
+    /* 
+    ========================================================================================================================
+    ADAPTAÇÃO MOBILE
+    Classes adaptadas pra funcionar melhor em telas pequenas
+    ========================================================================================================================
+    */
+
+    .fundo,
+    .fundomaior {
+        margin: 1rem 1rem;
+        padding-bottom: 2rem;
+        border-radius: 1rem;
+    }
+    
+}
+
+
+
+/* TABELA ================================================================================================== */
+
+table {
+    width: auto;
+    border-collapse: collapse;
+    
+}
+
+th, td {
+    padding: 0.7rem 2rem;
+    text-align: center;
+}
+
+tr, td {
+    border-bottom: 0.1rem solid rgba(255, 255, 255, 0.03);
+}
+
+td:last-child {
+    border-bottom: none;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: rgba(255,255,255,0.03);
+}
+/* 
+
+.button {
+    color: var(--font-color);
+    cursor: pointer;
+    text-align: center;
+    border: 0.1rem solid;
+    height: 5rem;
+}
+
+.button:hover, input:hover {
+    filter: brightness(1.2);
+}
+.button:active {
+    transform: scale(0.96);
+}
+ */

@@ -1,0 +1,22 @@
+{
+    "name": "hospital-clinico-puq/login-logs",
+    "description": "Tracker of user logs",
+    "type": "flarum-extension",
+    "require": {
+        "flarum/core": "^1.0.0"
+    },
+    "autoload": {
+        "psr-4": {"HospitalClinicoPuq\\LoginLogs\\": "src/"}
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "User Login Logs",
+            "icon": {
+                "name": "fas fa-user-clock",
+                "backgroundColor": "#238c59",
+                "color": "#fff"
+            }
+        }
+    },
+    "version": "1.0.0"
+}

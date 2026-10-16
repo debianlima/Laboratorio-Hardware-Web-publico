@@ -1,0 +1,9 @@
+{
+  "framework": "nextjs",
+  "env": {
+    "DB_SCHEMA": "lab_hardware",
+    "LAB_API_URL": "https://ykfmtwgothboynddthsd.supabase.co/functions/v1/lab-hardware-api",
+    "LAB_API_KEY": "lab-hardware-test-2026",
+    "AUTH_SECRET": "lab-hardware-auth-test-2026"
+  }
+}

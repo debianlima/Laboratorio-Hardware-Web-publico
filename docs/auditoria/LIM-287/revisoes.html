@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIM-287 — Revisões Realizadas</title>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+</head>
+<body>
+  <header>
+    <h1>LIM-287 — Revisões Realizadas</h1>
+    <p>Lista detalhada de alterações no artigo.html</p>
+  </header>
+
+  <nav>
+    <a href="../../index.html">Início</a>
+    <a href="../../artigo.html">Artigo</a>
+    <a href="../index.html">Auditoria</a>
+    <a href="index.html">LIM-287</a>
+  </nav>
+
+  <main>
+    <div class="breadcrumb">
+      <a href="../../index.html">Início</a> <span>›</span>
+      <a href="../index.html">Auditoria</a> <span>›</span>
+      <a href="index.html">LIM-287</a> <span>›</span>
+      <span>Revisões</span>
+    </div>
+
+    <div class="card">
+      <h2>Alterações Realizadas</h2>
+      <table>
+        <thead>
+          <tr><th>#</th><th>O que foi alterado</th><th>Por que foi alterado</th><th>Impacto</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><strong>Seção 5 (Regras de Negócio)</strong> — Adicionada coluna "Status" na tabela RN-01 a RN-12. RN-10 marcada como <span class="badge badge-yellow">Prevista / Pendente</span>; RN-06 e RN-07 como <span class="badge badge-gray">Prevista</span>; demais como <span class="badge badge-green">Implementado</span>.</td>
+            <td>Revisão LIM-285 apontou que RN-10 (Log de auditoria) estava descrita como regra vigente sem explicitar que sua implementação depende de BL-11 (Módulo de auditoria e logs), que está pendente no backlog (seção 15).</td>
+            <td><span class="badge badge-green">Alto</span> — Elimina ambiguidade documental; auditor pode identificar claramente quais regras estão implementadas e quais são previstas.</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><strong>Seção 9.1 (Mapa de Navegação)</strong> — Adicionada coluna "Tipo" na tabela T-01 a T-10, classificando cada tela como <span class="badge badge-green">Produção</span> ou <span class="badge badge-yellow">Protótipo</span>.</td>
+            <td>Revisão LIM-285 apontou que telas em <code>fontes_recebidas/prototipos/*</code> (referência) estavam listadas ao lado de telas em <code>src/*</code> (runtime) sem distinção de ambiente, podendo causar interpretação incorreta em revisão externa.</td>
+            <td><span class="badge badge-blue">Médio</span> — Risco baixo de impacto funcional, mas melhora a clareza da documentação para revisores externos.</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Versão do artigo atualizada de 2.4 para 2.5</td>
+            <td>Incremento de versão para refletir a revisão</td>
+            <td><span class="badge badge-blue">Médio</span> — Rastreabilidade de versões</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Nota explicativa adicionada abaixo da tabela de regras de negócio</td>
+            <td>Esclarecer que regras marcadas como "Prevista" ou "Prevista / Pendente" ainda não foram implementadas</td>
+            <td><span class="badge badge-green">Alto</span> — Elimina ambiguidade identificada na revisão</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Nota explicativa adicionada abaixo da tabela de navegação</td>
+            <td>Esclarecer que telas marcadas como "Protótipo" são arquivos de referência e não fazem parte do runtime web atual</td>
+            <td><span class="badge badge-blue">Médio</span> — Clareza documental para revisores externos</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer>
+    <p>Laboratório de Hardware 2025 — Instituto Federal Fluminense</p>
+  </footer>
+</body>
+</html>

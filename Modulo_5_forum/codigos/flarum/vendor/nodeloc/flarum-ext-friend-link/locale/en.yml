@@ -1,0 +1,39 @@
+nodeloc-friend-link:
+  # For more details on the format
+  # Checkout https://docs.flarum.org/extend/i18n/#appendix-a-standard-key-format
+  admin:
+    my_cool_key: My Cool Key
+
+  forum:
+    title:
+      page_title: Friend Link
+      share_my_site: Share my site
+    filter:
+      all_label: All
+      score_label: Top
+      recent_label: Recent
+      view_label: Viewer
+    alerts:
+      less_select: Sorry, maximum 2 images
+    notification:
+      like: "{username} Like your site"
+    button:
+      share_my_site: Share My Site
+      loading: Loading
+      upload: Upload
+    tips:
+      upload_tips: Your site won't be see before approve, Please add our link first.
+    modal:
+      error:
+        failed_to_load_cropper: Failed to load the image cropper.
+        generic_resize: Something went wrong while cropping & resizing the image.
+        get_image_data: Failed to crop. Make sure your browser's fingerprinting protection is disabled.
+
+      help_text: >
+        The image upload may fail if your browser's privacy settings are very strict.
+        If you're having trouble, try disabling fingerprinting protection.
+        Otherwise, you can either <disableResize>disable compressing the cropped image</disableResize> or <disableCrop>disable cropping altogether</disableCrop>.
+
+      submit_button: Upload
+      submit_crop_button: Crop & Upload
+

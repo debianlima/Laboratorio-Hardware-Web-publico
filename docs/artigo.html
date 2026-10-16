@@ -1,0 +1,1969 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artigo Acadêmico — Lab Hardware 2025</title>
+<style>
+  :root {
+    --primary: #0d6efd;
+    --primary-dark: #0b5ed7;
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --text: #212529;
+    --muted: #6c757d;
+    --border: #dee2e6;
+    --accent: #198754;
+    --danger: #dc3545;
+    --warning: #ffc107;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+  .paper {
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  header.paper-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    padding: 3rem 2rem;
+    border-radius: 1rem 1rem 0 0;
+    text-align: center;
+  }
+  header.paper-header h1 { font-size: 1.8rem; margin-bottom: 0.5rem; font-weight: 700; }
+  header.paper-header .subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 1rem; }
+  header.paper-header .meta { font-size: 0.85rem; opacity: 0.8; }
+  header.paper-header .authors { font-size: 0.9rem; margin-top: 1rem; line-height: 1.6; }
+  header.paper-header .authors .author-name { font-weight: 600; }
+  header.paper-header .authors .author-affiliation { font-size: 0.8rem; opacity: 0.85; }
+  .abstract-box {
+    background: #f8f9fa;
+    border-left: 4px solid var(--primary);
+    padding: 1.5rem 2rem;
+    margin: 1.5rem 0 2rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+  .abstract-box h3 {
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+    margin-bottom: 0.75rem;
+    border: none;
+    padding: 0;
+  }
+  .abstract-box p { text-align: justify; margin-bottom: 0.75rem; font-size: 0.95rem; }
+  .abstract-box .keywords { font-size: 0.9rem; }
+  .abstract-box .keywords strong { font-weight: 700; }
+  .conclusion-box {
+    background: #d1e7dd;
+    border-left: 4px solid var(--accent);
+    padding: 1.5rem 2rem;
+    margin: 1.5rem 0;
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+  .content {
+    background: var(--card);
+    padding: 2.5rem 2rem;
+    border-radius: 0 0 1rem 1rem;
+    box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.08);
+    margin-bottom: 2rem;
+  }
+  .content h2 {
+    font-size: 1.4rem;
+    color: var(--primary-dark);
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 0.4rem;
+    margin: 2.5rem 0 1rem;
+    page-break-before: auto;
+  }
+  .content h2:first-child { margin-top: 0; }
+  .content h3 { font-size: 1.15rem; color: #495057; margin: 1.5rem 0 0.75rem; }
+  .content h4 { font-size: 1rem; color: #6c757d; margin: 1rem 0 0.5rem; }
+  .content p { margin-bottom: 1rem; text-align: justify; }
+  .content ul, .content ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .content li { margin-bottom: 0.4rem; }
+  .content code {
+    background: #e9ecef;
+    padding: 0.15rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    font-family: 'Consolas', 'Courier New', monospace;
+  }
+  .content pre {
+    background: #f1f3f5;
+    border-left: 4px solid var(--primary);
+    padding: 1rem;
+    overflow-x: auto;
+    border-radius: 0.5rem;
+    margin: 0.75rem 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .toc { background: #f1f3f5; padding: 1.5rem 2rem; border-radius: 0.5rem; margin-bottom: 2rem; }
+  .toc h3 { margin-top: 0; color: var(--primary); }
+  .toc ol { margin: 0.5rem 0 0 1.5rem; }
+  .toc a { color: var(--primary); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.85rem;
+  }
+  table th, table td {
+    border: 1px solid var(--border);
+    padding: 0.5rem 0.6rem;
+    text-align: left;
+  }
+  table th { background: #e9ecef; font-weight: 600; }
+  .badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .badge-green { background: #d1e7dd; color: #0f5132; }
+  .badge-blue { background: #cfe2ff; color: #084298; }
+  .badge-yellow { background: #fff3cd; color: #664d03; }
+  .badge-red { background: #f8d7da; color: #842029; }
+  .badge-gray { background: #e9ecef; color: #495057; }
+  .figure-box {
+    background: #f1f3f5;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-align: center;
+    margin: 1rem 0;
+    border: 1px dashed var(--border);
+  }
+  .figure-box img { max-width: 100%; height: auto; border-radius: 0.25rem; }
+  .figure-box .caption { font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem; font-style: italic; }
+  .figure-box svg { max-width: 100%; height: auto; }
+  .diagram-container {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+  .diagram-container svg { display: block; margin: 0 auto; }
+  .proto-mockup {
+    background: #fff;
+    border: 2px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0;
+    margin: 1rem 0;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.8rem;
+  }
+  .proto-mockup .proto-nav {
+    background: var(--primary);
+    color: #fff;
+    padding: 0.6rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .proto-mockup .proto-nav a { color: #fff; text-decoration: none; margin-left: 0.8rem; font-size: 0.75rem; }
+  .proto-mockup .proto-body { padding: 1rem; }
+  .proto-mockup .proto-card {
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 0.5rem 0;
+  }
+  .proto-mockup .proto-btn {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    padding: 0.4rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    text-decoration: none;
+  }
+  .proto-mockup .proto-input {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+    margin: 0.3rem 0;
+    font-size: 0.75rem;
+    background: #f8f9fa;
+  }
+  .proto-mockup .proto-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.7rem;
+  }
+  .proto-mockup .proto-table th {
+    background: #e9ecef;
+    padding: 0.4rem;
+    border: 1px solid var(--border);
+    text-align: left;
+  }
+  .proto-mockup .proto-table td {
+    padding: 0.4rem;
+    border: 1px solid var(--border);
+  }
+  .gantt-chart {
+    display: grid;
+    grid-template-columns: 200px repeat(12, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin: 1rem 0;
+    font-size: 0.75rem;
+  }
+  .gantt-chart .g-header {
+    background: #e9ecef;
+    padding: 0.5rem;
+    text-align: center;
+    font-weight: 600;
+  }
+  .gantt-chart .g-label {
+    background: #fff;
+    padding: 0.5rem;
+    font-weight: 500;
+  }
+  .gantt-chart .g-cell {
+    background: #fff;
+    padding: 0;
+  }
+  .gantt-chart .g-bar {
+    height: 100%;
+    min-height: 1.5rem;
+    border-radius: 0.25rem;
+    margin: 0.2rem 0.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 600;
+  }
+  .g-blue { background: var(--primary); }
+  .g-green { background: var(--accent); }
+  .g-yellow { background: var(--warning); color: #333; }
+  .g-red { background: var(--danger); }
+  .g-gray { background: var(--muted); }
+  .burndown-chart {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  .burndown-chart svg { display: block; margin: 0 auto; }
+  .ref-abnt {
+    padding-left: 2rem;
+    text-indent: -2rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .rule-box {
+    background: #fff3cd;
+    border-left: 4px solid var(--warning);
+    padding: 0.75rem 1rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    margin: 0.75rem 0;
+    font-size: 0.9rem;
+  }
+  .contingency-box {
+    background: #f8d7da;
+    border-left: 4px solid var(--danger);
+    padding: 0.75rem 1rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    margin: 0.75rem 0;
+    font-size: 0.9rem;
+  }
+  footer.paper-footer {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--muted);
+    padding: 1rem;
+  }
+  @media (max-width: 600px) {
+    header.paper-header { padding: 2rem 1rem; }
+    header.paper-header h1 { font-size: 1.3rem; }
+    .content { padding: 1.5rem 1rem; }
+    .gantt-chart { font-size: 0.6rem; }
+    .gantt-chart .g-header, .gantt-chart .g-label { padding: 0.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="paper">
+
+<header class="paper-header">
+  <div style="margin-bottom:1rem;">
+    <span style="display:inline-block;background:#198754;color:#fff;padding:0.25rem 1rem;border-radius:999px;font-size:0.8rem;font-weight:600;letter-spacing:0.05em;">VERSÃO OFICIAL</span>
+    <span style="display:inline-block;background:#6c757d;color:#fff;padding:0.25rem 1rem;border-radius:999px;font-size:0.8rem;font-weight:600;letter-spacing:0.05em;margin-left:0.5rem;">docs/artigo.html</span>
+    <span style="display:inline-block;background:#dc3545;color:#fff;padding:0.25rem 1rem;border-radius:999px;font-size:0.8rem;font-weight:600;letter-spacing:0.05em;margin-left:0.5rem;">SEGUNDO ARTIGO</span>
+    <span style="display:inline-block;background:#0d6efd;color:#fff;padding:0.25rem 1rem;border-radius:999px;font-size:0.8rem;font-weight:600;letter-spacing:0.05em;margin-left:0.5rem;">LIM-313</span>
+    <span style="display:inline-block;background:#6f42c1;color:#fff;padding:0.25rem 1rem;border-radius:999px;font-size:0.8rem;font-weight:600;letter-spacing:0.05em;margin-left:0.5rem;">LIM-344</span>
+    <span style="display:inline-block;background:#198754;color:#fff;padding:0.25rem 1rem;border-radius:999px;font-size:0.8rem;font-weight:600;letter-spacing:0.05em;margin-left:0.5rem;">LIM-347</span>
+  </div>
+  <h1>Sistema de Gestão do Laboratório de Hardware</h1>
+  <div class="subtitle">Artigo Acadêmico — Projeto Integrador 2º TI / IFF Bom Jesus do Itabapoana <span class="badge badge-info" style="vertical-align:top;">LIM-344</span></div>
+  <div class="meta">Laboratório de Hardware 2025 &mdash; Versão 3.0 (Segundo Artigo) &mdash; Maio de 2026</div>
+  <div class="authors">
+    <div><span class="author-name">Alunos do 2º TI</span> — <span class="author-affiliation">Instituto Federal Fluminense, Campus Bom Jesus do Itabapoana</span></div>
+    <div><span class="author-name">Prof. Orientador</span> — <span class="author-affiliation">Instituto Federal Fluminense, Campus Bom Jesus do Itabapoana</span></div>
+  </div>
+</header>
+
+<div class="content">
+
+<div class="toc">
+  <h3>Sumário</h3>
+  <ol>
+    <li><a href="#resumo">Resumo</a></li>
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#intro">1. Introdução</a></li>
+    <li><a href="#contexto">2. Contexto e Justificativa</a></li>
+    <li><a href="#metodologia">3. Metodologia</a></li>
+    <li><a href="#req">4. Requisitos do Sistema</a></li>
+    <li><a href="#regras">5. Regras de Negócio</a></li>
+    <li><a href="#arquitetura">6. Arquitetura do Sistema</a></li>
+    <li><a href="#dfd">7. Diagrama de Fluxo de Dados (DFD)</a></li>
+    <li><a href="#contexto-menu">8. Diagrama de Contexto de Menu</a></li>
+    <li><a href="#interface">9. Diagramas de Interface</a></li>
+    <li><a href="#prototipos">10. Protótipos de Tela</a></li>
+    <li><a href="#bd">11. Banco de Dados e Dicionário de Dados</a></li>
+    <li><a href="#modulos">12. Módulos Implementados</a></li>
+    <li><a href="#materiais">13. Materiais Recebidos e Inventário</a></li>
+    <li><a href="#contingencia">14. Plano de Contingência</a></li>
+    <li><a href="#backlog">15. Planejamento do Backlog — Gantt e Burndown</a></li>
+    <li><a href="#analise-backlog">16. Análise do Backlog Priorizado</a></li>
+    <li><a href="#qrcode">17. Implementação de QR Code</a></li>
+    <li><a href="#documentacao">18. Portal de Documentação Auditável</a></li>
+    <li><a href="#proximos">19. Próximos Passos</a></li>
+    <li><a href="#pendencias">20. Pendências e Notas de Divergência</a></li>
+    <li><a href="#conclusao">21. Conclusão</a></li>
+    <li><a href="#ref">22. Referências (ABNT NBR 6023)</a></li>
+  </ol>
+</div>
+
+<h2 id="resumo">Resumo</h2>
+
+<div class="abstract-box">
+  <h3>Resumo</h3>
+  <p>
+    Este artigo apresenta o desenvolvimento do Sistema de Gestão do Laboratório de Hardware,
+    um projeto integrador elaborado pela turma de 2º Técnico em Informática do Instituto Federal
+    Fluminense — Campus Bom Jesus do Itabapoana. O sistema visa informatizar e modernizar o
+    controle de equipamentos, empréstimos e agendamentos do laboratório, substituindo processos
+    manuais por uma plataforma web baseada em PHP 8.2, MySQL 8.0 e Bootstrap 5. São descritas
+    a modelagem conceitual (diagramas DFD, DER, casos de uso), a arquitetura do sistema, as
+    regras de negócio, os módulos implementados e o planejamento do backlog com gráficos de
+    Gantt e Burndown. Adicionalmente, são detalhadas implementações recentes: módulo de
+    empréstimos com CRUD completo, geração e leitura de QR Code para identificação de
+    componentes, segurança com rate limiting e CSP, e o portal de documentação auditável
+    do projeto. Os resultados parciais demonstram a viabilidade da solução para a gestão
+    eficiente dos recursos do laboratório.
+  </p>
+  <p class="keywords">
+    <strong>Palavras-chave:</strong> Sistema de Gestão. Laboratório de Hardware. PHP. MySQL.
+    QR Code. Segurança. Projeto Integrador. Instituto Federal.
+  </p>
+</div>
+
+<h2 id="abstract">Abstract</h2>
+
+<div class="abstract-box">
+  <h3>Abstract</h3>
+  <p>
+    This paper presents the development of the Hardware Laboratory Management System, an
+    integrative project created by the 2nd year Information Technology class at the
+    Federal Fluminense Institute — Bom Jesus do Itabapoana Campus. The system aims to computerize
+    and modernize the control of equipment, loans, and scheduling of the laboratory, replacing
+    manual processes with a web platform based on PHP 8.2, MySQL 8.0, and Bootstrap 5. The
+    conceptual modeling (DFD, ERD, and use case diagrams), system architecture, business rules,
+    implemented modules, and backlog planning with Gantt and Burndown charts are described.
+    Recent implementations are also detailed: the complete loan module with full CRUD, QR Code
+    generation and reading for component identification, security features including rate limiting
+    and CSP headers, and the project's auditable documentation portal. Partial results demonstrate
+    the feasibility of the solution for efficient management of laboratory resources.
+  </p>
+  <p class="keywords">
+    <strong>Keywords:</strong> Management System. Hardware Laboratory. PHP. MySQL.
+    QR Code. Security. Integrative Project. Federal Fluminense Institute.
+  </p>
+</div>
+
+<h2 id="intro">1. Introdução</h2>
+
+<p>
+O presente artigo apresenta o desenvolvimento do <strong>Sistema de Gestão do Laboratório de Hardware</strong>,
+um projeto integrador desenvolvido pela turma de 2º TI do Instituto Federal Fluminense — Campus Bom Jesus
+do Itabapoana. O sistema tem como objetivo principal informatizar e modernizar o controle de equipamentos,
+empréstimos e agendamentos do laboratório de hardware da instituição.
+</p>
+
+<p>
+O projeto abrange desde a modelagem conceitual (diagramas DFD, DER, casos de uso, dicionário de dados)
+até a implementação funcional com PHP 8.2, MySQL 8.0 e Bootstrap 5, incluindo integração com Docker
+para ambiente de desenvolvimento padronizado. O código-fonte está hospedado no repositório
+<code>github.com/debianlima/laboratorio_hardware_2025</code>.
+</p>
+
+<h3>1.1 Objetivos</h3>
+
+<p>
+<strong>Objetivo Geral:</strong> Desenvolver um sistema web para gestão do laboratório de hardware do
+IFF Bom Jesus do Itabapoana, informatizando os processos de controle de equipamentos, empréstimos e
+agendamentos.
+</p>
+
+<p>
+<strong>Objetivos Específicos:</strong>
+</p>
+<ul>
+  <li>Modelar os requisitos funcionais e não funcionais do sistema por meio de diagramas DFD, DER e casos de uso;</li>
+  <li>Implementar módulo de autenticação com controle de acesso por perfil (administrador e padrão);</li>
+  <li>Desenvolver CRUD completo de itens/equipamentos com código patrimonial único;</li>
+  <li>Implementar fluxo de empréstimos e devoluções com validação de regras de negócio;</li>
+  <li>Criar módulo de agendamentos com verificação de conflitos de horário;</li>
+  <li>Gerar relatórios gerenciais e dashboard para acompanhamento do laboratório;</li>
+  <li>Documentar todo o processo conforme normas ABNT para trabalhos acadêmicos.</li>
+</ul>
+
+<h2 id="contexto">2. Contexto e Justificativa</h2>
+
+<p>
+O laboratório de hardware do IFF Bom Jesus do Itabapoana enfrentava desafios operacionais significativos:
+controle manual de empréstimos de kits, agendamentos em planilhas, dificuldade de rastreamento de itens
+e ausência de relatórios gerenciais. A partir de análises utilizando matriz GUT (Gravidade, Urgência,
+Tendência), foram priorizados os requisitos que mais impactavam a rotina do laboratório.
+</p>
+
+<p>
+Os Diagramas de Causa e Consequência (DCC-1 e DCC-2) elaborados durante a fase de análise evidenciaram
+que a falta de um sistema integrado resultava em perda de equipamentos, conflitos de agendamento e
+dificuldade na prestação de contas. O sistema proposto visa resolver esses problemas por meio de
+uma plataforma web com controle de acesso, CRUD de itens, empréstimos, agendamentos e relatórios.
+</p>
+
+<h2 id="metodologia">3. Metodologia</h2>
+
+<p>
+O desenvolvimento do sistema seguiu uma abordagem baseada em metodologias ágeis, com ciclos iterativos
+de planejamento, implementação e revisão. As etapas metodológicas foram organizadas conforme descrito
+a seguir.
+</p>
+
+<h3>3.1 Levantamento de Requisitos</h3>
+<p>
+Os requisitos foram levantados por meio de entrevistas com o técnico do laboratório e professores da
+disciplina, análise de documentos institucionais e observação direta dos processos manuais existentes.
+A matriz GUT (Gravidade, Urgência, Tendência) foi aplicada para priorização dos requisitos.
+</p>
+
+<h3>3.2 Modelagem do Sistema</h3>
+<p>
+A modelagem conceitual incluiu a elaboração de Diagramas de Fluxo de Dados (DFD) níveis 0 e 1,
+Diagrama Entidade-Relacionamento (DER), diagramas de caso de uso e diagramas de contexto de menu.
+O dicionário de dados foi construído para documentar todas as tabelas, campos e relacionamentos do
+banco de dados MySQL.
+</p>
+
+<h3>3.3 Tecnologias Utilizadas</h3>
+<table>
+  <thead><tr><th>Componente</th><th>Tecnologia</th><th>Finalidade</th></tr></thead>
+  <tbody>
+    <tr><td>Linguagem</td><td>PHP 8.2</td><td>Lógica do servidor e controllers</td></tr>
+    <tr><td>Banco de Dados</td><td>MySQL 8.0</td><td>Persistência de dados</td></tr>
+    <tr><td>Frontend</td><td>Bootstrap 5 + CSS3</td><td>Interface responsiva</td></tr>
+    <tr><td>Infraestrutura</td><td>Docker + Docker Compose</td><td>Ambiente padronizado</td></tr>
+    <tr><td>Controle de Versão</td><td>Git + GitHub</td><td>Versionamento do código</td></tr>
+  </tbody>
+</table>
+
+<h3>3.4 Atividades Realizadas</h3>
+<p>
+As atividades foram organizadas em sprints semanais, abrangendo desde a análise inicial até a
+implementação dos módulos. Cada sprint produziu entregas incrementais validadas pelo orientador
+e pelo técnico do laboratório. O detalhamento de cada módulo implementado encontra-se nas
+seções 6 a 15 deste artigo.
+</p>
+
+<h2 id="req">4. Requisitos do Sistema</h2>
+
+<h3>4.1 Requisitos Funcionais</h3>
+<p>O sistema contempla 30 requisitos funcionais (RF-01 a RF-30), dos quais os principais incluem:</p>
+<ul>
+  <li><strong>RF-01 a RF-05:</strong> Cadastro, edição, exclusão e listagem de usuários</li>
+  <li><strong>RF-06 a RF-10:</strong> Cadastro, edição, exclusão e listagem de itens/equipamentos</li>
+  <li><strong>RF-11 a RF-15:</strong> Controle de empréstimos e devoluções</li>
+  <li><strong>RF-16 a RF-20:</strong> Agendamento de laboratórios</li>
+  <li><strong>RF-21 a RF-25:</strong> Geração de relatórios e auditoria</li>
+  <li><strong>RF-26 a RF-30:</strong> Fórum de dúvidas, suporte e notificações</li>
+</ul>
+
+<h3>4.2 Requisitos Não Funcionais</h3>
+<ul>
+  <li><strong>RNF-01:</strong> Segurança — autenticação com senha hasheada (bcrypt)</li>
+  <li><strong>RNF-02:</strong> Desempenho — resposta em até 3 segundos nas operações CRUD</li>
+  <li><strong>RNF-03:</strong> Acessibilidade — navegação responsiva e compatível com leitores de tela</li>
+  <li><strong>RNF-04:</strong> Escalabilidade — arquitetura modular preparada para novos módulos</li>
+  <li><strong>RNF-05:</strong> Documentação — código comentado e README atualizado</li>
+</ul>
+
+<h2 id="regras">5. Regras de Negócio</h2>
+
+<p>As regras de negócio definem as restrições e comportamentos do sistema:</p>
+
+<table>
+  <thead>
+    <tr><th>ID</th><th>Regra</th><th>Descrição</th><th>Módulo</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>RN-01</td><td>Autenticação obrigatória</td><td>Todas as páginas, exceto login, exigem sessão ativa</td><td>Autenticação</td><td><span class="badge badge-green">Implementado</span></td></tr>
+    <tr><td>RN-02</td><td>Controle de acesso por perfil</td><td>Apenas usuários com perfil "administrador" (coluna <code>tipo</code>) podem gerenciar usuários e acessar relatórios. O campo <code>tipo</code> é armazenado na sessão durante o login e utilizado para controle de acesso.</td><td>Autenticação</td><td><span class="badge badge-green">Implementado</span></td></tr>
+    <tr><td>RN-03</td><td>Unicidade do patrimônio</td><td>O código de patrimônio deve ser único no sistema</td><td>Itens</td><td><span class="badge badge-green">Implementado</span></td></tr>
+    <tr><td>RN-04</td><td>Disponibilidade de itens</td><td>Apenas itens com status "disponível" podem ser emprestados</td><td>Empréstimos</td><td><span class="badge badge-green">Implementado</span></td></tr>
+    <tr><td>RN-05</td><td>Devolução obrigatória</td><td>Um item emprestado deve ser devolvido antes de novo empréstimo ao mesmo usuário</td><td>Empréstimos</td><td><span class="badge badge-green">Implementado</span></td></tr>
+    <tr><td>RN-06</td><td>Conflito de agendamento</td><td>Dois agendamentos não podem sobrepor horário no mesmo laboratório</td><td>Agendamentos</td><td><span class="badge badge-gray">Prevista</span></td></tr>
+    <tr><td>RN-07</td><td>Aprovação de agendamento</td><td>Agendamentos requerem aprovação do administrador antes de confirmação</td><td>Agendamentos</td><td><span class="badge badge-gray">Prevista</span></td></tr>
+    <tr><td>RN-08</td><td>Limite de empréstimos</td><td>Cada usuário pode ter no máximo 3 empréstimos ativos simultaneamente</td><td>Empréstimos</td><td><span class="badge badge-green">Implementado</span></td></tr>
+    <tr><td>RN-09</td><td>Atualização de status</td><td>Ao registrar devolução, o status do item volta automaticamente para "disponível"</td><td>Empréstimos</td><td><span class="badge badge-green">Implementado</span></td></tr>
+    <tr><td>RN-10</td><td>Log de auditoria</td><td>Toda operação de criação, edição ou exclusão é registrada com data, hora e usuário</td><td>Auditoria</td><td><span class="badge badge-yellow">Prevista</span></td></tr>
+    <tr><td>RN-11</td><td>Exclusão protegida</td><td>Itens com empréstimos ativos não podem ser excluídos</td><td>Itens</td><td><span class="badge badge-green">Implementado</span></td></tr>
+    <tr><td>RN-12</td><td>Senha segura</td><td>Senhas devem ter mínimo de 4 caracteres e serem armazenadas com bcrypt</td><td>Autenticação</td><td><span class="badge badge-green">Implementado</span></td></tr>
+    <tr><td>RN-13</td><td>QR Code único por item</td><td>Cada item possui um QR Code único baseado no seu ID, apontando para URL absoluta do servidor</td><td>QR Code</td><td><span class="badge badge-green">Implementado</span></td></tr>
+    <tr><td>RN-14</td><td>Visualização pública via QR</td><td>A página de detalhes do item (<code>ver.php</code>) não requer autenticação para leitura via QR Code</td><td>QR Code</td><td><span class="badge badge-green">Implementado</span></td></tr>
+    <tr><td>RN-15</td><td>Rate limit no login</td><td>Máximo de 5 tentativas de login por IP antes de bloqueio de 15 minutos, com log de tentativas</td><td>Segurança</td><td><span class="badge badge-green">Implementado</span></td></tr>
+  </tbody>
+</table>
+<p><em>Tabela 5.1 — Regras de negócio com status de implementação. Regras RN-01 a RN-12 mantidas da versão original; RN-13 a RN-15 adicionadas na versão 3.0. Regras marcadas como "Prevista" ainda não foram implementadas e estão vinculadas a itens do backlog pendentes. A regra RN‑10, referente ao log de auditoria, está em fase de pendência, aguardando a implementação do módulo BL‑11.</em></p>
+
+<h2 id="arquitetura">6. Arquitetura do Sistema</h2>
+
+<p>
+O sistema adota uma arquitetura monolítica modular baseada no padrão MVC simplificado, com as
+seguintes camadas:
+</p>
+
+<table>
+  <thead>
+    <tr><th>Camada</th><th>Tecnologia</th><th>Descrição</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Apresentação</td><td>HTML5 + Bootstrap 5 + CSS3</td><td>Interface responsiva com navegação intuitiva</td></tr>
+    <tr><td>Lógica</td><td>PHP 8.2</td><td>Controllers em PHP com sessão e flash messages</td></tr>
+    <tr><td>Dados</td><td>MySQL 8.0 + mysqli</td><td>Banco relacional com transações e chaves estrangeiras</td></tr>
+    <tr><td>Infraestrutura</td><td>Docker + Docker Compose</td><td>Ambiente padronizado com Apache e PHP 8.2</td></tr>
+  </tbody>
+</table>
+
+<h3>6.1 Diagrama de Camadas</h3>
+<div class="diagram-container">
+<svg width="700" height="280" viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#495057"/>
+    </marker>
+  </defs>
+  <!-- Camada Apresentação -->
+  <rect x="200" y="10" width="300" height="50" rx="8" fill="#cfe2ff" stroke="#0d6efd" stroke-width="2"/>
+  <text x="350" y="32" text-anchor="middle" font-size="13" font-weight="bold" fill="#084298">Apresentação</text>
+  <text x="350" y="48" text-anchor="middle" font-size="10" fill="#084298">HTML5 · Bootstrap 5 · CSS3</text>
+  <!-- Seta -->
+  <line x1="350" y1="60" x2="350" y2="85" stroke="#495057" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Camada Lógica -->
+  <rect x="200" y="85" width="300" height="50" rx="8" fill="#d1e7dd" stroke="#198754" stroke-width="2"/>
+  <text x="350" y="107" text-anchor="middle" font-size="13" font-weight="bold" fill="#0f5132">Lógica (PHP)</text>
+  <text x="350" y="123" text-anchor="middle" font-size="10" fill="#0f5132">Controllers · Sessão · Flash Messages</text>
+  <!-- Seta -->
+  <line x1="350" y1="135" x2="350" y2="160" stroke="#495057" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Camada Dados -->
+  <rect x="200" y="160" width="300" height="50" rx="8" fill="#fff3cd" stroke="#ffc107" stroke-width="2"/>
+  <text x="350" y="182" text-anchor="middle" font-size="13" font-weight="bold" fill="#664d03">Dados (MySQL)</text>
+  <text x="350" y="198" text-anchor="middle" font-size="10" fill="#664d03">mysqli · Transações · FKs</text>
+  <!-- Infraestrutura -->
+  <rect x="200" y="230" width="300" height="40" rx="8" fill="#e9ecef" stroke="#6c757d" stroke-width="2"/>
+  <text x="350" y="254" text-anchor="middle" font-size="12" font-weight="bold" fill="#495057">Infraestrutura: Docker · Apache · PHP 8.2</text>
+  <!-- Labels laterais -->
+  <text x="180" y="38" text-anchor="end" font-size="10" fill="#6c757d">Cliente</text>
+  <text x="180" y="112" text-anchor="end" font-size="10" fill="#6c757d">Servidor</text>
+  <text x="180" y="188" text-anchor="end" font-size="10" fill="#6c757d">Banco</text>
+</svg>
+<div class="caption">Figura 2 — Diagrama de camadas da arquitetura do sistema</div>
+</div>
+
+<h3>6.2 Ambiente de Desenvolvimento</h3>
+<p>
+O projeto utiliza Docker com dois containers: <code>lab_hardware_app</code> (PHP 8.2 + Apache)
+e <code>lab_hardware_db</code> (MySQL 8.0). A configuração é centralizada no arquivo
+<code>docker-compose.yml</code> com variáveis de ambiente via <code>.env</code>.
+A documentação da pasta <code>docs/</code> é servida diretamente pelo Apache via volume mount
+(<code>./docs:/var/www/html/docs</code>), estando acessível em <code>http://localhost:8080/docs/</code>.
+</p>
+
+<h2 id="dfd">7. Diagrama de Fluxo de Dados (DFD)</h2>
+
+<h3>7.1 DFD Nível 0 — Diagrama de Contexto</h3>
+<p>
+O DFD de contexto mostra o sistema como um processo único e suas interações com entidades externas.
+</p>
+
+<div class="diagram-container">
+<svg width="720" height="420" viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg">
+  <!-- Entidade: Administrador -->
+  <rect x="20" y="30" width="140" height="50" rx="4" fill="#f8d7da" stroke="#dc3545" stroke-width="2"/>
+  <text x="90" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#842029">Administrador</text>
+  <text x="90" y="68" text-anchor="middle" font-size="9" fill="#842029">(Técnico/Professor)</text>
+  <!-- Entidade: Usuário -->
+  <rect x="20" y="340" width="140" height="50" rx="4" fill="#cfe2ff" stroke="#0d6efd" stroke-width="2"/>
+  <text x="90" y="362" text-anchor="middle" font-size="12" font-weight="bold" fill="#084298">Usuário</text>
+  <text x="90" y="378" text-anchor="middle" font-size="9" fill="#084298">(Aluno)</text>
+  <!-- Processo Central -->
+  <circle cx="380" cy="210" r="100" fill="#d1e7dd" stroke="#198754" stroke-width="2"/>
+  <text x="380" y="195" text-anchor="middle" font-size="13" font-weight="bold" fill="#0f5132">Sistema de Gestão</text>
+  <text x="380" y="213" text-anchor="middle" font-size="11" fill="#0f5132">do Laboratório</text>
+  <text x="380" y="230" text-anchor="middle" font-size="10" fill="#0f5132">de Hardware</text>
+  <!-- Entidade: Banco de Dados -->
+  <rect x="560" y="170" width="140" height="80" rx="4" fill="#fff3cd" stroke="#ffc107" stroke-width="2"/>
+  <text x="630" y="200" text-anchor="middle" font-size="12" font-weight="bold" fill="#664d03">Banco de Dados</text>
+  <text x="630" y="218" text-anchor="middle" font-size="9" fill="#664d03">MySQL 8.0</text>
+  <text x="630" y="235" text-anchor="middle" font-size="9" fill="#664d03">lab_hardware</text>
+  <!-- Fluxos Administrador -> Sistema -->
+  <line x1="160" y1="55" x2="290" y2="155" stroke="#495057" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="210" y="95" font-size="8" fill="#495057">Comandos de gestão</text>
+  <!-- Fluxos Sistema -> Administrador -->
+  <line x1="290" y1="175" x2="160" y2="75" stroke="#495057" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="210" y="135" font-size="8" fill="#495057">Relatórios e alertas</text>
+  <!-- Fluxos Usuário -> Sistema -->
+  <line x1="160" y1="365" x2="290" y2="265" stroke="#495057" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="210" y="325" font-size="8" fill="#495057">Solicitações de empréstimo</text>
+  <!-- Fluxos Sistema -> Usuário -->
+  <line x1="290" y1="245" x2="160" y2="345" stroke="#495057" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="210" y="285" font-size="8" fill="#495057">Confirmações e status</text>
+  <!-- Fluxos Sistema -> BD -->
+  <line x1="480" y1="210" x2="560" y2="210" stroke="#495057" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="520" y="200" font-size="8" fill="#495057">Gravar/Consultar</text>
+  <!-- Fluxos BD -> Sistema -->
+  <line x1="560" y1="225" x2="480" y2="225" stroke="#495057" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="520" y="245" font-size="8" fill="#495057">Dados retornados</text>
+</svg>
+<div class="caption">Figura 3 — DFD Nível 0: Diagrama de Contexto do sistema</div>
+</div>
+
+<h3>7.2 DFD Nível 1 — Processos Principais</h3>
+<p>
+O DFD Nível 1 decompõe o sistema em quatro processos principais:
+</p>
+
+<div class="diagram-container">
+<svg width="720" height="500" viewBox="0 0 720 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow2" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#495057"/>
+    </marker>
+  </defs>
+  <!-- Processo 1: Autenticar -->
+  <rect x="20" y="20" width="160" height="60" rx="30" fill="#cfe2ff" stroke="#0d6efd" stroke-width="2"/>
+  <text x="100" y="48" text-anchor="middle" font-size="11" font-weight="bold" fill="#084298">1. Autenticar</text>
+  <text x="100" y="64" text-anchor="middle" font-size="9" fill="#084298">Usuário</text>
+  <!-- Processo 2: Gerenciar Itens -->
+  <rect x="20" y="120" width="160" height="60" rx="30" fill="#d1e7dd" stroke="#198754" stroke-width="2"/>
+  <text x="100" y="148" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f5132">2. Gerenciar</text>
+  <text x="100" y="164" text-anchor="middle" font-size="9" fill="#0f5132">Itens</text>
+  <!-- Processo 3: Controlar Empréstimos -->
+  <rect x="20" y="220" width="160" height="60" rx="30" fill="#fff3cd" stroke="#ffc107" stroke-width="2"/>
+  <text x="100" y="248" text-anchor="middle" font-size="11" font-weight="bold" fill="#664d03">3. Controlar</text>
+  <text x="100" y="264" text-anchor="middle" font-size="9" fill="#664d03">Empréstimos</text>
+  <!-- Processo 4: Agendar -->
+  <rect x="20" y="320" width="160" height="60" rx="30" fill="#f8d7da" stroke="#dc3545" stroke-width="2"/>
+  <text x="100" y="348" text-anchor="middle" font-size="11" font-weight="bold" fill="#842029">4. Agendar</text>
+  <text x="100" y="364" text-anchor="middle" font-size="9" fill="#842029">Laboratórios</text>
+  <!-- Processo 5: Gerar Relatórios -->
+  <rect x="20" y="420" width="160" height="60" rx="30" fill="#e9ecef" stroke="#6c757d" stroke-width="2"/>
+  <text x="100" y="448" text-anchor="middle" font-size="11" font-weight="bold" fill="#495057">5. Gerar</text>
+  <text x="100" y="464" text-anchor="middle" font-size="9" fill="#495057">Relatórios</text>
+  <!-- Dados -->
+  <rect x="500" y="20" width="180" height="460" rx="8" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+  <text x="590" y="50" text-anchor="middle" font-size="12" font-weight="bold" fill="#495057">Armazenamento</text>
+  <line x1="510" y1="60" x2="670" y2="60" stroke="#dee2e6" stroke-width="1"/>
+  <text x="590" y="85" text-anchor="middle" font-size="9" fill="#6c757d">D1 — Usuários</text>
+  <text x="590" y="115" text-anchor="middle" font-size="9" fill="#6c757d">D2 — Itens / Tipos</text>
+  <text x="590" y="145" text-anchor="middle" font-size="9" fill="#6c757d">D3 — Equipamentos</text>
+  <text x="590" y="175" text-anchor="middle" font-size="9" fill="#6c757d">D4 — Empréstimos</text>
+  <text x="590" y="205" text-anchor="middle" font-size="9" fill="#6c757d">D5 — Agendamentos</text>
+  <text x="590" y="235" text-anchor="middle" font-size="9" fill="#6c757d">D6 — Laboratórios</text>
+  <text x="590" y="265" text-anchor="middle" font-size="9" fill="#6c757d">D7 — Logs/Auditoria</text>
+  <text x="590" y="295" text-anchor="middle" font-size="9" fill="#6c757d">D8 — Relatórios</text>
+  <!-- Fluxos para dados -->
+  <line x1="180" y1="50" x2="500" y2="80" stroke="#495057" stroke-width="1" marker-end="url(#arrow2)"/>
+  <line x1="180" y1="150" x2="500" y2="110" stroke="#495057" stroke-width="1" marker-end="url(#arrow2)"/>
+  <line x1="180" y1="250" x2="500" y2="140" stroke="#495057" stroke-width="1" marker-end="url(#arrow2)"/>
+  <line x1="180" y1="250" x2="500" y2="170" stroke="#495057" stroke-width="1" marker-end="url(#arrow2)"/>
+  <line x1="180" y1="350" x2="500" y2="200" stroke="#495057" stroke-width="1" marker-end="url(#arrow2)"/>
+  <line x1="180" y1="350" x2="500" y2="230" stroke="#495057" stroke-width="1" marker-end="url(#arrow2)"/>
+  <line x1="180" y1="450" x2="500" y2="260" stroke="#495057" stroke-width="1" marker-end="url(#arrow2)"/>
+  <line x1="180" y1="450" x2="500" y2="290" stroke="#495057" stroke-width="1" marker-end="url(#arrow2)"/>
+  <!-- Fluxos de retorno -->
+  <line x1="500" y1="95" x2="180" y2="65" stroke="#495057" stroke-width="1" marker-end="url(#arrow2)" stroke-dasharray="4,2"/>
+  <line x1="500" y1="125" x2="180" y2="165" stroke="#495057" stroke-width="1" marker-end="url(#arrow2)" stroke-dasharray="4,2"/>
+</svg>
+<div class="caption">Figura 4 — DFD Nível 1: Processos principais e fluxos de dados</div>
+</div>
+
+<h2 id="contexto-menu">8. Diagrama de Contexto de Menu</h2>
+
+<p>
+A estrutura de navegação do sistema organiza-se hierarquicamente conforme o diagrama abaixo:
+</p>
+
+<div class="diagram-container">
+<svg width="700" height="420" viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg">
+  <!-- Root -->
+  <rect x="280" y="10" width="140" height="40" rx="6" fill="#0d6efd" stroke="#0b5ed7" stroke-width="2"/>
+  <text x="350" y="35" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">Painel Principal</text>
+  <!-- Level 1 -->
+  <rect x="50" y="90" width="120" height="35" rx="6" fill="#cfe2ff" stroke="#0d6efd" stroke-width="1.5"/>
+  <text x="110" y="112" text-anchor="middle" font-size="10" font-weight="bold" fill="#084298">Autenticação</text>
+  <rect x="220" y="90" width="120" height="35" rx="6" fill="#d1e7dd" stroke="#198754" stroke-width="1.5"/>
+  <text x="280" y="112" text-anchor="middle" font-size="10" font-weight="bold" fill="#0f5132">Itens</text>
+  <rect x="390" y="90" width="120" height="35" rx="6" fill="#fff3cd" stroke="#ffc107" stroke-width="1.5"/>
+  <text x="450" y="112" text-anchor="middle" font-size="10" font-weight="bold" fill="#664d03">Empréstimos</text>
+  <rect x="560" y="90" width="120" height="35" rx="6" fill="#f8d7da" stroke="#dc3545" stroke-width="1.5"/>
+  <text x="620" y="112" text-anchor="middle" font-size="10" font-weight="bold" fill="#842029">Agendamentos</text>
+  <!-- Level 2 - Autenticação -->
+  <rect x="20" y="160" width="80" height="30" rx="4" fill="#e9ecef" stroke="#6c757d" stroke-width="1"/>
+  <text x="60" y="179" text-anchor="middle" font-size="9" fill="#495057">Login</text>
+  <rect x="120" y="160" width="80" height="30" rx="4" fill="#e9ecef" stroke="#6c757d" stroke-width="1"/>
+  <text x="160" y="179" text-anchor="middle" font-size="9" fill="#495057">Logout</text>
+  <!-- Level 2 - Itens -->
+  <rect x="210" y="160" width="80" height="30" rx="4" fill="#e9ecef" stroke="#6c757d" stroke-width="1"/>
+  <text x="250" y="179" text-anchor="middle" font-size="9" fill="#495057">Listar</text>
+  <rect x="310" y="160" width="80" height="30" rx="4" fill="#e9ecef" stroke="#6c757d" stroke-width="1"/>
+  <text x="350" y="179" text-anchor="middle" font-size="9" fill="#495057">Cadastrar</text>
+  <rect x="210" y="200" width="80" height="30" rx="4" fill="#e9ecef" stroke="#6c757d" stroke-width="1"/>
+  <text x="250" y="219" text-anchor="middle" font-size="9" fill="#495057">Editar</text>
+  <rect x="310" y="200" width="80" height="30" rx="4" fill="#e9ecef" stroke="#6c757d" stroke-width="1"/>
+  <text x="350" y="219" text-anchor="middle" font-size="9" fill="#495057">Excluir</text>
+  <!-- Level 2 - Empréstimos -->
+  <rect x="380" y="160" width="80" height="30" rx="4" fill="#e9ecef" stroke="#6c757d" stroke-width="1"/>
+  <text x="420" y="179" text-anchor="middle" font-size="9" fill="#495057">Novo</text>
+  <rect x="480" y="160" width="80" height="30" rx="4" fill="#e9ecef" stroke="#6c757d" stroke-width="1"/>
+  <text x="520" y="179" text-anchor="middle" font-size="9" fill="#495057">Listar</text>
+  <rect x="380" y="200" width="80" height="30" rx="4" fill="#e9ecef" stroke="#6c757d" stroke-width="1"/>
+  <text x="420" y="219" text-anchor="middle" font-size="9" fill="#495057">Devolver</text>
+  <rect x="480" y="200" width="80" height="30" rx="4" fill="#e9ecef" stroke="#6c757d" stroke-width="1"/>
+  <text x="520" y="219" text-anchor="middle" font-size="9" fill="#495057">Histórico</text>
+  <!-- Level 2 - Agendamentos -->
+  <rect x="550" y="160" width="80" height="30" rx="4" fill="#e9ecef" stroke="#6c757d" stroke-width="1"/>
+  <text x="590" y="179" text-anchor="middle" font-size="9" fill="#495057">Novo</text>
+  <rect x="650" y="160" width="50" height="30" rx="4" fill="#e9ecef" stroke="#6c757d" stroke-width="1"/>
+  <text x="675" y="179" text-anchor="middle" font-size="9" fill="#495057">Calendário</text>
+  <!-- Level 3 - Relatórios -->
+  <rect x="280" y="270" width="140" height="35" rx="6" fill="#e9ecef" stroke="#6c757d" stroke-width="1.5"/>
+  <text x="350" y="292" text-anchor="middle" font-size="10" font-weight="bold" fill="#495057">Relatórios</text>
+  <rect x="200" y="330" width="80" height="30" rx="4" fill="#e9ecef" stroke="#6c757d" stroke-width="1"/>
+  <text x="240" y="349" text-anchor="middle" font-size="9" fill="#495057">Inventário</text>
+  <rect x="300" y="330" width="80" height="30" rx="4" fill="#e9ecef" stroke="#6c757d" stroke-width="1"/>
+  <text x="340" y="349" text-anchor="middle" font-size="9" fill="#495057">Empréstimos</text>
+  <rect x="400" y="330" width="80" height="30" rx="4" fill="#e9ecef" stroke="#6c757d" stroke-width="1"/>
+  <text x="440" y="349" text-anchor="middle" font-size="9" fill="#495057">Agendamentos</text>
+  <!-- Level 4 - Admin -->
+  <rect x="280" y="380" width="140" height="35" rx="6" fill="#f8d7da" stroke="#dc3545" stroke-width="1.5"/>
+  <text x="350" y="402" text-anchor="middle" font-size="10" font-weight="bold" fill="#842029">Administração</text>
+  <!-- Linhas -->
+  <line x1="350" y1="50" x2="110" y2="90" stroke="#6c757d" stroke-width="1"/>
+  <line x1="350" y1="50" x2="280" y2="90" stroke="#6c757d" stroke-width="1"/>
+  <line x1="350" y1="50" x2="450" y2="90" stroke="#6c757d" stroke-width="1"/>
+  <line x1="350" y1="50" x2="620" y2="90" stroke="#6c757d" stroke-width="1"/>
+  <line x1="110" y1="125" x2="60" y2="160" stroke="#6c757d" stroke-width="1"/>
+  <line x1="110" y1="125" x2="160" y2="160" stroke="#6c757d" stroke-width="1"/>
+  <line x1="280" y1="125" x2="250" y2="160" stroke="#6c757d" stroke-width="1"/>
+  <line x1="280" y1="125" x2="350" y2="160" stroke="#6c757d" stroke-width="1"/>
+  <line x1="280" y1="125" x2="250" y2="200" stroke="#6c757d" stroke-width="1"/>
+  <line x1="280" y1="125" x2="350" y2="200" stroke="#6c757d" stroke-width="1"/>
+  <line x1="450" y1="125" x2="420" y2="160" stroke="#6c757d" stroke-width="1"/>
+  <line x1="450" y1="125" x2="520" y2="160" stroke="#6c757d" stroke-width="1"/>
+  <line x1="450" y1="125" x2="420" y2="200" stroke="#6c757d" stroke-width="1"/>
+  <line x1="450" y1="125" x2="520" y2="200" stroke="#6c757d" stroke-width="1"/>
+  <line x1="620" y1="125" x2="590" y2="160" stroke="#6c757d" stroke-width="1"/>
+  <line x1="620" y1="125" x2="675" y2="160" stroke="#6c757d" stroke-width="1"/>
+  <line x1="350" y1="270" x2="240" y2="330" stroke="#6c757d" stroke-width="1"/>
+  <line x1="350" y1="270" x2="340" y2="330" stroke="#6c757d" stroke-width="1"/>
+  <line x1="350" y1="270" x2="440" y2="330" stroke="#6c757d" stroke-width="1"/>
+  <line x1="350" y1="305" x2="350" y2="380" stroke="#6c757d" stroke-width="1"/>
+</svg>
+<div class="caption">Figura 5 — Diagrama de contexto de menu (estrutura de navegação)</div>
+</div>
+
+<h2 id="interface">9. Diagramas de Interface</h2>
+
+<h3>9.1 Mapa de Navegação</h3>
+<p>
+O sistema possui as seguintes telas interligadas:
+</p>
+
+<table>
+  <thead>
+    <tr><th>#</th><th>Tela</th><th>Arquivo</th><th>Tipo</th><th>Acesso</th><th>Destinos</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>T-01</td><td>Login</td><td><code>login/index.html</code></td><td><span class="badge badge-yellow">Protótipo</span></td><td>Público</td><td>→ T-02</td></tr>
+    <tr><td>T-02</td><td>Painel Principal</td><td><code>src/index.php</code></td><td><span class="badge badge-green">Produção</span></td><td>Autenticado</td><td>→ T-03, T-06, T-09</td></tr>
+    <tr><td>T-03</td><td>Listar Itens</td><td><code>src/itens/listar.php</code></td><td><span class="badge badge-green">Produção</span></td><td>Autenticado</td><td>→ T-04, T-05</td></tr>
+    <tr><td>T-04</td><td>Cadastrar Item</td><td><code>src/itens/cadastrar.php</code></td><td><span class="badge badge-green">Produção</span></td><td>Admin</td><td>→ T-03</td></tr>
+    <tr><td>T-05</td><td>Editar Item</td><td><code>src/itens/editar.php</code></td><td><span class="badge badge-green">Produção</span></td><td>Admin</td><td>→ T-03</td></tr>
+    <tr><td>T-06</td><td>Listar Usuários</td><td><code>fontes_recebidas/prototipos/users_list.php</code></td><td><span class="badge badge-yellow">Protótipo</span></td><td>Admin</td><td>→ T-07, T-08</td></tr>
+    <tr><td>T-07</td><td>Cadastrar Usuário</td><td><code>fontes_recebidas/prototipos/users_create.php</code></td><td><span class="badge badge-yellow">Protótipo</span></td><td>Admin</td><td>→ T-06</td></tr>
+    <tr><td>T-08</td><td>Editar Usuário</td><td><code>fontes_recebidas/prototipos/users_edit.php</code></td><td><span class="badge badge-yellow">Protótipo</span></td><td>Admin</td><td>→ T-06</td></tr>
+    <tr><td>T-09</td><td>Relatórios</td><td><code>fontes_recebidas/prototipos/relatorios_list.php</code></td><td><span class="badge badge-yellow">Protótipo</span></td><td>Admin</td><td>→ T-10</td></tr>
+    <tr><td>T-10</td><td>Dashboard</td><td><code>fontes_recebidas/prototipos/dashboard.php</code></td><td><span class="badge badge-yellow">Protótipo</span></td><td>Autenticado</td><td>→ T-02</td></tr>
+  </tbody>
+</table>
+<p><em>Tabela 9.1 — Mapa de navegação com classificação de ambiente. Telas marcadas como "Protótipo" referem-se a arquivos de referência em <code>fontes_recebidas/prototipos/</code> ou <code>login/</code>, não fazendo parte do runtime web atual.</em></p>
+
+<h3>9.2 Diagrama de Transição de Telas</h3>
+<div class="diagram-container">
+<svg width="680" height="340" viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#495057"/>
+    </marker>
+  </defs>
+  <!-- Login -->
+  <rect x="10" y="140" width="100" height="40" rx="6" fill="#f8d7da" stroke="#dc3545" stroke-width="2"/>
+  <text x="60" y="165" text-anchor="middle" font-size="10" font-weight="bold" fill="#842029">T-01 Login</text>
+  <!-- Painel -->
+  <rect x="160" y="140" width="100" height="40" rx="6" fill="#0d6efd" stroke="#0b5ed7" stroke-width="2"/>
+  <text x="210" y="165" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">T-02 Painel</text>
+  <!-- Itens Listar -->
+  <rect x="310" y="60" width="110" height="40" rx="6" fill="#d1e7dd" stroke="#198754" stroke-width="2"/>
+  <text x="365" y="85" text-anchor="middle" font-size="10" font-weight="bold" fill="#0f5132">T-03 Listar Itens</text>
+  <!-- Cadastrar Item -->
+  <rect x="470" y="20" width="110" height="40" rx="6" fill="#e9ecef" stroke="#6c757d" stroke-width="1.5"/>
+  <text x="525" y="45" text-anchor="middle" font-size="10" font-weight="bold" fill="#495057">T-04 Cadastrar</text>
+  <!-- Editar Item -->
+  <rect x="470" y="80" width="110" height="40" rx="6" fill="#e9ecef" stroke="#6c757d" stroke-width="1.5"/>
+  <text x="525" y="105" text-anchor="middle" font-size="10" font-weight="bold" fill="#495057">T-05 Editar</text>
+  <!-- Relatórios -->
+  <rect x="310" y="220" width="110" height="40" rx="6" fill="#fff3cd" stroke="#ffc107" stroke-width="2"/>
+  <text x="365" y="245" text-anchor="middle" font-size="10" font-weight="bold" fill="#664d03">T-09 Relatórios</text>
+  <!-- Dashboard -->
+  <rect x="470" y="220" width="110" height="40" rx="6" fill="#e9ecef" stroke="#6c757d" stroke-width="1.5"/>
+  <text x="525" y="245" text-anchor="middle" font-size="10" font-weight="bold" fill="#495057">T-10 Dashboard</text>
+  <!-- Usuários -->
+  <rect x="310" y="140" width="110" height="40" rx="6" fill="#cfe2ff" stroke="#0d6efd" stroke-width="2"/>
+  <text x="365" y="165" text-anchor="middle" font-size="10" font-weight="bold" fill="#084298">T-06 Usuários</text>
+  <!-- Setas -->
+  <line x1="110" y1="160" x2="160" y2="160" stroke="#495057" stroke-width="1.5" marker-end="url(#arrow3)"/>
+  <text x="130" y="155" font-size="8" fill="#495057">login</text>
+  <line x1="260" y1="150" x2="310" y2="80" stroke="#495057" stroke-width="1.5" marker-end="url(#arrow3)"/>
+  <line x1="260" y1="160" x2="310" y2="160" stroke="#495057" stroke-width="1.5" marker-end="url(#arrow3)"/>
+  <line x1="260" y1="170" x2="310" y2="240" stroke="#495057" stroke-width="1.5" marker-end="url(#arrow3)"/>
+  <line x1="420" y1="75" x2="470" y2="40" stroke="#495057" stroke-width="1.5" marker-end="url(#arrow3)"/>
+  <line x1="420" y1="85" x2="470" y2="100" stroke="#495057" stroke-width="1.5" marker-end="url(#arrow3)"/>
+  <line x1="470" y1="40" x2="420" y2="75" stroke="#495057" stroke-width="1.5" marker-end="url(#arrow3)" stroke-dasharray="3,2"/>
+  <line x1="470" y1="100" x2="420" y2="85" stroke="#495057" stroke-width="1.5" marker-end="url(#arrow3)" stroke-dasharray="3,2"/>
+  <line x1="420" y1="240" x2="470" y2="240" stroke="#495057" stroke-width="1.5" marker-end="url(#arrow3)"/>
+  <line x1="580" y1="240" x2="630" y2="240" stroke="#495057" stroke-width="1.5" marker-end="url(#arrow3)"/>
+  <text x="600" y="235" font-size="8" fill="#495057">voltar</text>
+  <line x1="420" y1="160" x2="470" y2="160" stroke="#495057" stroke-width="1.5" marker-end="url(#arrow3)"/>
+  <text x="440" y="155" font-size="8" fill="#495057">CRUD</text>
+</svg>
+<div class="caption">Figura 6 — Diagrama de transição entre telas do sistema</div>
+</div>
+
+<h2 id="prototipos">10. Protótipos de Tela</h2>
+
+<h3>10.1 Tela de Login</h3>
+<div class="proto-mockup">
+  <div class="proto-nav" style="background:linear-gradient(135deg,#667eea,#764ba2);">
+    <span style="font-weight:700;font-size:1rem;">Lab Hardware</span>
+    <span style="font-size:0.75rem;opacity:0.8;">Sistema de Controle</span>
+  </div>
+  <div class="proto-body" style="max-width:350px;margin:2rem auto;">
+    <div style="text-align:center;margin-bottom:1.5rem;">
+      <div style="font-size:1.2rem;font-weight:700;color:#0d6efd;">Lab Hardware</div>
+      <div style="font-size:0.8rem;color:#6c757d;">Acesso ao Sistema</div>
+    </div>
+    <label style="font-weight:500;font-size:0.85rem;">Usuário</label>
+    <div class="proto-input">Digite seu usuário...</div>
+    <label style="font-weight:500;font-size:0.85rem;margin-top:0.5rem;">Senha</label>
+    <div class="proto-input">••••••••</div>
+    <div style="text-align:center;margin-top:1rem;">
+      <span class="proto-btn" style="width:100%;text-align:center;display:block;padding:0.6rem;">Entrar</span>
+    </div>
+    <div style="text-align:center;margin-top:1rem;font-size:0.7rem;color:#6c757d;border-top:1px solid #dee2e6;padding-top:0.5rem;">
+      © 2026 Lab Hardware 2025
+    </div>
+  </div>
+</div>
+<div class="caption">Figura 7 — Protótipo da tela de login</div>
+
+<h3>10.2 Painel Principal (Dashboard)</h3>
+<p><em>Nota de atualização (LIM-313): O dashboard em produção (<code>src/index.php</code>) agora exibe ícones SVG ilustrativos para cada módulo (<code>painel-itens.svg</code>, <code>painel-emprestimos.svg</code>, <code>painel-agendamentos.svg</code>) e o card de Agendamentos é exibido com estilo <code>card-disabled</code> (borda tracejada, opacidade reduzida) indicando "Em breve". Os arquivos SVG estão em <code>assets/img/</code>.</em></p>
+<div class="proto-mockup">
+  <div class="proto-nav">
+    <span style="font-weight:700;">Lab Hardware</span>
+    <div>
+      <a href="#">Itens</a>
+      <a href="#">Olá, admin</a>
+      <a href="#">Sair</a>
+    </div>
+  </div>
+  <div class="proto-body">
+    <h3 style="font-size:1rem;margin-bottom:1rem;">Painel do Laboratório</h3>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+      <div class="proto-card" style="flex:1;min-width:200px;text-align:center;">
+        <div style="font-size:2rem;">📦</div>
+        <div style="font-weight:600;margin:0.5rem 0;">Itens / Equipamentos</div>
+        <div style="font-size:0.75rem;color:#6c757d;margin-bottom:0.5rem;">Cadastrar, listar, editar e excluir itens</div>
+        <span class="proto-btn">Gerenciar Itens</span>
+      </div>
+      <div class="proto-card" style="flex:1;min-width:200px;text-align:center;">
+        <div style="font-size:2rem;">📋</div>
+        <div style="font-weight:600;margin:0.5rem 0;">Empréstimos</div>
+        <div style="font-size:0.75rem;color:#6c757d;margin-bottom:0.5rem;">Listar, cadastrar, editar e atrasados</div>
+        <span class="proto-btn">Gerenciar Empréstimos</span>
+      </div>
+      <div class="proto-card" style="flex:1;min-width:200px;text-align:center;opacity:0.5;">
+        <div style="font-size:2rem;">📅</div>
+        <div style="font-weight:600;margin:0.5rem 0;">Agendamentos</div>
+        <div style="font-size:0.75rem;color:#6c757d;margin-bottom:0.5rem;">Em desenvolvimento</div>
+        <span class="proto-btn" style="background:#6c757d;">Em breve</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="caption">Figura 8 — Protótipo do painel principal (dashboard com 3 cards)</div>
+
+<h3>10.3 Listagem de Itens</h3>
+<div class="proto-mockup">
+  <div class="proto-nav">
+    <span style="font-weight:700;">Lab Hardware</span>
+    <div><a href="#">Itens</a><a href="#">Sair</a></div>
+  </div>
+  <div class="proto-body">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+      <h3 style="font-size:1rem;margin:0;">Itens do Laboratório</h3>
+      <span class="proto-btn">+ Cadastrar Item</span>
+    </div>
+    <div style="display:flex;gap:0.5rem;margin-bottom:1rem;">
+      <div class="proto-input" style="flex:2;">Buscar nome ou código...</div>
+      <div class="proto-input" style="flex:1;">Tipo: Todos</div>
+      <div class="proto-input" style="flex:1;">Status: Todos</div>
+      <span class="proto-btn" style="background:#6c757d;">Filtrar</span>
+    </div>
+    <table class="proto-table">
+      <thead>
+        <tr><th>Código</th><th>Nome</th><th>Tipo</th><th>Status</th><th>Localização</th><th>Ações</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>PAT-001</code></td><td>Kit Arduino Uno</td><td>Kit Arduino</td><td><span class="badge badge-green">Disponível</span></td><td>Prateleira A1</td><td><span class="proto-btn" style="padding:0.2rem 0.5rem;font-size:0.65rem;">Editar</span> <span class="proto-btn" style="padding:0.2rem 0.5rem;font-size:0.65rem;background:#dc3545;">Excluir</span></td></tr>
+        <tr><td><code>PAT-002</code></td><td>Multímetro Digital</td><td>Instrumento</td><td><span class="badge badge-yellow">Emprestado</span></td><td>Bancada 3</td><td><span class="proto-btn" style="padding:0.2rem 0.5rem;font-size:0.65rem;">Editar</span> <span class="proto-btn" style="padding:0.2rem 0.5rem;font-size:0.65rem;background:#dc3545;">Excluir</span></td></tr>
+        <tr><td><code>PAT-003</code></td><td>ESP32 DevKit</td><td>Placa Desenv.</td><td><span class="badge badge-green">Disponível</span></td><td>Prateleira B2</td><td><span class="proto-btn" style="padding:0.2rem 0.5rem;font-size:0.65rem;">Editar</span> <span class="proto-btn" style="padding:0.2rem 0.5rem;font-size:0.65rem;background:#dc3545;">Excluir</span></td></tr>
+        <tr><td><code>PAT-004</code></td><td>Osciloscópio</td><td>Instrumento</td><td><span class="badge badge-red">Manutenção</span></td><td>Assistência</td><td><span class="proto-btn" style="padding:0.2rem 0.5rem;font-size:0.65rem;">Editar</span> <span class="proto-btn" style="padding:0.2rem 0.5rem;font-size:0.65rem;background:#dc3545;">Excluir</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="caption">Figura 9 — Protótipo da tela de listagem de itens</div>
+
+<h3>10.4 Formulário de Cadastro de Item</h3>
+<div class="proto-mockup">
+  <div class="proto-nav">
+    <span style="font-weight:700;">Lab Hardware</span>
+    <div><a href="#">Itens</a><a href="#">Sair</a></div>
+  </div>
+  <div class="proto-body">
+    <h3 style="font-size:1rem;margin-bottom:1rem;">Cadastrar Item</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.75rem;">
+      <div>
+        <label style="font-size:0.75rem;font-weight:500;">Código de Patrimônio *</label>
+        <div class="proto-input">PAT-005</div>
+      </div>
+      <div>
+        <label style="font-size:0.75rem;font-weight:500;">Nome *</label>
+        <div class="proto-input">Raspberry Pi 4</div>
+      </div>
+      <div>
+        <label style="font-size:0.75rem;font-weight:500;">Status</label>
+        <div class="proto-input">Disponível ▼</div>
+      </div>
+      <div>
+        <label style="font-size:0.75rem;font-weight:500;">Tipo</label>
+        <div class="proto-input">Placa de Desenvolvimento ▼</div>
+      </div>
+      <div>
+        <label style="font-size:0.75rem;font-weight:500;">Localização</label>
+        <div class="proto-input">Prateleira C1</div>
+      </div>
+      <div style="grid-column:span 2;">
+        <label style="font-size:0.75rem;font-weight:500;">Descrição</label>
+        <div class="proto-input">Placa de desenvolvimento com 4GB RAM</div>
+      </div>
+    </div>
+    <div style="margin-top:1rem;display:flex;gap:0.5rem;">
+      <span class="proto-btn">Salvar</span>
+      <span class="proto-btn" style="background:#6c757d;">Voltar</span>
+    </div>
+  </div>
+</div>
+<div class="caption">Figura 10 — Protótipo do formulário de cadastro de item</div>
+
+<h2 id="bd">11. Banco de Dados e Dicionário de Dados</h2>
+
+<h3>11.1 Visão Geral</h3>
+<p>
+O banco de dados <code>lab_hardware</code> utiliza MySQL 8.0 com charset UTF-8mb4.
+O schema está definido em <code>docker/mysql/init.sql</code>.
+</p>
+
+<h3>11.2 Diagrama Entidade-Relacionamento (DER)</h3>
+<div class="diagram-container">
+<svg width="700" height="400" viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- usuarios -->
+  <rect x="20" y="20" width="180" height="120" rx="6" fill="#cfe2ff" stroke="#0d6efd" stroke-width="2"/>
+  <rect x="20" y="20" width="180" height="25" rx="6" fill="#0d6efd"/>
+  <text x="110" y="37" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">usuarios</text>
+  <text x="30" y="60" font-size="9" fill="#084298">PK  id (INT)</text>
+  <text x="30" y="75" font-size="9" fill="#084298">    username (VARCHAR 50)</text>
+  <text x="30" y="90" font-size="9" fill="#084298">    senha (VARCHAR 255)</text>
+  <text x="30" y="105" font-size="9" fill="#084298">    tipo (ENUM)</text>
+  <text x="30" y="120" font-size="9" fill="#084298">    criado_em (TIMESTAMP)</text>
+  <text x="30" y="135" font-size="9" fill="#084298">    atualizado_em (TIMESTAMP)</text>
+  <!-- tipos_itens -->
+  <rect x="20" y="170" width="180" height="90" rx="6" fill="#d1e7dd" stroke="#198754" stroke-width="2"/>
+  <rect x="20" y="170" width="180" height="25" rx="6" fill="#198754"/>
+  <text x="110" y="187" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">tipos_itens</text>
+  <text x="30" y="210" font-size="9" fill="#0f5132">PK  id (INT)</text>
+  <text x="30" y="225" font-size="9" fill="#0f5132">    nome (VARCHAR 100)</text>
+  <text x="30" y="240" font-size="9" fill="#0f5132">    descricao (TEXT)</text>
+  <text x="30" y="255" font-size="9" fill="#0f5132">    criado_em (TIMESTAMP)</text>
+  <!-- itens -->
+  <rect x="260" y="170" width="200" height="120" rx="6" fill="#fff3cd" stroke="#ffc107" stroke-width="2"/>
+  <rect x="260" y="170" width="200" height="25" rx="6" fill="#ffc107"/>
+  <text x="360" y="187" text-anchor="middle" font-size="11" font-weight="bold" fill="#664d03">itens</text>
+  <text x="270" y="210" font-size="9" fill="#664d03">PK  id (INT)</text>
+  <text x="270" y="225" font-size="9" fill="#664d03">    codigo_patrimonio (VARCHAR 50)</text>
+  <text x="270" y="240" font-size="9" fill="#664d03">    nome (VARCHAR 100)</text>
+  <text x="270" y="255" font-size="9" fill="#664d03">FK  tipo_id (INT) → tipos_itens</text>
+  <text x="270" y="270" font-size="9" fill="#664d03">    status (ENUM)</text>
+  <text x="270" y="285" font-size="9" fill="#664d03">    localizacao (VARCHAR 100)</text>
+  <!-- laboratorios -->
+  <rect x="500" y="20" width="180" height="120" rx="6" fill="#f8d7da" stroke="#dc3545" stroke-width="2"/>
+  <rect x="500" y="20" width="180" height="25" rx="6" fill="#dc3545"/>
+  <text x="590" y="37" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">laboratorios</text>
+  <text x="510" y="60" font-size="9" fill="#842029">PK  id (INT)</text>
+  <text x="510" y="75" font-size="9" fill="#842029">    codigo (VARCHAR 20)</text>
+  <text x="510" y="90" font-size="9" fill="#842029">    nome (VARCHAR 100)</text>
+  <text x="510" y="105" font-size="9" fill="#842029">    tipo (ENUM)</text>
+  <text x="510" y="120" font-size="9" fill="#842029">    tecnico_responsavel</text>
+  <text x="510" y="135" font-size="9" fill="#842029">    criado_em (TIMESTAMP)</text>
+  <!-- emprestimos -->
+  <rect x="500" y="170" width="180" height="120" rx="6" fill="#e9ecef" stroke="#6c757d" stroke-width="2"/>
+  <rect x="500" y="170" width="180" height="25" rx="6" fill="#6c757d"/>
+  <text x="590" y="187" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">emprestimos</text>
+  <text x="510" y="210" font-size="9" fill="#495057">PK  id (INT)</text>
+  <text x="510" y="225" font-size="9" fill="#495057">FK  usuario_id → usuarios</text>
+  <text x="510" y="240" font-size="9" fill="#495057">FK  equipamento_id → equip.</text>
+  <text x="510" y="255" font-size="9" fill="#495057">    data_emprestimo (TS)</text>
+  <text x="510" y="270" font-size="9" fill="#495057">    data_devolucao (TS)</text>
+  <text x="510" y="285" font-size="9" fill="#495057">    status (ENUM)</text>
+  <!-- agendamentos -->
+  <rect x="260" y="320" width="200" height="70" rx="6" fill="#e9ecef" stroke="#6c757d" stroke-width="2"/>
+  <rect x="260" y="320" width="200" height="25" rx="6" fill="#6c757d"/>
+  <text x="360" y="337" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">agendamentos</text>
+  <text x="270" y="360" font-size="9" fill="#495057">PK  id | FK usuario_id | FK laboratorio_id</text>
+  <text x="270" y="375" font-size="9" fill="#495057">data_inicio | data_fim | finalidade | status</text>
+  <!-- Relacionamentos -->
+  <line x1="200" y1="215" x2="260" y2="245" stroke="#495057" stroke-width="1.5"/>
+  <text x="225" y="225" font-size="8" fill="#495057">1:N</text>
+  <line x1="460" y1="220" x2="500" y2="220" stroke="#495057" stroke-width="1.5"/>
+  <text x="475" y="215" font-size="8" fill="#495057">1:N</text>
+  <line x1="590" y1="70" x2="590" y2="170" stroke="#495057" stroke-width="1.5"/>
+  <text x="595" y="120" font-size="8" fill="#495057">1:N</text>
+  <line x1="360" y1="290" x2="360" y2="320" stroke="#495057" stroke-width="1.5"/>
+  <text x="365" y="305" font-size="8" fill="#495057">1:N</text>
+  <line x1="590" y1="140" x2="590" y2="170" stroke="#495057" stroke-width="1.5"/>
+  <text x="595" y="155" font-size="8" fill="#495057">1:N</text>
+</svg>
+<div class="caption">Figura 11 — Diagrama Entidade-Relacionamento (DER) simplificado</div>
+</div>
+
+<h3>11.3 Dicionário de Dados Completo</h3>
+
+<h4>Tabela: usuarios</h4>
+<table>
+  <thead><tr><th>Campo</th><th>Tipo</th><th>Null</th><th>Default</th><th>Descrição</th></tr></thead>
+  <tbody>
+    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>NO</td><td>—</td><td>Chave primária</td></tr>
+    <tr><td>username</td><td>VARCHAR(50)</td><td>NO</td><td>—</td><td>Nome de usuário (único)</td></tr>
+    <tr><td>senha</td><td>VARCHAR(255)</td><td>NO</td><td>—</td><td>Senha hasheada (bcrypt)</td></tr>
+            <tr><td>tipo</td><td>ENUM('administrador','padrao')</td><td>NO</td><td>'padrao'</td><td>Nível de acesso — coluna renomeada de <code>role</code> para <code>tipo</code> via migration (2026-05-21)</td></tr>
+    <tr><td>criado_em</td><td>TIMESTAMP</td><td>YES</td><td>CURRENT</td><td>Data de criação</td></tr>
+    <tr><td>atualizado_em</td><td>TIMESTAMP</td><td>YES</td><td>CURRENT</td><td>Última atualização</td></tr>
+  </tbody>
+</table>
+
+<h4>Tabela: laboratorios</h4>
+<table>
+  <thead><tr><th>Campo</th><th>Tipo</th><th>Null</th><th>Default</th><th>Descrição</th></tr></thead>
+  <tbody>
+    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>NO</td><td>—</td><td>Chave primária</td></tr>
+    <tr><td>codigo</td><td>VARCHAR(20)</td><td>NO</td><td>—</td><td>Código do laboratório (único)</td></tr>
+    <tr><td>lugar</td><td>VARCHAR(100)</td><td>NO</td><td>—</td><td>Localização física</td></tr>
+    <tr><td>nome</td><td>VARCHAR(100)</td><td>NO</td><td>—</td><td>Nome do laboratório</td></tr>
+    <tr><td>tipo</td><td>ENUM('redes','hardware','robotica','informatica_normal')</td><td>NO</td><td>'informatica_normal'</td><td>Categoria</td></tr>
+    <tr><td>tecnico_responsavel</td><td>VARCHAR(100)</td><td>YES</td><td>NULL</td><td>Técnico responsável</td></tr>
+    <tr><td>informacao_adicional</td><td>TEXT</td><td>YES</td><td>NULL</td><td>Observações</td></tr>
+    <tr><td>criado_em</td><td>TIMESTAMP</td><td>YES</td><td>CURRENT</td><td>Data de criação</td></tr>
+    <tr><td>atualizado_em</td><td>TIMESTAMP</td><td>YES</td><td>CURRENT</td><td>Última atualização</td></tr>
+  </tbody>
+</table>
+
+<h4>Tabela: equipamentos</h4>
+<table>
+  <thead><tr><th>Campo</th><th>Tipo</th><th>Null</th><th>Default</th><th>Descrição</th></tr></thead>
+  <tbody>
+    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>NO</td><td>—</td><td>Chave primária</td></tr>
+    <tr><td>nome</td><td>VARCHAR(100)</td><td>NO</td><td>—</td><td>Nome do equipamento</td></tr>
+    <tr><td>descricao</td><td>TEXT</td><td>YES</td><td>NULL</td><td>Descrição detalhada</td></tr>
+    <tr><td>quantidade</td><td>INT</td><td>NO</td><td>1</td><td>Quantidade total</td></tr>
+    <tr><td>disponivel</td><td>INT</td><td>NO</td><td>1</td><td>Quantidade disponível</td></tr>
+    <tr><td>criado_em</td><td>TIMESTAMP</td><td>YES</td><td>CURRENT</td><td>Data de criação</td></tr>
+    <tr><td>atualizado_em</td><td>TIMESTAMP</td><td>YES</td><td>CURRENT</td><td>Última atualização</td></tr>
+  </tbody>
+</table>
+
+<h4>Tabela: itens</h4>
+<table>
+  <thead><tr><th>Campo</th><th>Tipo</th><th>Null</th><th>Default</th><th>Descrição</th></tr></thead>
+  <tbody>
+    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>NO</td><td>—</td><td>Chave primária</td></tr>
+    <tr><td>codigo_patrimonio</td><td>VARCHAR(50)</td><td>NO</td><td>—</td><td>Código patrimonial (único)</td></tr>
+    <tr><td>nome</td><td>VARCHAR(100)</td><td>NO</td><td>—</td><td>Nome do item</td></tr>
+    <tr><td>tipo_id</td><td>INT</td><td>YES</td><td>NULL</td><td>FK → tipos_itens.id</td></tr>
+    <tr><td>status</td><td>ENUM('disponivel','emprestado','manutencao')</td><td>NO</td><td>'disponivel'</td><td>Status atual</td></tr>
+    <tr><td>descricao</td><td>TEXT</td><td>YES</td><td>NULL</td><td>Descrição do item</td></tr>
+    <tr><td>localizacao</td><td>VARCHAR(100)</td><td>YES</td><td>NULL</td><td>Localização física</td></tr>
+    <tr><td>criado_em</td><td>TIMESTAMP</td><td>YES</td><td>CURRENT</td><td>Data de cadastro</td></tr>
+    <tr><td>atualizado_em</td><td>TIMESTAMP</td><td>YES</td><td>CURRENT</td><td>Última atualização</td></tr>
+  </tbody>
+</table>
+
+<h4>Tabela: tipos_itens</h4>
+<table>
+  <thead><tr><th>Campo</th><th>Tipo</th><th>Null</th><th>Default</th><th>Descrição</th></tr></thead>
+  <tbody>
+    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>NO</td><td>—</td><td>Chave primária</td></tr>
+    <tr><td>nome</td><td>VARCHAR(100)</td><td>NO</td><td>—</td><td>Nome do tipo (único)</td></tr>
+    <tr><td>descricao</td><td>TEXT</td><td>YES</td><td>NULL</td><td>Descrição do tipo</td></tr>
+    <tr><td>criado_em</td><td>TIMESTAMP</td><td>YES</td><td>CURRENT</td><td>Data de criação</td></tr>
+    <tr><td>atualizado_em</td><td>TIMESTAMP</td><td>YES</td><td>CURRENT</td><td>Última atualização</td></tr>
+  </tbody>
+</table>
+
+<h4>Tabela: emprestimos</h4>
+<table>
+  <thead><tr><th>Campo</th><th>Tipo</th><th>Null</th><th>Default</th><th>Descrição</th></tr></thead>
+  <tbody>
+    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>NO</td><td>—</td><td>Chave primária</td></tr>
+    <tr><td>usuario_id</td><td>INT</td><td>NO</td><td>—</td><td>FK → usuarios.id (CASCADE)</td></tr>
+    <tr><td>equipamento_id</td><td>INT</td><td>NO</td><td>—</td><td>FK → equipamentos.id (CASCADE)</td></tr>
+    <tr><td>data_emprestimo</td><td>TIMESTAMP</td><td>YES</td><td>CURRENT</td><td>Data do empréstimo</td></tr>
+    <tr><td>data_devolucao</td><td>TIMESTAMP</td><td>YES</td><td>NULL</td><td>Data da devolução</td></tr>
+    <tr><td>status</td><td>ENUM('pendente','devolvido','atrasado')</td><td>NO</td><td>'pendente'</td><td>Status do empréstimo</td></tr>
+    <tr><td>observacao</td><td>TEXT</td><td>YES</td><td>NULL</td><td>Observações</td></tr>
+    <tr><td>criado_em</td><td>TIMESTAMP</td><td>YES</td><td>CURRENT</td><td>Data de registro</td></tr>
+    <tr><td>atualizado_em</td><td>TIMESTAMP</td><td>YES</td><td>CURRENT</td><td>Última atualização</td></tr>
+  </tbody>
+</table>
+
+<h4>Tabela: agendamentos</h4>
+<table>
+  <thead><tr><th>Campo</th><th>Tipo</th><th>Null</th><th>Default</th><th>Descrição</th></tr></thead>
+  <tbody>
+    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>NO</td><td>—</td><td>Chave primária</td></tr>
+    <tr><td>usuario_id</td><td>INT</td><td>NO</td><td>—</td><td>FK → usuarios.id (CASCADE)</td></tr>
+    <tr><td>laboratorio_id</td><td>INT</td><td>NO</td><td>—</td><td>FK → laboratorios.id (CASCADE)</td></tr>
+    <tr><td>data_inicio</td><td>DATETIME</td><td>NO</td><td>—</td><td>Início do agendamento</td></tr>
+    <tr><td>data_fim</td><td>DATETIME</td><td>NO</td><td>—</td><td>Fim do agendamento</td></tr>
+    <tr><td>finalidade</td><td>VARCHAR(255)</td><td>YES</td><td>NULL</td><td>Finalidade do uso</td></tr>
+    <tr><td>status</td><td>ENUM('pendente','aprovado','cancelado','concluido')</td><td>NO</td><td>'pendente'</td><td>Status do agendamento</td></tr>
+    <tr><td>criado_em</td><td>TIMESTAMP</td><td>YES</td><td>CURRENT</td><td>Data de criação</td></tr>
+    <tr><td>atualizado_em</td><td>TIMESTAMP</td><td>YES</td><td>CURRENT</td><td>Última atualização</td></tr>
+  </tbody>
+</table>
+
+<h4>Tabela: login_attempts</h4>
+<table>
+  <thead><tr><th>Campo</th><th>Tipo</th><th>Null</th><th>Default</th><th>Descrição</th></tr></thead>
+  <tbody>
+    <tr><td>id</td><td>INT AUTO_INCREMENT</td><td>NO</td><td>—</td><td>Chave primária</td></tr>
+    <tr><td>ip_address</td><td>VARCHAR(45)</td><td>NO</td><td>—</td><td>Endereço IP da tentativa</td></tr>
+    <tr><td>username</td><td>VARCHAR(50)</td><td>NO</td><td>—</td><td>Nome de usuário tentado</td></tr>
+    <tr><td>attempted_at</td><td>TIMESTAMP</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>Data/hora da tentativa</td></tr>
+    <tr><td>success</td><td>TINYINT(1)</td><td>NO</td><td>0</td><td>1 = sucesso, 0 = falha</td></tr>
+  </tbody>
+</table>
+<p><em>Tabela auxiliar criada automaticamente pelo rate limiter. Fonte: <code>docker/mysql/migrations/01_add_login_attempts.sql</code>. Índices em <code>ip_address+attempted_at</code>, <code>username</code> e <code>success</code>.</em></p>
+
+<h2 id="modulos">12. Módulos Implementados</h2>
+
+<h3>12.1 Módulo de Autenticação</h3>
+<p>
+Sistema de login com sessão PHP, senha hasheada em bcrypt e controle de tipo de usuário
+(<span class="badge badge-blue">administrador</span> / <span class="badge badge-green">padrão</span>).
+Inclui página de login responsiva com validação client-side e server-side.
+A coluna <code>tipo</code> (renomeada de <code>role</code> via migration) controla o nível de acesso.
+Utilitários de sessão em <code>src/utils/session.php</code> gerenciam timeout de inatividade (30 min)
+e regeneração de ID de sessão para prevenção de fixation.
+</p>
+
+<h3>12.2 Módulo de Itens (CRUD Completo)</h3>
+<p>
+Gerencia o inventário com cadastro, listagem com filtros, edição e exclusão.
+Cada item possui código de patrimônio único, tipo, status e localização física.
+</p>
+
+<h3>12.3 Módulo de Empréstimos e Devoluções</h3>
+<p>
+Módulo implementado com CRUD completo. Inclui listagem de empréstimos ativos,
+cadastro de novos empréstimos com validação de disponibilidade, edição de registros,
+e página dedicada para visualização de empréstimos atrasados.
+Arquivos: <code>src/emprestimos/listar.php</code>, <code>cadastrar.php</code>,
+<code>editar.php</code>, <code>atrasados.php</code>.
+</p>
+
+<h3>12.4 Módulo de Agendamentos</h3>
+<p>
+Tabelas criadas no banco. Implementação do CRUD em desenvolvimento.
+</p>
+
+<h3>12.5 Módulo de Relatórios (Módulo 4)</h3>
+<p>
+Estrutura base de relatórios implementada (interface Bootstrap); funcionalidades avançadas — gráficos dinâmicos, exportação de dados e dashboard completo — pendentes de desenvolvimento.
+</p>
+
+<h3>12.6 Módulo de Fórum (Módulo 5)</h3>
+<p>
+Planejado com integração via Flarum (tema personalizado e suporte a pt-BR).
+Implementação pendente de desenvolvimento — ver item BL-10 do backlog.
+</p>
+
+<h3>12.7 Segurança e Correções</h3>
+<p>
+Correções de segurança aplicadas com base em auditoria defensiva (LIM-77, LIM-200, LIM-274):
+</p>
+<ul>
+  <li><strong>XSS em Flash Messages (LIM-201):</strong> Substituição de <code>strip_tags()</code> por <code>htmlspecialchars()</code> em <code>src/config/flash.php</code>, eliminando vetor de injeção de JavaScript via atributos de tags HTML permitidas.</li>
+  <li><strong>Syntax Error em Login (LIM-201):</strong> Correção de chave não fechada em <code>src/login.php</code> que impedia o funcionamento correto do módulo de autenticação.</li>
+  <li><strong>Feedback de CSRF (LIM-201):</strong> Adicionada mensagem de retorno para falha de validação CSRF no login, melhorando a experiência do usuário e a segurança.</li>
+  <li><strong>Rate Limiting (LIM-274):</strong> Implementado limite de 5 tentativas de login por IP com bloqueio de 15 minutos. O log de tentativas é armazenado em <code>src/admin/login_log.php</code> e acessível apenas por administradores. Estudo disponível em <code>docs/estudos/LIM-274-rate-limit-estudo.md</code>.</li>
+  <li><strong>CSP Headers (LIM-248):</strong> Implementado Content Security Policy via <code>src/config/security_headers.php</code>, restringindo fontes de script, estilo e conexão. Estudo disponível em <code>docs/estudos/LIM-248-csp-header.md</code>.</li>
+  <li><strong>CSRF Tokens:</strong> Proteção contra Cross-Site Request Forgery implementada em todos os formulários via <code>src/config/csrf.php</code>, com tokens armazenados em sessão.</li>
+  <li><strong>Senhas hasheadas:</strong> Autenticação utiliza bcrypt para armazenamento seguro de senhas.</li>
+  <li><strong>Sessão segura:</strong> Controle de sessão PHP com regeneração de ID e timeout de inatividade via <code>src/utils/session.php</code>.</li>
+  <li><strong>Security headers automáticos:</strong> O arquivo <code>src/config/security_headers.php</code> é incluído via <code>require_once</code> no cabeçalho de autenticação e na página de logout, garantindo que todas as páginas protegidas recebam os headers CSP, X-Frame-Options e Referrer-Policy.</li>
+  <li><strong>Erros ocultos em produção:</strong> <code>display_errors = Off</code> no <code>docker/php/php.ini</code> para evitar vazamento de informações do servidor.</li>
+</ul>
+<p>Estudos técnicos disponíveis em <code>docs/estudos/LIM-201-correcao-xss-flash.md</code>, <code>docs/estudos/LIM-248-csp-header.md</code> e <code>docs/estudos/LIM-202-testes-manuais.md</code>.</p>
+
+<h2 id="materiais">13. Materiais Recebidos e Inventário</h2>
+
+<table>
+  <thead><tr><th>Material</th><th>Tipo</th><th>Origem</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>documentacao-do-projeto.pdf</td><td>PDF (~20MB)</td><td>Documentação oficial</td><td><span class="badge badge-green">Referenciado</span></td></tr>
+    <tr><td>lab_system.rar</td><td>RAR (~21MB)</td><td>Protótipo alunos</td><td><span class="badge badge-green">Extraído</span></td></tr>
+    <tr><td>LAB HAD.docx</td><td>DOCX (~2MB)</td><td>Documento laboratório</td><td><span class="badge badge-green">Referenciado</span></td></tr>
+    <tr><td>Relatório lab system.pdf</td><td>PDF (~19MB)</td><td>Relatório sistema</td><td><span class="badge badge-green">Referenciado</span></td></tr>
+    <tr><td>Requisitos .docx</td><td>DOCX (~312KB)</td><td>Requisitos do sistema</td><td><span class="badge badge-green">Referenciado</span></td></tr>
+    <tr><td>Modulo_4_relatorios/</td><td>PHP + Imagens</td><td>Grupo 4</td><td><span class="badge badge-blue">Copiado</span></td></tr>
+    <tr><td>Modulo_5_forum/</td><td>Flarum (PHP)</td><td>Grupo 5</td><td><span class="badge badge-blue">Referenciado</span></td></tr>
+  </tbody>
+</table>
+
+<h2 id="contingencia">14. Plano de Contingência</h2>
+
+<p>
+O plano de contingência identifica riscos potenciais e define ações preventivas e corretivas:
+</p>
+
+<table>
+  <thead><tr><th>ID</th><th>Risco</th><th>Prob.</th><th>Impacto</th><th>Ação Preventiva</th><th>Ação Corretiva</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>RC-01</td><td>Perda de dados do banco</td>
+      <td><span class="badge badge-yellow">Média</span></td>
+      <td><span class="badge badge-red">Alto</span></td>
+      <td>Backup diário automatizado via Docker volume</td>
+      <td>Restaurar último backup; reexecutar init.sql</td>
+    </tr>
+    <tr>
+      <td>RC-02</td><td>Indisponibilidade do servidor</td>
+      <td><span class="badge badge-yellow">Média</span></td>
+      <td><span class="badge badge-red">Alto</span></td>
+      <td>Monitoramento de saúde do container</td>
+      <td>Reiniciar container; verificar logs</td>
+    </tr>
+    <tr>
+      <td>RC-03</td><td>Acesso não autorizado</td>
+      <td><span class="badge badge-yellow">Média</span></td>
+      <td><span class="badge badge-red">Alto</span></td>
+      <td>Senhas bcrypt; controle de sessão; HTTPS</td>
+      <td>Invalidar sessões; reset de senhas; auditoria</td>
+    </tr>
+    <tr>
+      <td>RC-04</td><td>Conflito de agendamento</td>
+      <td><span class="badge badge-green">Baixa</span></td>
+      <td><span class="badge badge-yellow">Médio</span></td>
+      <td>Validação de sobreposição no backend</td>
+      <td>Cancelar agendamento conflitante; notificar</td>
+    </tr>
+    <tr>
+      <td>RC-05</td><td>Perda de equipamento</td>
+      <td><span class="badge badge-yellow">Média</span></td>
+      <td><span class="badge badge-red">Alto</span></td>
+      <td>Controle patrimonial; registro de empréstimo</td>
+      <td>Registro de ocorrência; substituição</td>
+    </tr>
+    <tr>
+      <td>RC-06</td><td>Queda de energia</td>
+      <td><span class="badge badge-green">Baixa</span></td>
+      <td><span class="badge badge-yellow">Médio</span></td>
+      <td>UPS no servidor; InnoDB com transações</td>
+      <td>Verificar integridade do banco após retorno</td>
+    </tr>
+    <tr>
+      <td>RC-07</td><td>Erro de deploy em produção</td>
+      <td><span class="badge badge-green">Baixa</span></td>
+      <td><span class="badge badge-red">Alto</span></td>
+      <td>Testes em staging antes de produção</td>
+      <td>Rollback para versão anterior estável</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="contingency-box">
+  <strong>⚠ Procedimento de Emergência:</strong> Em caso de falha crítica, o procedimento padrão é:
+  (1) Parar os containers com <code>docker compose down</code>;
+  (2) Verificar integridade dos volumes;
+  (3) Restaurar backup mais recente;
+  (4) Recriar containers com <code>docker compose up -d</code>;
+  (5) Validar acesso e dados.
+</div>
+
+<h2 id="backlog">15. Planejamento do Backlog — Gantt e Burndown</h2>
+
+<h3>15.1 Gráfico de Gantt</h3>
+<p>Cronograma estimado do projeto (Maio 2026 – Abril 2027):</p>
+
+<div class="gantt-chart">
+  <div class="g-header">Tarefa</div>
+  <div class="g-header">Mai</div>
+  <div class="g-header">Jun</div>
+  <div class="g-header">Jul</div>
+  <div class="g-header">Ago</div>
+  <div class="g-header">Set</div>
+  <div class="g-header">Out</div>
+  <div class="g-header">Nov</div>
+  <div class="g-header">Dez</div>
+  <div class="g-header">Jan</div>
+  <div class="g-header">Fev</div>
+  <div class="g-header">Mar</div>
+  <div class="g-header">Abr</div>
+
+  <div class="g-label">1. Análise e Requisitos</div>
+  <div class="g-cell"><div class="g-bar g-green" style="width:100%;">✓</div></div>
+  <div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+
+  <div class="g-label">2. Modelagem (DFD/DER)</div>
+  <div class="g-cell"><div class="g-bar g-green" style="width:100%;">✓</div></div>
+  <div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+
+  <div class="g-label">3. Protótipos de Tela</div>
+  <div class="g-cell"><div class="g-bar g-green" style="width:100%;">✓</div></div>
+  <div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+
+  <div class="g-label">4. Infraestrutura Docker</div>
+  <div class="g-cell"><div class="g-bar g-green" style="width:100%;">✓</div></div>
+  <div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+
+  <div class="g-label">5. Módulo Autenticação</div>
+  <div class="g-cell"><div class="g-bar g-green" style="width:100%;">✓</div></div>
+  <div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+
+  <div class="g-label">6. CRUD Itens</div>
+  <div class="g-cell"><div class="g-bar g-green" style="width:100%;">✓</div></div>
+  <div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+
+  <div class="g-label">7. Módulo Empréstimos</div>
+  <div class="g-cell"><div class="g-bar g-green" style="width:100%;">✓</div></div>
+  <div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+
+  <div class="g-label">8. Módulo Agendamentos</div>
+  <div class="g-cell"></div><div class="g-cell"></div>
+  <div class="g-cell"><div class="g-bar g-blue" style="width:100%;">⬛</div></div>
+  <div class="g-cell"><div class="g-bar g-blue" style="width:100%;">⬛</div></div>
+  <div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+
+  <div class="g-label">9. Módulo Relatórios</div>
+  <div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+  <div class="g-cell"><div class="g-bar g-yellow" style="width:100%;">⬛</div></div>
+  <div class="g-cell"><div class="g-bar g-yellow" style="width:100%;">⬛</div></div>
+  <div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+
+  <div class="g-label">10. Módulo Fórum</div>
+  <div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+  <div class="g-cell"><div class="g-bar g-yellow" style="width:100%;">⬛</div></div>
+  <div class="g-cell"><div class="g-bar g-yellow" style="width:100%;">⬛</div></div>
+  <div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+
+  <div class="g-label">11. Módulo Auditoria</div>
+  <div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+  <div class="g-cell"><div class="g-bar g-yellow" style="width:100%;">⬛</div></div>
+  <div class="g-cell"><div class="g-bar g-yellow" style="width:100%;">⬛</div></div>
+  <div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+
+  <div class="g-label">12. Testes</div>
+  <div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+  <div class="g-cell"><div class="g-bar g-red" style="width:100%;">⬛</div></div>
+  <div class="g-cell"><div class="g-bar g-red" style="width:100%;">⬛</div></div>
+  <div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+
+  <div class="g-label">13. Deploy Produção</div>
+  <div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div><div class="g-cell"></div>
+  <div class="g-cell"><div class="g-bar g-gray" style="width:100%;">⬛</div></div>
+  <div class="g-cell"><div class="g-bar g-gray" style="width:100%;">⬛</div></div>
+  <div class="g-cell"></div><div class="g-cell"></div>
+</div>
+
+<h3>15.2 Gráfico Burndown</h3>
+<p>
+Projeção de trabalho restante ao longo das sprints (estimativa em story points):
+</p>
+
+<div class="burndown-chart">
+<svg width="680" height="300" viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Grid -->
+  <line x1="60" y1="20" x2="60" y2="260" stroke="#dee2e6" stroke-width="1"/>
+  <line x1="60" y1="260" x2="660" y2="260" stroke="#dee2e6" stroke-width="1"/>
+  <!-- Horizontal grid lines -->
+  <line x1="60" y1="68" x2="660" y2="68" stroke="#f1f3f5" stroke-width="1"/>
+  <line x1="60" y1="116" x2="660" y2="116" stroke="#f1f3f5" stroke-width="1"/>
+  <line x1="60" y1="164" x2="660" y2="164" stroke="#f1f3f5" stroke-width="1"/>
+  <line x1="60" y1="212" x2="660" y2="212" stroke="#f1f3f5" stroke-width="1"/>
+  <!-- Y axis labels -->
+  <text x="50" y="24" text-anchor="end" font-size="9" fill="#6c757d">120</text>
+  <text x="50" y="72" text-anchor="end" font-size="9" fill="#6c757d">100</text>
+  <text x="50" y="120" text-anchor="end" font-size="9" fill="#6c757d">80</text>
+  <text x="50" y="168" text-anchor="end" font-size="9" fill="#6c757d">60</text>
+  <text x="50" y="216" text-anchor="end" font-size="9" fill="#6c757d">40</text>
+  <text x="50" y="264" text-anchor="end" font-size="9" fill="#6c757d">0</text>
+  <!-- X axis labels -->
+  <text x="60" y="280" text-anchor="middle" font-size="9" fill="#6c757d">S1</text>
+  <text x="120" y="280" text-anchor="middle" font-size="9" fill="#6c757d">S2</text>
+  <text x="180" y="280" text-anchor="middle" font-size="9" fill="#6c757d">S3</text>
+  <text x="240" y="280" text-anchor="middle" font-size="9" fill="#6c757d">S4</text>
+  <text x="300" y="280" text-anchor="middle" font-size="9" fill="#6c757d">S5</text>
+  <text x="360" y="280" text-anchor="middle" font-size="9" fill="#6c757d">S6</text>
+  <text x="420" y="280" text-anchor="middle" font-size="9" fill="#6c757d">S7</text>
+  <text x="480" y="280" text-anchor="middle" font-size="9" fill="#6c757d">S8</text>
+  <text x="540" y="280" text-anchor="middle" font-size="9" fill="#6c757d">S9</text>
+  <text x="600" y="280" text-anchor="middle" font-size="9" fill="#6c757d">S10</text>
+  <text x="660" y="280" text-anchor="middle" font-size="9" fill="#6c757d">S11</text>
+  <!-- Ideal burndown line (dashed) -->
+  <line x1="60" y1="20" x2="660" y2="260" stroke="#dc3545" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="370" y="145" font-size="9" fill="#dc3545">Ideal</text>
+  <!-- Actual burndown line -->
+  <polyline points="60,20 120,50 180,85 240,110 300,140 360,175 420,200 480,220 540,235 600,248 660,260"
+    fill="none" stroke="#0d6efd" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Data points -->
+  <circle cx="60" cy="20" r="4" fill="#0d6efd"/>
+  <circle cx="120" cy="50" r="4" fill="#0d6efd"/>
+  <circle cx="180" cy="85" r="4" fill="#0d6efd"/>
+  <circle cx="240" cy="110" r="4" fill="#0d6efd"/>
+  <circle cx="300" cy="140" r="4" fill="#0d6efd"/>
+  <circle cx="360" cy="175" r="4" fill="#0d6efd"/>
+  <circle cx="420" cy="200" r="4" fill="#0d6efd"/>
+  <circle cx="480" cy="220" r="4" fill="#0d6efd"/>
+  <circle cx="540" cy="235" r="4" fill="#0d6efd"/>
+  <circle cx="600" cy="248" r="4" fill="#0d6efd"/>
+  <circle cx="660" cy="260" r="4" fill="#198754"/>
+  <!-- Labels -->
+  <text x="360" y="15" text-anchor="middle" font-size="11" font-weight="bold" fill="#495057">Burndown Chart — Story Points Restantes</text>
+  <text x="15" y="145" text-anchor="middle" font-size="9" fill="#6c757d" transform="rotate(-90 15 145)">Story Points</text>
+  <text x="360" y="298" text-anchor="middle" font-size="9" fill="#6c757d">Sprint</text>
+  <!-- Legend -->
+  <rect x="520" y="30" width="12" height="3" fill="#dc3545" stroke="none"/>
+  <text x="538" y="34" font-size="8" fill="#6c757d">Ideal</text>
+  <rect x="520" y="45" width="12" height="3" fill="#0d6efd" stroke="none"/>
+  <text x="538" y="49" font-size="8" fill="#6c757d">Real</text>
+</svg>
+<div class="caption">Figura 12 — Gráfico Burndown projetado (120 story points em 11 sprints)</div>
+</div>
+
+<h3>15.3 Backlog Detalhado</h3>
+<table>
+  <thead><tr><th>ID</th><th>Item do Backlog</th><th>Sprint</th><th>Story Points</th><th>Status</th><th>Prioridade</th></tr></thead>
+  <tbody>
+    <tr><td>BL-01</td><td>Análise de requisitos e documentação</td><td>S1</td><td>13</td><td><span class="badge badge-green">Concluído</span></td><td>Alta</td></tr>
+    <tr><td>BL-02</td><td>Modelagem DFD, DER e dicionário de dados</td><td>S1</td><td>8</td><td><span class="badge badge-green">Concluído</span></td><td>Alta</td></tr>
+    <tr><td>BL-03</td><td>Protótipos de tela (Figma/HTML)</td><td>S2</td><td>8</td><td><span class="badge badge-green">Concluído</span></td><td>Alta</td></tr>
+    <tr><td>BL-04</td><td>Infraestrutura Docker + MySQL</td><td>S2</td><td>8</td><td><span class="badge badge-green">Concluído</span></td><td>Alta</td></tr>
+    <tr><td>BL-05</td><td>Módulo de autenticação (login/logout)</td><td>S3</td><td>13</td><td><span class="badge badge-green">Concluído</span></td><td>Alta</td></tr>
+    <tr><td>BL-06</td><td>CRUD completo de itens</td><td>S3-S4</td><td>13</td><td><span class="badge badge-green">Concluído</span></td><td>Alta</td></tr>
+    <tr><td>BL-07</td><td>Módulo de empréstimos e devoluções</td><td>S5-S6</td><td>21</td><td><span class="badge badge-green">Concluído</span></td><td>Alta</td></tr>
+    <tr><td>BL-08</td><td>Módulo de agendamentos</td><td>S7-S8</td><td>13</td><td><span class="badge badge-gray">Pendente</span></td><td>Média</td></tr>
+    <tr><td>BL-09</td><td>Módulo de relatórios</td><td>S9-S10</td><td>8</td><td><span class="badge badge-gray">Pendente</span></td><td>Média</td></tr>
+    <tr><td>BL-10</td><td>Integração com fórum Flarum</td><td>S10-S11</td><td>8</td><td><span class="badge badge-gray">Pendente</span></td><td>Baixa</td></tr>
+    <tr><td>BL-11</td><td>Módulo de auditoria e logs</td><td>S11</td><td>5</td><td><span class="badge badge-gray">Pendente</span></td><td>Média</td></tr>
+    <tr><td>BL-12</td><td>Testes automatizados</td><td>S12</td><td>8</td><td><span class="badge badge-gray">Pendente</span></td><td>Alta</td></tr>
+    <tr><td>BL-13</td><td>Deploy em produção</td><td>S13</td><td>5</td><td><span class="badge badge-gray">Pendente</span></td><td>Alta</td></tr>
+  </tbody>
+</table>
+
+<h2 id="analise-backlog">16. Análise do Backlog Priorizado</h2>
+
+<h3>16.1 Contexto da Priorização</h3>
+<p>
+O backlog do projeto foi priorizado utilizando a <strong>Matriz de Impacto vs Esforço</strong>,
+metodologia clássica de gestão de produtos que classifica tarefas em quatro quadrantes:
+Quick Wins (alto impacto, baixo esforço), Major Projects (alto impacto, alto esforço),
+Fill-ins (baixo impacto, baixo esforço) e Time Sinks (baixo impacto, alto esforço).
+O documento <code>BACKLOG_PRIORITIZACAO.md</code> contém a priorização completa com 10 tarefas
+distribuídas entre esses quadrantes.
+</p>
+
+<h3>16.2 Distribuição das Tarefas</h3>
+<p>
+A distribuição quantitativa revela um backlog equilibrado, com predominância de tarefas de
+alto impacto (5 de 8 tarefas implementáveis, excluindo-se os 2 Time Sinks recomendados para
+reavaliação). O gráfico abaixo ilustra a proporção de cada categoria:
+</p>
+
+<div class="diagram-container">
+<svg width="680" height="320" viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+  <text x="340" y="25" text-anchor="middle" font-size="13" font-weight="bold" fill="#495057">Distribuição do Backlog por Categoria</text>
+  <!-- Quick Wins -->
+  <rect x="60" y="50" width="560" height="40" rx="4" fill="#d1e7dd" stroke="#198754" stroke-width="1.5"/>
+  <text x="70" y="75" font-size="11" font-weight="bold" fill="#0f5132">Quick Wins (3)</text>
+  <text x="600" y="75" text-anchor="end" font-size="10" fill="#0f5132">37,5%</text>
+  <text x="340" y="75" text-anchor="middle" font-size="10" fill="#0f5132">Correção Root Path · Limpeza Issues · Keyword Abstract</text>
+  <!-- Major Projects -->
+  <rect x="60" y="100" width="373" height="40" rx="4" fill="#cfe2ff" stroke="#0d6efd" stroke-width="1.5"/>
+  <text x="70" y="125" font-size="11" font-weight="bold" fill="#084298">Major Projects (2)</text>
+  <text x="415" y="125" text-anchor="end" font-size="10" fill="#084298">25%</text>
+  <text x="280" y="125" text-anchor="middle" font-size="10" fill="#084298">Módulo Empréstimos · Segurança</text>
+  <!-- Fill-ins -->
+  <rect x="60" y="150" width="373" height="40" rx="4" fill="#fff3cd" stroke="#ffc107" stroke-width="1.5"/>
+  <text x="70" y="175" font-size="11" font-weight="bold" fill="#664d03">Fill-ins (3)</text>
+  <text x="415" y="175" text-anchor="end" font-size="10" fill="#664d03">37,5%</text>
+  <text x="280" y="175" text-anchor="middle" font-size="10" fill="#664d03">Documentação APIs · Performance · Dependências</text>
+  <!-- Time Sinks -->
+  <rect x="60" y="200" width="187" height="40" rx="4" fill="#f8d7da" stroke="#dc3545" stroke-width="1.5"/>
+  <text x="70" y="225" font-size="11" font-weight="bold" fill="#842029">Time Sinks (2)</text>
+  <text x="230" y="225" text-anchor="end" font-size="10" fill="#842029">25% → Evitar</text>
+  <!-- Legend -->
+  <rect x="60" y="265" width="12" height="12" fill="#d1e7dd" stroke="#198754" stroke-width="1"/>
+  <text x="78" y="275" font-size="9" fill="#495057">Quick Win</text>
+  <rect x="180" y="265" width="12" height="12" fill="#cfe2ff" stroke="#0d6efd" stroke-width="1"/>
+  <text x="198" y="275" font-size="9" fill="#495057">Major Project</text>
+  <rect x="310" y="265" width="12" height="12" fill="#fff3cd" stroke="#ffc107" stroke-width="1"/>
+  <text x="328" y="275" font-size="9" fill="#495057">Fill-in</text>
+  <rect x="420" y="265" width="12" height="12" fill="#f8d7da" stroke="#dc3545" stroke-width="1"/>
+  <text x="438" y="275" font-size="9" fill="#495057">Time Sink</text>
+</svg>
+<div class="caption">Figura 13 — Distribuição do backlog por categoria de priorização (Matriz Impacto vs Esforço)</div>
+</div>
+
+<p>
+A Matriz de Impacto vs Esforço abaixo posiciona cada tarefa nos quadrantes correspondentes:
+</p>
+
+<div class="diagram-container">
+<svg width="680" height="420" viewBox="0 0 680 420" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow-m" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#6c757d"/>
+    </marker>
+  </defs>
+  <!-- Background quadrants -->
+  <rect x="50" y="20" width="280" height="170" rx="4" fill="#d1e7dd" opacity="0.3"/>
+  <rect x="350" y="20" width="280" height="170" rx="4" fill="#cfe2ff" opacity="0.3"/>
+  <rect x="50" y="210" width="280" height="170" rx="4" fill="#fff3cd" opacity="0.3"/>
+  <rect x="350" y="210" width="280" height="170" rx="4" fill="#f8d7da" opacity="0.3"/>
+  <!-- Axis lines -->
+  <line x1="330" y1="20" x2="330" y2="380" stroke="#495057" stroke-width="2"/>
+  <line x1="50" y1="200" x2="630" y2="200" stroke="#495057" stroke-width="2"/>
+  <!-- Axis labels -->
+  <text x="340" y="15" text-anchor="middle" font-size="10" font-weight="bold" fill="#495057">Impacto</text>
+  <text x="340" y="400" text-anchor="middle" font-size="10" font-weight="bold" fill="#495057">Alto →</text>
+  <text x="340" y="400" text-anchor="middle" font-size="10" font-weight="bold" fill="#495057" transform="translate(0,0)">Alto →</text>
+  <text x="340" y="195" text-anchor="middle" font-size="10" font-weight="bold" fill="#495057">Baixo → Esforço</text>
+  <!-- Quadrant labels -->
+  <text x="190" y="105" text-anchor="middle" font-size="11" font-weight="bold" fill="#198754">QUICK WINS</text>
+  <text x="490" y="105" text-anchor="middle" font-size="11" font-weight="bold" fill="#0d6efd">MAJOR PROJECTS</text>
+  <text x="190" y="295" text-anchor="middle" font-size="11" font-weight="bold" fill="#d97706">FILL-INS</text>
+  <text x="490" y="295" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc3545">TIME SINKS</text>
+  <!-- Data points - Quick Wins -->
+  <circle cx="100" cy="60" r="6" fill="#198754" stroke="#fff" stroke-width="2"/>
+  <text x="105" y="55" font-size="8" fill="#495057">Root Path</text>
+  <circle cx="160" cy="85" r="6" fill="#198754" stroke="#fff" stroke-width="2"/>
+  <text x="165" y="80" font-size="8" fill="#495057">Limpeza Issues</text>
+  <circle cx="200" cy="110" r="6" fill="#198754" stroke="#fff" stroke-width="2"/>
+  <text x="205" y="105" font-size="8" fill="#495057">Keyword Abstract</text>
+  <!-- Data points - Major Projects -->
+  <circle cx="400" cy="60" r="6" fill="#0d6efd" stroke="#fff" stroke-width="2"/>
+  <text x="405" y="55" font-size="8" fill="#495057">Módulo Empréstimos</text>
+  <circle cx="520" cy="90" r="6" fill="#0d6efd" stroke="#fff" stroke-width="2"/>
+  <text x="525" y="85" font-size="8" fill="#495057">Segurança</text>
+  <!-- Data points - Fill-ins -->
+  <circle cx="100" cy="240" r="6" fill="#d97706" stroke="#fff" stroke-width="2"/>
+  <text x="105" y="235" font-size="8" fill="#495057">Doc. APIs</text>
+  <circle cx="180" cy="270" r="6" fill="#d97706" stroke="#fff" stroke-width="2"/>
+  <text x="185" y="265" font-size="8" fill="#495057">Performance</text>
+  <circle cx="250" cy="300" r="6" fill="#d97706" stroke="#fff" stroke-width="2"/>
+  <text x="255" y="295" font-size="8" fill="#495057">Dependências</text>
+  <!-- Data points - Time Sinks -->
+  <circle cx="450" cy="250" r="6" fill="#dc3545" stroke="#fff" stroke-width="2"/>
+  <text x="455" y="245" font-size="8" fill="#495057">Refatoração CSS</text>
+  <circle cx="550" cy="330" r="6" fill="#dc3545" stroke="#fff" stroke-width="2"/>
+  <text x="555" y="325" font-size="8" fill="#495057">Func. Não-Solicitadas</text>
+</svg>
+<div class="caption">Figura 14 — Matriz Impacto vs Esforço: posicionamento de cada tarefa do backlog</div>
+</div>
+
+<h3>16.3 Análise Crítica por Categoria</h3>
+
+<h4>Quick Wins (Alto Impacto, Baixo Esforço) — 3 tarefas</h4>
+<p>
+As Quick Wins representam <strong>37,5%</strong> das tarefas e concentram correções de alto
+valor com esforço mínimo. A correção de Root Path em <code>AGENTS.md</code> previne execução
+em contexto incorreto; a limpeza de issues duplicadas (LIM-47, LIM-48, LIM-49 identificadas
+na auditoria LIM-71) reduz ruído no board; a atualização de keyword residual no abstract
+melhora a qualidade acadêmica do documento. A execução imediata destas tarefas na Sprint 1
+é altamente recomendada.
+</p>
+
+<h4>Major Projects (Alto Impacto, Alto Esforço) — 2 tarefas</h4>
+<p>
+Os Major Projects concentram as funcionalidades críticas do sistema. O Módulo de
+Empréstimos, classificado como de maior prioridade, foi implementado e está operacional
+(commit <code>85f5e31</code>). As melhorias de segurança, incluindo correções XSS em
+flash messages (LIM-201), validação CSRF e uso de bcrypt, já foram parcialmente aplicadas.
+O planejamento em fases (básico → avançado) para Sprints 2-3 é adequado.
+</p>
+
+<h4>Fill-ins (Baixo Impacto, Baixo Esforço) — 3 tarefas</h4>
+<p>
+As tarefas de preenchimento são apropriadas para intervalos entre sprints. A documentação
+de APIs internas é a mais relevante por contribuir para a manutenibilidade do sistema.
+A otimização de performance e atualização de dependências são tarefas de manutenção
+preventiva que podem ser distribuídas ao longo do projeto.
+</p>
+
+<h4>Time Sinks (Baixo Impacto, Alto Esforço) — 2 tarefas</h4>
+<p>
+A classificação como Time Sink está correta. A refatoração total do CSS/Layout não se
+justifica neste momento, pois o layout existente é funcional. A implementação de
+funcionalidades não-solicitadas representa risco de escopo creep e deve ser evitada.
+Recomenda-se criar labels específicas no board para identificar visualmente estas tarefas.
+</p>
+
+<h3>16.4 Recomendações Finais</h3>
+<ol>
+  <li>Manter a priorização atual, executando Quick Wins na Sprint 1</li>
+  <li>Antecipar testes automatizados (BL-12, previsto para Sprint 12) para sprints iniciais</li>
+  <li>Criar label "time-sink" no board para evitar priorização acidental</li>
+  <li>Revisar a priorização a cada sprint planning conforme recomendação do backlog</li>
+  <li>Adicionar validação automatizada de consistência como extensão da correção de Root Path</li>
+</ol>
+
+<h2 id="qrcode">17. Implementação de QR Code</h2>
+
+<p>
+O módulo de QR Code foi implementado como parte da issue LIM-79 para permitir a identificação
+física de cada componente do laboratório através de etiquetas com código QR. Ao escanear a
+etiqueta com a câmera do celular, o usuário é direcionado para a página de detalhes do item
+sem necessidade de autenticação.
+</p>
+
+<h3>17.1 Fluxo Completo</h3>
+<table>
+  <thead><tr><th>Etapa</th><th>Ação</th><th>Arquivo</th><th>Descrição</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Cadastro</td><td><code>src/itens/cadastrar.php</code></td><td>Administrador cadastra novo item no sistema</td></tr>
+    <tr><td>2</td><td>Geração QR</td><td><code>src/itens/qrcode.php</code></td><td>Sistema gera QR Code com URL <code>/itens/ver.php?id=X</code></td></tr>
+    <tr><td>3</td><td>Impressão</td><td><code>src/itens/qrcode.php</code></td><td>Etiqueta é pré-visualizada e impressa com CSS @media print</td></tr>
+    <tr><td>4</td><td>Fixação</td><td>—</td><td>Etiqueta é fixada fisicamente no componente</td></tr>
+    <tr><td>5</td><td>Leitura</td><td>Câmera do celular</td><td>Usuário escaneia QR Code com app de câmera nativa</td></tr>
+    <tr><td>6</td><td>Redirecionamento</td><td><code>src/itens/ver.php</code></td><td>Navegador abre página de detalhes do item</td></tr>
+    <tr><td>7</td><td>Visualização</td><td><code>src/itens/ver.php</code></td><td>Usuário consulta nome, patrimônio, tipo, status e localização</td></tr>
+  </tbody>
+</table>
+<div class="caption">Tabela 17.1 — Fluxo completo de QR Code em 7 etapas</div>
+
+<h3>17.2 Arquivos Envolvidos</h3>
+<table>
+  <thead><tr><th>Arquivo</th><th>Tipo</th><th>Função</th></tr></thead>
+  <tbody>
+    <tr><td><code>src/itens/ver.php</code></td><td>Novo</td><td>Página de detalhes do item (mobile-first, acessível via QR)</td></tr>
+    <tr><td><code>src/itens/qrcode.php</code></td><td>Novo</td><td>Geração de QR Code, pré-visualização e impressão de etiqueta</td></tr>
+    <tr><td><code>src/itens/listar.php</code></td><td>Modificado</td><td>Coluna QR adicionada na tabela + nome do item linkado para ver.php</td></tr>
+    <tr><td><code>src/itens/cadastrar.php</code></td><td>Modificado</td><td>Mensagem de sucesso inclui link "Gerar QR Code"</td></tr>
+    <tr><td><code>src/itens/editar.php</code></td><td>Modificado</td><td>Botão "QR Code" adicionado ao lado de Salvar</td></tr>
+  </tbody>
+</table>
+<div class="caption">Tabela 17.2 — Arquivos criados e modificados para o módulo QR Code</div>
+
+<h3>17.3 Tecnologias e Regras de Negócio</h3>
+<p>
+O QR Code utiliza a biblioteca <strong>qrcodejs</strong> via CDN, sem dependência Composer.
+A URL codificada segue o formato <code>http://{$_SERVER['HTTP_HOST']}/itens/ver.php?id={item_id}</code>,
+garantindo funcionamento em rede local. A impressão é otimizada via CSS @media print para
+etiquetas físicas. A página <code>ver.php</code> não requer autenticação, permitindo leitura
+rápida por qualquer pessoa com smartphone. A documentação completa do fluxo está disponível em
+<code>docs/fluxo-qrcode.html</code>.
+</p>
+
+<h2 id="documentacao">18. Portal de Documentação Auditável</h2>
+
+<p>
+Como parte do esforço contínuo de documentação, foi implementado um portal de documentação
+navegável e auditável na pasta <code>docs/</code>, acessível via navegador e servido pelo
+Apache/Docker. O portal permite rastrear a evolução do projeto com série histórica, vinculação
+a issues, commits e agentes responsáveis.
+</p>
+
+<h3>18.1 Estrutura do Portal</h3>
+<p>A estrutura organizacional do portal segue o padrão abaixo:</p>
+<pre>
+docs/
+├── index.html              (Portal principal)
+├── artigo.html             (Artigo acadêmico — este documento)
+├── fluxo-qrcode.html       (Documentação do QR Code)
+├── assets/
+│   ├── css/main.css        (CSS unificado do portal)
+│   ├── img/                (Imagens do projeto)
+│   └── screenshots/        (Prints de tela)
+├── auditoria/              (Histórico de auditoria)
+│   └── index.html
+├── banco/                  (Documentação do banco de dados)
+│   └── index.html
+├── estudos/                (Estudos técnicos)
+│   └── index.html
+└── telas/                  (Catálogo de telas)
+    └── index.html
+</pre>
+
+<h3>18.2 Série Histórica e Rastreabilidade</h3>
+<p>
+Cada página do portal segue um padrão de auditoria com: identificação da issue relacionada,
+data, agente responsável, tipo de documento e status. Revisões preservam o conteúdo original
+e exibem a versão corrigida em bloco próprio, mantendo rastreabilidade completa das alterações.
+O CSS unificado em <code>docs/assets/css/main.css</code> garante aparência profissional com
+layout responsivo, cards de resumo, badges de status e tabelas de revisão.
+</p>
+
+<h3>18.3 Manutenção e Padrão ABNT</h3>
+<p>
+O arquivo <code>docs/artigo.html</code> é mantido como a versão oficial e canônica do artigo
+acadêmico (conforme <code>REVISAO_DOCUMENTAL.md</code>), substituindo as cópias legadas em
+<code>src/doc/artigo.html</code> e <code>src/doc/artigo1.html</code>. A documentação segue as
+normas ABNT NBR 6023 (referências) e NBR 14724 (apresentação de trabalhos acadêmicos) sempre
+que aplicável.
+</p>
+
+<h2 id="proximos">19. Próximos Passos</h2>
+
+<ol>
+  <li><strong>Módulo de Agendamentos</strong> — Calendário interativo com validação de conflitos</li>
+  <li><strong>Módulo de Relatórios</strong> — Dashboard com gráficos e exportação de dados</li>
+  <li><strong>Módulo de Auditoria</strong> — Log de todas as operações do sistema</li>
+  <li><strong>Fórum de Dúvidas</strong> — Integração com Flarum (planejado, pendente de implementação)</li>
+  <li><strong>Testes Automatizados</strong> — Cobertura de testes unitários e funcionais</li>
+  <li><strong>Deploy em Produção</strong> — Configuração de ambiente de produção com HTTPS e backup automatizado</li>
+</ol>
+
+<h2 id="pendencias">20. Pendências e Notas de Divergência</h2>
+
+<div class="contingency-box">
+  <strong>⚠ Nota de Divergência — Arquivos de Referência:</strong>
+  O arquivo <code>BACKLOG_MOBILE_FIRST.md</code> mencionado no planejamento original não está
+  presente na raiz do repositório. O arquivo <code>CHECKLIST_AUDITORIA.md</code> foi criado e
+  está disponível na raiz do workspace (verificado em Maio 2026); recomenda-se confirmar se
+  encontra-se versionado no branch final antes da entrega. O arquivo
+  <code>BACKLOG_PRIORITIZACAO.md</code> está presente na raiz e contém a priorização oficial
+  do backlog utilizando a Matriz de Impacto vs Esforço (ver seção 16). O arquivo
+  <code>docs/planejamento/BACKLOG_ORGANIZADO_LIM-143.md</code> também está disponível com
+  a organização diária do backlog. Recomenda-se a criação do <code>BACKLOG_MOBILE_FIRST.md</code>
+  para alinhamento completo com o planejamento original.
+</div>
+
+<div class="contingency-box">
+  <strong>⚠ Documentos Legados Não Oficiais — Cópias em src/doc/:</strong>
+  Os arquivos <code>src/doc/artigo.html</code> (v2.0) e <code>src/doc/artigo1.html</code> (v2.1) são
+  cópias legadas não oficiais do artigo, mantidas apenas para referência histórica.
+  A versão oficial e vigente é <code>docs/artigo.html</code> (v3.0 — este documento).
+  Conteúdo divergente entre as versões deve ser resolvido pela atualização de
+  <code>docs/artigo.html</code>. A partir da revisão LIM-344, estes legados foram verificados e registrados como
+  consistentes com o artigo oficial; sua remoção é opcional e recomendada para
+  limpeza futura do repositório.
+</div>
+
+<table>
+  <thead><tr><th>Item</th><th>Descrição</th><th>Prioridade</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>BACKLOG_MOBILE_FIRST.md</td><td>Arquivo de referência para backlog com foco mobile-first</td><td>Média</td><td><span class="badge badge-red">Ausente</span></td></tr>
+    <tr><td>BACKLOG_PRIORITIZACAO.md</td><td>Priorização do backlog com Matriz Impacto vs Esforço (raiz)</td><td>Média</td><td><span class="badge badge-green">Presente</span></td></tr>
+    <tr><td>BACKLOG_ORGANIZADO_LIM-143.md</td><td>Organização diária do backlog (docs/planejamento/)</td><td>Média</td><td><span class="badge badge-green">Presente</span></td></tr>
+    <tr><td>CHECKLIST_AUDITORIA.md</td><td>Checklist de auditoria técnica do projeto</td><td>Média</td><td><span class="badge badge-green">Presente</span></td></tr>
+    <tr><td>CRUD Empréstimos</td><td>Implementação completa do fluxo de empréstimos e devoluções</td><td>Alta</td><td><span class="badge badge-green">Concluído</span></td></tr>
+    <tr><td>CRUD Agendamentos</td><td>Módulo de agendamentos com calendário e validação de conflitos</td><td>Alta</td><td><span class="badge badge-gray">Pendente</span></td></tr>
+    <tr><td>Relatórios Avançados</td><td>Dashboard com gráficos dinâmicos e exportação de dados</td><td>Média</td><td><span class="badge badge-gray">Pendente</span></td></tr>
+    <tr><td>Testes Automatizados</td><td>Cobertura de testes unitários e funcionais nos módulos</td><td>Alta</td><td><span class="badge badge-gray">Pendente</span></td></tr>
+    <tr><td>Deploy em Produção</td><td>Configuração de HTTPS, backup e ambiente de produção</td><td>Alta</td><td><span class="badge badge-gray">Pendente</span></td></tr>
+  </tbody>
+</table>
+
+<h2 id="conclusao">21. Conclusão</h2>
+
+<div class="conclusion-box">
+  <p>
+    O desenvolvimento do Sistema de Gestão do Laboratório de Hardware demonstrou que a
+    informatização dos processos de controle de equipamentos, empréstimos e agendamentos
+    é viável e necessária para a realidade do IFF Bom Jesus do Itabapoana. A partir da
+    análise de requisitos, modelagem conceitual e implementação dos módulos iniciais
+    (autenticação e CRUD de itens), foi possível validar a arquitetura proposta e
+    estabelecer uma base sólida para a continuidade do projeto.
+  </p>
+  <p>
+    Os resultados parciais indicam que a utilização de tecnologias acessíveis e de código
+    aberto (PHP, MySQL, Bootstrap, Docker) permite criar uma solução robusta, escalável
+    e de baixo custo de manutenção. O planejamento com metodologia ágil, evidenciado pelos
+    gráficos de Gantt e Burndown, proporciona visibilidade clara do progresso e das etapas
+    restantes.
+  </p>
+  <p>
+    Desde a versão anterior deste artigo, avanços significativos foram alcançados:
+    o <strong>módulo de empréstimos</strong> foi implementado com CRUD completo e validações
+    de negócio (RN-04, RN-05, RN-08, RN-09); o <strong>sistema de QR Code</strong> foi
+    incorporado para identificação física de componentes, permitindo que qualquer pessoa
+    com um smartphone obtenha detalhes do item instantaneamente; e a <strong>segurança</strong>
+    do sistema foi substancialmente reforçada com rate limiting, CSP headers e tokens CSRF.
+    Adicionalmente, o <strong>portal de documentação auditável</strong> foi estabelecido como
+    fonte oficial de consulta e rastreabilidade do projeto.
+  </p>
+  <p>
+    Na presente revisão (LIM-344), foi realizada uma verificação final de consistência
+    entre a versão oficial do artigo (<code>docs/artigo.html</code>) e seus legados
+    (<code>src/doc/artigo.html</code> v2.0 e <code>src/doc/artigo1.html</code> v2.1),
+    além da correção de caracteres e referências documentais. A série histórica e a
+    rastreabilidade do projeto foram preservadas, garantindo a integridade acadêmica
+    do documento.
+  </p>
+  <p>
+    Como trabalhos futuros, destacam-se a implementação dos módulos de agendamentos,
+    relatórios, auditoria e fórum, além da realização de testes automatizados
+    e do deploy em ambiente de produção. O sistema tem potencial para ser replicado em outros
+    laboratórios da instituição, contribuindo para a modernização da gestão acadêmica.
+  </p>
+</div>
+
+<h2 id="ref">22. Referências (ABNT NBR 6023)</h2>
+<p>O estudo de priorização pode ser consultado em <a href="../estudos/LIM-134-estudo.html">LIM-134‑estudo</a>.</p>
+
+<p class="ref-abnt">
+INSTITUTO FEDERAL FLUMINENSE. <strong>Documentação do projeto: sistema de gestão do laboratório de hardware</strong>. Bom Jesus do Itabapoana: IFF, 2025. 89 p.
+</p>
+
+<p class="ref-abnt">
+INSTITUTO FEDERAL FLUMINENSE. <strong>Requisitos do sistema: laboratório de hardware</strong>. Bom Jesus do Itabapoana: IFF, 2025. Documento técnico.
+</p>
+
+<p class="ref-abnt">
+GRUPO 5 E 1. <strong>Relatório do sistema Lab System</strong>. Bom Jesus do Itabapoana: IFF, 2025. PDF.
+</p>
+
+<p class="ref-abnt">
+GRUPO 4. <strong>Relatório técnico — Módulo 4: relatórios</strong>. Bom Jesus do Itabapoana: IFF, 2025.
+</p>
+
+<p class="ref-abnt">
+GRUPO 5. <strong>Relatório final — Módulo 5: fórum de dúvidas</strong>. Bom Jesus do Itabapoana: IFF, 2025.
+</p>
+
+<p class="ref-abnt">
+ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. <strong>NBR 6023: informação e documentação: referências: elaboração</strong>. Rio de Janeiro, 2018.
+</p>
+
+<p class="ref-abnt">
+ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. <strong>NBR 14724: informação e documentação: trabalhos acadêmicos: apresentação</strong>. Rio de Janeiro, 2011.
+</p>
+
+<p class="ref-abnt">
+PHP: HYPERTEXT PREPROCESSOR. <strong>PHP: Hypertext Preprocessor</strong>. Versão 8.2. Disponível em: &lt;https://www.php.net&gt;. Acesso em: 19 maio 2026.
+</p>
+
+<p class="ref-abnt">
+ORACLE. <strong>MySQL 8.0 Reference Manual</strong>. Disponível em: &lt;https://dev.mysql.com/doc/&gt;. Acesso em: 19 maio 2026.
+</p>
+
+<p class="ref-abnt">
+BOOTSTRAP. <strong>Bootstrap 5.3 Documentation</strong>. Disponível em: &lt;https://getbootstrap.com/docs/5.3/&gt;. Acesso em: 19 maio 2026.
+</p>
+
+<p class="ref-abnt">
+DOCKER INC. <strong>Docker Documentation</strong>. Disponível em: &lt;https://docs.docker.com&gt;. Acesso em: 19 maio 2026.
+</p>
+
+<p class="ref-abnt">
+DEBIANLIMA. <strong>laboratorio_hardware_2025</strong>. Repositório GitHub. Disponível em: &lt;https://github.com/debianlima/laboratorio_hardware_2025&gt;. Acesso em: 21 maio 2026.
+</p>
+
+<p class="ref-abnt">
+DAVIDSHIM. <strong>qrcodejs</strong>. Biblioteca JavaScript para geração de QR Code. Disponível em: &lt;https://github.com/davidshimjs/qrcodejs&gt;. Acesso em: 21 maio 2026.
+</p>
+
+<p class="ref-abnt">
+OWASP FOUNDATION. <strong>Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</strong>. Disponível em: &lt;https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html&gt;. Acesso em: 21 maio 2026.
+</p>
+
+<p class="ref-abnt">
+OWASP FOUNDATION. <strong>Content Security Policy Cheat Sheet</strong>. Disponível em: &lt;https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html&gt;. Acesso em: 21 maio 2026.
+</p>
+
+<p class="ref-abnt">
+MOZILLA DEVELOPER NETWORK. <strong>Content Security Policy (CSP)</strong>. MDN Web Docs. Disponível em: &lt;https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP&gt;. Acesso em: 21 maio 2026.
+</p>
+
+<p class="ref-abnt">
+MOZILLA DEVELOPER NETWORK. <strong>Rate Limiting HTTP</strong>. MDN Web Docs. Disponível em: &lt;https://developer.mozilla.org/en-US/docs/Glossary/Rate_limit&gt;. Acesso em: 21 maio 2026.
+</p>
+
+</div>
+
+<footer class="paper-footer">
+  <p>Documento gerado em Maio de 2026 — Projeto Laboratório de Hardware 2025</p>
+  <p>IFF Bom Jesus do Itabapoana — Curso Técnico em Informática</p>
+  <p>Última revisão: LIM-347 (2026-05-22 — Documentador Acadêmico Free) · Revisões anteriores: LIM-344 (2026-05-22), LIM-313 (2026-05-21)</p>
+</footer>
+
+</div>
+
+</body>
+</html>

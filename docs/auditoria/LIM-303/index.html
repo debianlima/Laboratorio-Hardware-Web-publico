@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIM-303 — Corrigir divergência documental em src/doc/artigo.html (role x tipo)</title>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+</head>
+<body>
+  <header>
+    <h1>LIM-303 — Corrigir divergência documental em src/doc/artigo.html (role x tipo)</h1>
+    <p>Correção de nomenclatura obsoleta: papel/role → perfil/tipo no artigo legado</p>
+  </header>
+
+  <nav>
+    <a href="../../index.html">Início</a>
+    <a href="../../artigo.html">Artigo</a>
+    <a href="../index.html">Auditoria</a>
+    <a href="../../telas/">Telas</a>
+    <a href="../../banco/">Banco de Dados</a>
+    <a href="../../estudos/">Estudos</a>
+  </nav>
+
+  <main>
+    <div class="breadcrumb">
+      <a href="../../index.html">Início</a> <span>›</span>
+      <a href="../index.html">Auditoria</a> <span>›</span>
+      <span>LIM-303</span>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;">
+        <span class="badge badge-info">Issue</span>
+        <span class="badge badge-warning">Corrigido</span>
+        <span class="badge badge-blue">Documentador Acadêmico Free</span>
+        <span class="badge badge-gray">2026-05-21</span>
+      </div>
+      <h2>Resumo</h2>
+      <p>Correção de divergência documental no arquivo <code>src/doc/artigo.html</code> (cópia legada, versão 2.0), que ainda utilizava a nomenclatura antiga da coluna <code>role</code> com valores "admin" ou "librarian" para descrever o controle de acesso do sistema. O banco de dados foi migrado para utilizar exclusivamente a coluna <code>tipo</code> com valores ENUM('administrador', 'padrao').</p>
+      <p>Dois pontos foram corrigidos:</p>
+      <ul>
+        <li><strong>RN-02 (Tabela 5.1):</strong> "papel" → "perfil", coluna <code>role</code> → <code>tipo</code>, valores "admin/librarian" → "administrador"</li>
+        <li><strong>Dicionário de dados (usuarios):</strong> Remoção da coluna <code>role VARCHAR(20)</code> que não existe mais no schema — foi renomeada para <code>tipo</code></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Links</h2>
+      <ul>
+        <li><a href="original.html">Versão original (antes das correções)</a></li>
+        <li><a href="corrigido.html">Versão corrigida (depois das correções)</a></li>
+        <li><a href="revisoes.html">Revisões realizadas</a></li>
+        <li><a href="historico.html">Série histórica</a></li>
+        <li><a href="../../artigo.html">Artigo oficial (versão 2.5)</a></li>
+        <li><a href="../../estudos/LIM-303-estudo.html">Estudo LIM-303</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <p>Laboratório de Hardware 2025 — Instituto Federal Fluminense</p>
+  </footer>
+</body>
+</html>

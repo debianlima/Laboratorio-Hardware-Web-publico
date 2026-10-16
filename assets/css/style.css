@@ -1,0 +1,214 @@
+/* Lab Hardware 2025 - Estilos Globais */
+
+/* Variaveis CSS */
+:root {
+  --cor-primaria: #0d6efd;
+  --cor-primaria-hover: #0b5ed7;
+  --cor-fundo: #f0f2f5;
+  --cor-card: #ffffff;
+  --cor-texto: #212529;
+  --cor-texto-mutedo: #6c757d;
+  --cor-borda: #dee2e6;
+  --cor-erro: #dc3545;
+  --cor-sucesso: #198754;
+  --raio-borda: 0.75rem;
+  --sombra-card: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  --espacamento-mobile: 1rem;
+  --espacamento-desktop: 2rem;
+}
+
+/* Reset basico */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* ==================== LOGIN PAGE ==================== */
+
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--espacamento-mobile);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.login-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-card {
+  background: var(--cor-card);
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra-card);
+  padding: calc(var(--espacamento-mobile) * 1.5);
+}
+
+.login-header {
+  margin-bottom: 1.5rem;
+}
+
+.login-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--cor-primaria);
+  margin-bottom: 0.25rem;
+}
+
+.login-subtitle {
+  font-size: 0.875rem;
+  color: var(--cor-texto-mutedo);
+  margin-bottom: 0;
+}
+
+/* Formularios */
+.login-page .form-label {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.login-page .form-control {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--cor-borda);
+}
+
+.login-page .form-control:focus {
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.login-page .form-control.is-invalid {
+  border-color: var(--cor-erro);
+}
+
+.login-page .form-text {
+  font-size: 0.75rem;
+}
+
+/* Botao de login */
+.btn-login {
+  background-color: var(--cor-primaria);
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-login:hover {
+  background-color: var(--cor-primaria-hover);
+}
+
+.btn-login:active {
+  transform: scale(0.98);
+}
+
+.btn-login:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Toggle senha */
+#toggle-password {
+  border: 1px solid var(--cor-borda);
+  border-left: none;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+#toggle-password:hover {
+  background-color: var(--cor-fundo);
+}
+
+/* Alertas */
+.alert {
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  padding: 0.75rem 1rem;
+}
+
+/* Footer */
+.login-footer {
+  border-top: 1px solid var(--cor-borda);
+  padding-top: 1rem;
+}
+
+/* ==================== RESPONSIVIDADE ==================== */
+
+/* Mobile pequeno (320px - 480px) */
+@media (max-width: 480px) {
+  .login-page {
+    padding: 0.75rem;
+    align-items: flex-start;
+    padding-top: 15vh;
+  }
+
+  .login-card {
+    padding: var(--espacamento-mobile);
+  }
+
+  .login-title {
+    font-size: 1.5rem;
+  }
+
+  .login-page .form-control {
+    padding: 0.65rem 0.75rem;
+  }
+
+  .btn-login {
+    padding: 0.85rem 1rem;
+  }
+}
+
+/* Tablet (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .login-card {
+    padding: calc(var(--espacamento-mobile) * 2);
+  }
+}
+
+/* Desktop (769px+) */
+@media (min-width: 769px) {
+  .login-container {
+    max-width: 420px;
+  }
+
+  .login-card {
+    padding: calc(var(--espacamento-desktop) * 1.5);
+  }
+
+  .login-title {
+    font-size: 2rem;
+  }
+}
+
+/* Acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  .btn-login {
+    transition: none;
+  }
+}
+
+/* Alto contraste */
+@media (prefers-contrast: high) {
+  .login-card {
+    border: 2px solid var(--cor-texto);
+  }
+
+  .login-page .form-control {
+    border-width: 2px;
+  }
+}

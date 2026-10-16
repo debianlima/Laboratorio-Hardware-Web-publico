@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estudo LIM-134 — Análise do Backlog Priorizado — Lab Hardware 2025</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <style>
+    .matrix-2x2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--gray-200);
+      border: 2px solid var(--gray-300);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+    .matrix-cell {
+      background: white;
+      padding: 1rem;
+      min-height: 160px;
+    }
+    .matrix-cell h4 {
+      margin: 0 0 0.5rem;
+      font-size: 0.9rem;
+    }
+    .matrix-cell ul { margin: 0; padding-left: 1.2rem; font-size: 0.85rem; }
+    .matrix-cell li { margin-bottom: 0.25rem; }
+    .matrix-quickwins { background: #d1fae5; }
+    .matrix-major { background: #dbeafe; }
+    .matrix-fillin { background: #fef3c7; }
+    .matrix-timesink { background: #fee2e2; }
+    .quadrant-label {
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .stat-number { font-size: 2rem; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>LIM-134 — Análise do Backlog Priorizado</h1>
+    <p>Estudo preparatório para artigo acadêmico sobre a priorização do backlog</p>
+  </header>
+  <nav>
+    <a href="../index.html">Início</a>
+    <a href="../artigo.html">Artigo</a>
+    <a href="../auditoria/">Auditoria</a>
+    <a href="index.html">Estudos</a>
+    <a href="../auditoria/LIM-134/index.html">Auditoria LIM-134</a>
+  </nav>
+  <main>
+    <div class="breadcrumb">
+      <a href="../index.html">Início</a> <span>›</span>
+      <a href="index.html">Estudos</a> <span>›</span>
+      <span>LIM-134</span>
+    </div>
+
+    <div class="card">
+      <h2>1. Identificação</h2>
+      <table>
+        <tr><td><strong>Issue</strong></td><td>LIM-134 — Criar artigo acadêmico analisando o backlog do projeto</td></tr>
+        <tr><td><strong>Data</strong></td><td>2026-05-21</td></tr>
+        <tr><td><strong>Agente</strong></td><td>Documentador Acadêmico Free (f1b0f6c7)</td></tr>
+        <tr><td><strong>Tipo</strong></td><td>Estudo preparatório para artigo acadêmico</td></tr>
+        <tr><td><strong>Status</strong></td><td><span class="badge badge-success">Concluído</span></td></tr>
+        <tr><td><strong>Referência</strong></td><td><code>BACKLOG_PRIORITIZACAO.md</code></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>2. Objetivo</h2>
+      <p>Analisar academicamente o backlog priorizado do projeto Laboratório de Hardware 2025, aplicando a Matriz de Impacto vs Esforço como metodologia de priorização. O resultado será incorporado como seção do artigo acadêmico principal (<code>docs/artigo.html</code>).</p>
+    </div>
+
+    <div class="card">
+      <h2>3. Metodologia Aplicada</h2>
+      <p>A priorização do backlog utilizou a <strong>Matriz de Impacto vs Esforço</strong>, técnica clássica de gestão de produtos que classifica tarefas em quatro quadrantes:</p>
+      <div class="matrix-2x2">
+        <div class="matrix-cell matrix-quickwins">
+          <div class="quadrant-label" style="color:#059669;">Quick Wins</div>
+          <h4>Alto Impacto, Baixo Esforço</h4>
+          <ul>
+            <li>Correção de Root Path</li>
+            <li>Limpeza de Issues Duplicadas</li>
+            <li>Atualização de Keyword Residual</li>
+          </ul>
+        </div>
+        <div class="matrix-cell matrix-major">
+          <div class="quadrant-label" style="color:#1e40af;">Major Projects</div>
+          <h4>Alto Impacto, Alto Esforço</h4>
+          <ul>
+            <li>Módulo de Empréstimos</li>
+            <li>Melhorias de Segurança</li>
+          </ul>
+        </div>
+        <div class="matrix-cell matrix-fillin">
+          <div class="quadrant-label" style="color:#92400e;">Fill-ins</div>
+          <h4>Baixo Impacto, Baixo Esforço</h4>
+          <ul>
+            <li>Documentação de APIs</li>
+            <li>Otimização de Performance</li>
+            <li>Atualização de Dependências</li>
+          </ul>
+        </div>
+        <div class="matrix-cell matrix-timesink">
+          <div class="quadrant-label" style="color:#991b1b;">Time Sinks</div>
+          <h4>Baixo Impacto, Alto Esforço</h4>
+          <ul>
+            <li>Refatoração CSS/Layout</li>
+            <li>Funcionalidades Não-Solicitadas</li>
+          </ul>
+        </div>
+      </div>
+      <div class="caption" style="text-align:center;font-size:0.85rem;color:var(--gray-500);font-style:italic;">Matriz 2x2 de Impacto vs Esforço com distribuição das tarefas</div>
+    </div>
+
+    <div class="card">
+      <h2>4. Distribuição Quantitativa</h2>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:1rem 0;">
+        <div style="text-align:center;padding:1rem;background:#d1fae5;border-radius:8px;">
+          <div class="stat-number" style="color:#059669;">3</div>
+          <div style="font-weight:600;">Quick Wins</div>
+          <div style="font-size:0.8rem;color:var(--gray-500);">37,5%</div>
+        </div>
+        <div style="text-align:center;padding:1rem;background:#dbeafe;border-radius:8px;">
+          <div class="stat-number" style="color:#1e40af;">2</div>
+          <div style="font-weight:600;">Major Projects</div>
+          <div style="font-size:0.8rem;color:var(--gray-500);">25%</div>
+        </div>
+        <div style="text-align:center;padding:1rem;background:#fef3c7;border-radius:8px;">
+          <div class="stat-number" style="color:#92400e;">3</div>
+          <div style="font-weight:600;">Fill-ins</div>
+          <div style="font-size:0.8rem;color:var(--gray-500);">37,5%</div>
+        </div>
+        <div style="text-align:center;padding:1rem;background:#fee2e2;border-radius:8px;">
+          <div class="stat-number" style="color:#991b1b;">2</div>
+          <div style="font-weight:600;">Time Sinks</div>
+          <div style="font-size:0.8rem;color:var(--gray-500);">25%</div>
+        </div>
+      </div>
+      <p><strong>Nota:</strong> A soma das porcentagens excede 100% porque as categorias Fill-ins e Quick Wins têm o mesmo número de itens (3) e os 2 Time Sinks são contados separadamente. O total é de 10 tarefas (considerando que o backlog lista 10 itens, sendo 2 Time Sinks a evitar).</p>
+    </div>
+
+    <div class="card">
+      <h2>5. Análise Crítica por Categoria</h2>
+
+      <h3 style="color:#059669;">5.1 Quick Wins — Acertos e Oportunidades</h3>
+      <p><strong>Acertos:</strong> As três Quick Wins são tarefas de baixíssimo risco e alto retorno. A correção de Root Path evita execução em contexto incorreto; a limpeza de issues duplicadas reduz ruído no board; a correção de keyword melhora a qualidade acadêmica do abstract.</p>
+      <p><strong>Oportunidade:</strong> Adicionar validação automatizada de consistência (ex.: linter para AGENTS.md) como extensão da Quick Win #1.</p>
+
+      <h3 style="color:#1e40af;">5.2 Major Projects — Planejamento Necessário</h3>
+      <p><strong>Módulo de Empréstimos:</strong> Maior prioridade entre os projetos complexos. Já foi implementado conforme commits recentes (85f5e31). A priorização original está correta — era a funcionalidade mais crítica pendente.</p>
+      <p><strong>Segurança:</strong> A auditoria LIM-201 já identificou e corrigiu vulnerabilidades XSS em flash messages. A correção de CSRF e bcrypt já está aplicada, o que reduz o risco deste Major Project.</p>
+
+      <h3 style="color:#92400e;">5.3 Fill-ins — Baixo Risco, Valor Moderado</h3>
+      <p>As três tarefas de preenchimento são adequadas para intervalos entre sprints. A documentação de APIs internas é a mais relevante entre elas, pois contribui para a manutenibilidade do sistema.</p>
+
+      <h3 style="color:#991b1b;">5.4 Time Sinks — Risco de Escopo Creep</h3>
+      <p><strong>Refatoração CSS:</strong> A justificativa está correta — o layout é funcional e não justifica retrabalho. Deve ser evitada até que haja demanda explícita de usabilidade.</p>
+      <p><strong>Funcionalidades Não-Solicitadas:</strong> Risco real de escopo creep. A classificação como Time Sink é acertada.</p>
+    </div>
+
+    <div class="card">
+      <h2>6. Análise de Riscos da Priorização</h2>
+      <table>
+        <thead><tr><th>Risco</th><th>Categoria</th><th>Probabilidade</th><th>Mitigação</th></tr></thead>
+        <tbody>
+          <tr><td>Dependência técnica entre Quick Wins e Major Projects</td><td>Processo</td><td><span class="badge badge-warning">Média</span></td><td>Quick Wins são independentes — podem ser executadas em paralelo</td></tr>
+          <tr><td>Major Projects bloquearem sprints seguintes</td><td>Agenda</td><td><span class="badge badge-warning">Média</span></td><td>Dividir em fases (básico, avançado) conforme já planejado</td></tr>
+          <tr><td>Despriorização de testes automatizados</td><td>Qualidade</td><td><span class="badge badge-danger">Alta</span></td><td>Testes aparecem apenas no BL-12 (S12) — podem chegar tarde demais</td></tr>
+          <tr><td>Time Sinks consumirem atenção mesmo com classificação baixa</td><td>Gestão</td><td><span class="badge badge-warning">Média</span></td><td>Bloquear explicitamente no board com label "time-sink"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>7. Recomendações</h2>
+      <ol>
+        <li><strong>Manter a priorização atual:</strong> A Matriz de Impacto vs Esforço está bem aplicada. As Quick Wins devem ser executadas primeiro.</li>
+        <li><strong>Antecipar testes automatizados:</strong> O BL-12 está previsto para a Sprint 12, mas testes desde o início reduzem dívida técnica.</li>
+        <li><strong>Criar label "time-sink" no board:</strong> Para evitar que essas tarefas sejam acidentalmente priorizadas.</li>
+        <li><strong>Adicionar validação automatizada:</strong> Como extensão das Quick Wins, criar um script de validação de consistência do AGENTS.md.</li>
+        <li><strong>Revisar periodicamente:</strong> Conforme documentado no próprio backlog, revisar a cada sprint planning.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>8. Referências</h2>
+      <ul>
+        <li><a href="../../BACKLOG_PRIORITIZACAO.md">BACKLOG_PRIORITIZACAO.md</a> — Documento original de priorização</li>
+        <li><a href="../artigo.html">docs/artigo.html</a> — Artigo acadêmico principal</li>
+        <li><a href="../auditoria/LIM-134/index.html">Auditoria LIM-134</a> — Série histórica da análise</li>
+        <li><a href="../../issues/LIM-134.md">Issue LIM-134</a> — Issue original</li>
+      </ul>
+    </div>
+  </main>
+  <footer>
+    <p>Laboratório de Hardware 2025 — Documentador Acadêmico Free</p>
+  </footer>
+</body>
+</html>

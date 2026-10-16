@@ -1,0 +1,41 @@
+{
+  "name": "justoverclock/flarum-ext-realtimecode",
+  "description": "Add a real time Html editor to Flarum",
+  "keywords": [
+    "html editor"
+  ],
+  "type": "flarum-extension",
+  "license": "MIT",
+  "require": {
+    "flarum/core": "^1.0.0"
+  },
+  "require-dev": {
+    "flarum/testing": "^1.0.0"
+  },
+  "authors": [
+    {
+      "name": "Marco Colia",
+      "email": "info@flarum.it",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Justoverclock\\Realtimecode\\": "src/"
+    }
+  },
+  "extra": {
+    "flarum-extension": {
+      "title": "Realtimecode",
+      "category": "",
+      "icon": {
+        "name": "fas fa-laptop-code",
+        "backgroundColor": "green",
+        "color": "white"
+      }
+    },
+    "flagrow": {
+      "discuss": "https://flarum.it"
+    }
+  }
+}

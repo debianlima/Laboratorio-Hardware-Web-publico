@@ -1,0 +1,51 @@
+{
+    "name": "clarkwinkelmann/flarum-ext-mailing",
+    "description": "Send individual or mass mailing to Flarum users",
+    "keywords": [
+        "extension",
+        "flarum",
+        "email",
+        "mailing",
+        "mass-mailing"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "require": {
+        "php": "^8.0",
+        "flarum/core": "^1.7"
+    },
+    "replace": {
+        "kilowhat/flarum-ext-mailing": "*"
+    },
+    "authors": [
+        {
+            "name": "Clark Winkelmann",
+            "homepage": "https://clarkwinkelmann.com/",
+            "email": "clark.winkelmann@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/clarkwinkelmann/flarum-ext-mailing",
+        "forum": "https://discuss.flarum.org/d/20443"
+    },
+    "autoload": {
+        "psr-4": {
+            "ClarkWinkelmann\\Mailing\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Mailing",
+            "category": "feature",
+            "icon": {
+                "name": "fas fa-envelope",
+                "backgroundColor": "#684ba6",
+                "color": "#fff"
+            }
+        },
+        "flagrow": {
+            "discuss": "https://discuss.flarum.org/d/20443"
+        }
+    }
+}
