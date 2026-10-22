@@ -2,7 +2,7 @@
 
 > **Status:** publicado no GitHub em 16/10/2026. Repositório público: https://github.com/debianlima/Laboratorio-Hardware-Web-publico
 
-Este repositório reúne código, documentação acadêmica e evidências de experimentos realizados durante o desenvolvimento do Sistema de Gestão do Laboratório de Hardware. A cópia foi preparada para divulgação técnica e educacional com remoção de identificadores pessoais e de informações internas que não são necessárias para compreender o trabalho.
+Este repositório reúne código, documentação acadêmica e evidências de experimentos realizados durante o desenvolvimento do Sistema de Gestão do Laboratório de Hardware. A cópia foi preparada para divulgação técnica com remoção de informações internas que não são necessárias para compreender o trabalho.
 
 ## Como navegar pelo repositório
 
@@ -10,9 +10,9 @@ Este repositório reúne código, documentação acadêmica e evidências de exp
 - `app/`, `api/`, `components/`, `assets/`, `lib/` e `login/`: componentes da interface, rotas, integração e autenticação usados no sistema.
 - `supabase/`, `docker/` e `docker-compose.yml`: artefatos de banco de dados e ambiente de desenvolvimento. A cópia pública não fornece credenciais de produção.
 - `docs/`: documentação técnica produzida ao longo do desenvolvimento, incluindo estudos, decisões, testes, auditorias e materiais de acompanhamento.
-- `Documentos/`: relatórios acadêmicos e materiais recebidos dos grupos. Os PDFs destinados à cópia pública foram recriados com identificações pessoais removidas.
+- `Documentos/`: Artefatos de materiais feito a em período anterior. Os PDFs destinados à cópia pública foram recriados com identificações pessoais removidas e não foram criados com objetivo de compor este estudo.
 - `Modulo_4_relatorios/`: artefatos do módulo de relatórios.
-- `Modulo_5_forum/`: experimento de fórum, enquetes e auditoria, incluindo um snapshot histórico de código e relatórios anonimizados.
+- `Modulo_5_forum/`: experimento de fórum, enquetes e auditoria, incluindo um snapshot histórico de código e artefatos anonimizados.
 - `fontes_recebidas/`: materiais históricos recebidos durante o projeto. Devem ser tratados como evidências de origem, não como versão atual da aplicação.
 - `Paperclip/`: materiais de preservação do experimento de orquestração, incluindo uma base experimental anonimizada e scripts auxiliares de reconstrução.
 - `bkp_config_agentes/`: backup parcial e reconstruído da configuração documental dos agentes. Consulte a nota específica dentro dessa pasta antes de tentar reproduzir o ambiente.
@@ -21,7 +21,7 @@ Este repositório reúne código, documentação acadêmica e evidências de exp
 
 ## Experimentos documentados
 
-O repositório preserva diferentes etapas do projeto. A primeira é o desenvolvimento do sistema web de gestão do laboratório, com módulos de cadastro, empréstimos, patrimônio, relatórios, fórum e recursos administrativos. Parte dos materiais surgiu em atividades acadêmicas e foi posteriormente integrada e revisada.
+O repositório preserva diferentes etapas do projeto. A primeira foi analisar os artefatos do sistema web de gestão do laboratório, com módulos de cadastro, empréstimos, patrimônio, relatórios, fórum e recursos administrativos. os materiais surgiram em atividades acadêmicas do ano anterior.
 
 A segunda é o experimento de desenvolvimento supervisionado por agentes de IA. Nesse cenário, a plataforma Paperclip foi usada para organizar agentes especializados, tarefas, pré-estudos, revisões, auditorias e registros de execução. O objetivo não era apenas gerar código, mas observar como uma pessoa coordena e supervisiona processos de desenvolvimento parcialmente autônomos.
 
@@ -57,11 +57,3 @@ Os documentos preparados para publicação foram revisados para retirar nomes de
 A documentação desta cópia segue uma estrutura simples para facilitar leitura por pessoas e tecnologias assistivas: títulos seguem ordem hierárquica; parágrafos são curtos; caminhos e comandos aparecem como código; listas são usadas no lugar de tabelas largas quando possível; e links devem ter texto descritivo.
 
 Imagens, diagramas e capturas adicionados ao repositório devem ter texto alternativo significativo ou uma descrição textual equivalente. Informação importante não deve depender somente de cor, posição ou aparência visual. Consulte `ACESSIBILIDADE.md` para os critérios adotados nesta preparação.
-
-## Revisão e manutenção da publicação
-
-A revisão visual dos PDFs, de `fontes_recebidas/` e dos snapshots históricos continua recomendada como atividade de manutenção. Caso seja identificado algum dado que não deva permanecer público, ele deve ser corrigido imediatamente e a auditoria registrada em `PUBLICACAO/`.
-
-## Nota final sobre o backup dos agentes
-
-`bkp_config_agentes/` é **um backup parcial e reconstruído**. Ele preserva principalmente arquivos Markdown de governança, papéis, histórico, backlog, requisitos e documentação que ajudam a entender a configuração dos agentes. Ele não deve ser apresentado como uma cópia completa da instalação do Paperclip nem como garantia de restauração idêntica do ambiente original.
